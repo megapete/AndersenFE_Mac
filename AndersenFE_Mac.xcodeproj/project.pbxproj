@@ -1,0 +1,479 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D3561E81184A6C8D001E0347 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3561E80184A6C8D001E0347 /* Cocoa.framework */; };
+		D3561E8B184A6C8D001E0347 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3561E89184A6C8D001E0347 /* InfoPlist.strings */; };
+		D3561E8D184A6C8D001E0347 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561E8C184A6C8D001E0347 /* main.m */; };
+		D3561E91184A6C8D001E0347 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D3561E8F184A6C8D001E0347 /* Credits.rtf */; };
+		D3561E94184A6C8D001E0347 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561E93184A6C8D001E0347 /* AppDelegate.m */; };
+		D3561E97184A6C8D001E0347 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561E95184A6C8D001E0347 /* MainMenu.xib */; };
+		D3561E99184A6C8D001E0347 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3561E98184A6C8D001E0347 /* Images.xcassets */; };
+		D3561EA0184A6C8D001E0347 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3561E9F184A6C8D001E0347 /* XCTest.framework */; };
+		D3561EA1184A6C8D001E0347 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3561E80184A6C8D001E0347 /* Cocoa.framework */; };
+		D3561EA9184A6C8D001E0347 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3561EA7184A6C8D001E0347 /* InfoPlist.strings */; };
+		D3561EAB184A6C8D001E0347 /* AndersenFE_MacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561EAA184A6C8D001E0347 /* AndersenFE_MacTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D3561EA2184A6C8D001E0347 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3561E75184A6C8D001E0347 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3561E7C184A6C8D001E0347;
+			remoteInfo = AndersenFE_Mac;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D3561E7D184A6C8D001E0347 /* AndersenFE_Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AndersenFE_Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3561E80184A6C8D001E0347 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D3561E83184A6C8D001E0347 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D3561E84184A6C8D001E0347 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D3561E85184A6C8D001E0347 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D3561E88184A6C8D001E0347 /* AndersenFE_Mac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AndersenFE_Mac-Info.plist"; sourceTree = "<group>"; };
+		D3561E8A184A6C8D001E0347 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D3561E8C184A6C8D001E0347 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D3561E8E184A6C8D001E0347 /* AndersenFE_Mac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AndersenFE_Mac-Prefix.pch"; sourceTree = "<group>"; };
+		D3561E90184A6C8D001E0347 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		D3561E92184A6C8D001E0347 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D3561E93184A6C8D001E0347 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D3561E96184A6C8D001E0347 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D3561E98184A6C8D001E0347 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D3561E9E184A6C8D001E0347 /* AndersenFE_MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AndersenFE_MacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3561E9F184A6C8D001E0347 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D3561EA6184A6C8D001E0347 /* AndersenFE_MacTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AndersenFE_MacTests-Info.plist"; sourceTree = "<group>"; };
+		D3561EA8184A6C8D001E0347 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D3561EAA184A6C8D001E0347 /* AndersenFE_MacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AndersenFE_MacTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D3561E7A184A6C8D001E0347 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3561E81184A6C8D001E0347 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3561E9B184A6C8D001E0347 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3561EA1184A6C8D001E0347 /* Cocoa.framework in Frameworks */,
+				D3561EA0184A6C8D001E0347 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D3561E74184A6C8D001E0347 = {
+			isa = PBXGroup;
+			children = (
+				D3561E86184A6C8D001E0347 /* AndersenFE_Mac */,
+				D3561EA4184A6C8D001E0347 /* AndersenFE_MacTests */,
+				D3561E7F184A6C8D001E0347 /* Frameworks */,
+				D3561E7E184A6C8D001E0347 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D3561E7E184A6C8D001E0347 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D3561E7D184A6C8D001E0347 /* AndersenFE_Mac.app */,
+				D3561E9E184A6C8D001E0347 /* AndersenFE_MacTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D3561E7F184A6C8D001E0347 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3561E80184A6C8D001E0347 /* Cocoa.framework */,
+				D3561E9F184A6C8D001E0347 /* XCTest.framework */,
+				D3561E82184A6C8D001E0347 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D3561E82184A6C8D001E0347 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3561E83184A6C8D001E0347 /* AppKit.framework */,
+				D3561E84184A6C8D001E0347 /* CoreData.framework */,
+				D3561E85184A6C8D001E0347 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		D3561E86184A6C8D001E0347 /* AndersenFE_Mac */ = {
+			isa = PBXGroup;
+			children = (
+				D3561E92184A6C8D001E0347 /* AppDelegate.h */,
+				D3561E93184A6C8D001E0347 /* AppDelegate.m */,
+				D3561E95184A6C8D001E0347 /* MainMenu.xib */,
+				D3561E98184A6C8D001E0347 /* Images.xcassets */,
+				D3561E87184A6C8D001E0347 /* Supporting Files */,
+			);
+			path = AndersenFE_Mac;
+			sourceTree = "<group>";
+		};
+		D3561E87184A6C8D001E0347 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D3561E88184A6C8D001E0347 /* AndersenFE_Mac-Info.plist */,
+				D3561E89184A6C8D001E0347 /* InfoPlist.strings */,
+				D3561E8C184A6C8D001E0347 /* main.m */,
+				D3561E8E184A6C8D001E0347 /* AndersenFE_Mac-Prefix.pch */,
+				D3561E8F184A6C8D001E0347 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3561EA4184A6C8D001E0347 /* AndersenFE_MacTests */ = {
+			isa = PBXGroup;
+			children = (
+				D3561EAA184A6C8D001E0347 /* AndersenFE_MacTests.m */,
+				D3561EA5184A6C8D001E0347 /* Supporting Files */,
+			);
+			path = AndersenFE_MacTests;
+			sourceTree = "<group>";
+		};
+		D3561EA5184A6C8D001E0347 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D3561EA6184A6C8D001E0347 /* AndersenFE_MacTests-Info.plist */,
+				D3561EA7184A6C8D001E0347 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D3561E7C184A6C8D001E0347 /* AndersenFE_Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3561EAE184A6C8D001E0347 /* Build configuration list for PBXNativeTarget "AndersenFE_Mac" */;
+			buildPhases = (
+				D3561E79184A6C8D001E0347 /* Sources */,
+				D3561E7A184A6C8D001E0347 /* Frameworks */,
+				D3561E7B184A6C8D001E0347 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AndersenFE_Mac;
+			productName = AndersenFE_Mac;
+			productReference = D3561E7D184A6C8D001E0347 /* AndersenFE_Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D3561E9D184A6C8D001E0347 /* AndersenFE_MacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3561EB1184A6C8D001E0347 /* Build configuration list for PBXNativeTarget "AndersenFE_MacTests" */;
+			buildPhases = (
+				D3561E9A184A6C8D001E0347 /* Sources */,
+				D3561E9B184A6C8D001E0347 /* Frameworks */,
+				D3561E9C184A6C8D001E0347 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D3561EA3184A6C8D001E0347 /* PBXTargetDependency */,
+			);
+			name = AndersenFE_MacTests;
+			productName = AndersenFE_MacTests;
+			productReference = D3561E9E184A6C8D001E0347 /* AndersenFE_MacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D3561E75184A6C8D001E0347 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Peter Huber";
+				TargetAttributes = {
+					D3561E9D184A6C8D001E0347 = {
+						TestTargetID = D3561E7C184A6C8D001E0347;
+					};
+				};
+			};
+			buildConfigurationList = D3561E78184A6C8D001E0347 /* Build configuration list for PBXProject "AndersenFE_Mac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D3561E74184A6C8D001E0347;
+			productRefGroup = D3561E7E184A6C8D001E0347 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D3561E7C184A6C8D001E0347 /* AndersenFE_Mac */,
+				D3561E9D184A6C8D001E0347 /* AndersenFE_MacTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D3561E7B184A6C8D001E0347 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3561E8B184A6C8D001E0347 /* InfoPlist.strings in Resources */,
+				D3561E99184A6C8D001E0347 /* Images.xcassets in Resources */,
+				D3561E91184A6C8D001E0347 /* Credits.rtf in Resources */,
+				D3561E97184A6C8D001E0347 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3561E9C184A6C8D001E0347 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3561EA9184A6C8D001E0347 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D3561E79184A6C8D001E0347 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3561E94184A6C8D001E0347 /* AppDelegate.m in Sources */,
+				D3561E8D184A6C8D001E0347 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3561E9A184A6C8D001E0347 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3561EAB184A6C8D001E0347 /* AndersenFE_MacTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D3561EA3184A6C8D001E0347 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3561E7C184A6C8D001E0347 /* AndersenFE_Mac */;
+			targetProxy = D3561EA2184A6C8D001E0347 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D3561E89184A6C8D001E0347 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3561E8A184A6C8D001E0347 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D3561E8F184A6C8D001E0347 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3561E90184A6C8D001E0347 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		D3561E95184A6C8D001E0347 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3561E96184A6C8D001E0347 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		D3561EA7184A6C8D001E0347 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3561EA8184A6C8D001E0347 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D3561EAC184A6C8D001E0347 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D3561EAD184A6C8D001E0347 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D3561EAF184A6C8D001E0347 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AndersenFE_Mac/AndersenFE_Mac-Prefix.pch";
+				INFOPLIST_FILE = "AndersenFE_Mac/AndersenFE_Mac-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D3561EB0184A6C8D001E0347 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AndersenFE_Mac/AndersenFE_Mac-Prefix.pch";
+				INFOPLIST_FILE = "AndersenFE_Mac/AndersenFE_Mac-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D3561EB2184A6C8D001E0347 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AndersenFE_Mac.app/Contents/MacOS/AndersenFE_Mac";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AndersenFE_Mac/AndersenFE_Mac-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "AndersenFE_MacTests/AndersenFE_MacTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D3561EB3184A6C8D001E0347 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AndersenFE_Mac.app/Contents/MacOS/AndersenFE_Mac";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AndersenFE_Mac/AndersenFE_Mac-Prefix.pch";
+				INFOPLIST_FILE = "AndersenFE_MacTests/AndersenFE_MacTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D3561E78184A6C8D001E0347 /* Build configuration list for PBXProject "AndersenFE_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3561EAC184A6C8D001E0347 /* Debug */,
+				D3561EAD184A6C8D001E0347 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D3561EAE184A6C8D001E0347 /* Build configuration list for PBXNativeTarget "AndersenFE_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3561EAF184A6C8D001E0347 /* Debug */,
+				D3561EB0184A6C8D001E0347 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D3561EB1184A6C8D001E0347 /* Build configuration list for PBXNativeTarget "AndersenFE_MacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3561EB2184A6C8D001E0347 /* Debug */,
+				D3561EB3184A6C8D001E0347 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D3561E75184A6C8D001E0347 /* Project object */;
+}
