@@ -11,7 +11,9 @@
 @interface PCH_AndersenFE_TxfoView : NSView
 
 @property double scale;
+@property NSArray *segmentPaths;
+@property NSArray *arrowLocationsAndDirections;
 
-- (void)setScaleForWdgHt:(double)wHt andOD:(double)wOD;
+- (void)setScaleForWindowHeight:(double)wWindowHt andWdgHt:(double)wHt withInnerID:(double)wID coreToInnerWdg:(double)wCoreClearance andOuterOD:(double)wOD tankToOuterWdg:(double)wTankClearance;
 
 @end
