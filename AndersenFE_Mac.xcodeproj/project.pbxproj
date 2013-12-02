@@ -18,6 +18,65 @@
 		D3561EA1184A6C8D001E0347 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3561E80184A6C8D001E0347 /* Cocoa.framework */; };
 		D3561EA9184A6C8D001E0347 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3561EA7184A6C8D001E0347 /* InfoPlist.strings */; };
 		D3561EAB184A6C8D001E0347 /* AndersenFE_MacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561EAA184A6C8D001E0347 /* AndersenFE_MacTests.m */; };
+		D3561EEE184A6D35001E0347 /* addtermdlog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EB4184A6D35001E0347 /* addtermdlog.mm */; };
+		D3561EEF184A6D35001E0347 /* AllTapsDialog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EB6184A6D35001E0347 /* AllTapsDialog.mm */; };
+		D3561EF0184A6D35001E0347 /* andersenfe.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EB8184A6D35001E0347 /* andersenfe.mm */; };
+		D3561EF1184A6D35001E0347 /* AndersenFolder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561EBA184A6D35001E0347 /* AndersenFolder.cpp */; };
+		D3561EF2184A6D35001E0347 /* ChangeSegmentDlog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EBC184A6D35001E0347 /* ChangeSegmentDlog.mm */; };
+		D3561EF4184A6D35001E0347 /* core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561EC0184A6D35001E0347 /* core.cpp */; };
+		D3561EF5184A6D35001E0347 /* duct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561EC2184A6D35001E0347 /* duct.cpp */; };
+		D3561EF6184A6D35001E0347 /* ExcelTextFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561EC4184A6D35001E0347 /* ExcelTextFile.cpp */; };
+		D3561EF7184A6D35001E0347 /* FluxLines.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561EC6184A6D35001E0347 /* FluxLines.cpp */; };
+		D3561EF8184A6D35001E0347 /* layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561EC8184A6D35001E0347 /* layer.cpp */; };
+		D3561EF9184A6D35001E0347 /* mainfrm.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561ECA184A6D35001E0347 /* mainfrm.mm */; };
+		D3561EFA184A6D35001E0347 /* MoveWdgDlog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561ECC184A6D35001E0347 /* MoveWdgDlog.mm */; };
+		D3561EFB184A6D35001E0347 /* OffsetElongation.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561ECE184A6D35001E0347 /* OffsetElongation.mm */; };
+		D3561EFE184A6D35001E0347 /* RegWdgDlog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561ED4184A6D35001E0347 /* RegWdgDlog.mm */; };
+		D3561EFF184A6D35001E0347 /* RunningMessageDlog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561ED6184A6D35001E0347 /* RunningMessageDlog.mm */; };
+		D3561F00184A6D35001E0347 /* segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561ED8184A6D35001E0347 /* segment.cpp */; };
+		D3561F01184A6D35001E0347 /* SplitCustomDlog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EDA184A6D35001E0347 /* SplitCustomDlog.mm */; };
+		D3561F02184A6D35001E0347 /* SplitSegmentDlog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EDC184A6D35001E0347 /* SplitSegmentDlog.mm */; };
+		D3561F03184A6D35001E0347 /* terminal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561EDE184A6D35001E0347 /* terminal.cpp */; };
+		D3561F04184A6D35001E0347 /* transformer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561EE0184A6D35001E0347 /* transformer.cpp */; };
+		D3561F05184A6D35001E0347 /* txfodatadlog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EE2184A6D35001E0347 /* txfodatadlog.mm */; };
+		D3561F06184A6D35001E0347 /* winding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561EE4184A6D35001E0347 /* winding.cpp */; };
+		D3561F07184A6D35001E0347 /* windingdetaildlog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EE6184A6D35001E0347 /* windingdetaildlog.mm */; };
+		D3561F08184A6D35001E0347 /* windinggen.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EE8184A6D35001E0347 /* windinggen.mm */; };
+		D3561F09184A6D35001E0347 /* WindModNumberDlog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EEA184A6D35001E0347 /* WindModNumberDlog.mm */; };
+		D3561F0A184A6D35001E0347 /* Zlist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561EEC184A6D35001E0347 /* Zlist.cpp */; };
+		D3561F0F184A738B001E0347 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561F0E184A738B001E0347 /* AppController.mm */; };
+		D3561F12184A73FF001E0347 /* AndersenFE_View.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F11184A73FF001E0347 /* AndersenFE_View.m */; };
+		D3561F16184B6EC0001E0347 /* PCH_TxfoDataDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F14184B6EC0001E0347 /* PCH_TxfoDataDlog.m */; };
+		D3561F17184B6EC0001E0347 /* PCH_TxfoDataDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F15184B6EC0001E0347 /* PCH_TxfoDataDlog.xib */; };
+		D3561F1B184BAB9F001E0347 /* PCH_SplitSegmentDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F19184BAB9F001E0347 /* PCH_SplitSegmentDlog.m */; };
+		D3561F1C184BAB9F001E0347 /* PCH_SplitSegmentDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F1A184BAB9F001E0347 /* PCH_SplitSegmentDlog.xib */; };
+		D3561F20184BAE76001E0347 /* PCH_AddTermDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F1E184BAE76001E0347 /* PCH_AddTermDlog.m */; };
+		D3561F21184BAE76001E0347 /* PCH_AddTermDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F1F184BAE76001E0347 /* PCH_AddTermDlog.xib */; };
+		D3561F25184BB8D6001E0347 /* PCH_SplitCustomDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F23184BB8D6001E0347 /* PCH_SplitCustomDlog.m */; };
+		D3561F26184BB8D6001E0347 /* PCH_SplitCustomDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F24184BB8D6001E0347 /* PCH_SplitCustomDlog.xib */; };
+		D3561F2A184BBA02001E0347 /* PCH_RunningMessageDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F28184BBA02001E0347 /* PCH_RunningMessageDlog.m */; };
+		D3561F2B184BBA02001E0347 /* PCH_RunningMessageDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F29184BBA02001E0347 /* PCH_RunningMessageDlog.xib */; };
+		D3561F2F184BBC19001E0347 /* PCH_WindingGenDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F2D184BBC19001E0347 /* PCH_WindingGenDlog.m */; };
+		D3561F30184BBC19001E0347 /* PCH_WindingGenDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F2E184BBC19001E0347 /* PCH_WindingGenDlog.xib */; };
+		D3561F34184BBF79001E0347 /* PCH_WindingDetailDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F32184BBF79001E0347 /* PCH_WindingDetailDlog.m */; };
+		D3561F35184BBF79001E0347 /* PCH_WindingDetailDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F33184BBF79001E0347 /* PCH_WindingDetailDlog.xib */; };
+		D3561F39184BC17F001E0347 /* PCH_RegWdgDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F37184BC17F001E0347 /* PCH_RegWdgDlog.m */; };
+		D3561F3A184BC17F001E0347 /* PCH_RegWdgDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F38184BC17F001E0347 /* PCH_RegWdgDlog.xib */; };
+		D3561F3D184BC59F001E0347 /* CFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561F3B184BC59F001E0347 /* CFile.cpp */; };
+		D3561F40184BC74A001E0347 /* CStdioFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561F3E184BC74A001E0347 /* CStdioFile.cpp */; };
+		D3561F44184BD0CE001E0347 /* PCH_ChangeSegmentDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F42184BD0CE001E0347 /* PCH_ChangeSegmentDlog.m */; };
+		D3561F45184BD0CE001E0347 /* PCH_ChangeSegmentDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F43184BD0CE001E0347 /* PCH_ChangeSegmentDlog.xib */; };
+		D3561F49184BD616001E0347 /* PCH_WindModNumberDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F47184BD616001E0347 /* PCH_WindModNumberDlog.m */; };
+		D3561F4A184BD616001E0347 /* PCH_WindModNumberDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F48184BD616001E0347 /* PCH_WindModNumberDlog.xib */; };
+		D3561F4E184BD862001E0347 /* PCH_AllTapsDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F4C184BD862001E0347 /* PCH_AllTapsDlog.m */; };
+		D3561F4F184BD862001E0347 /* PCH_AllTapsDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F4D184BD862001E0347 /* PCH_AllTapsDlog.xib */; };
+		D3561F53184BDA22001E0347 /* PCH_OffsetElongationDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F51184BDA22001E0347 /* PCH_OffsetElongationDlog.m */; };
+		D3561F54184BDA22001E0347 /* PCH_OffsetElongationDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F52184BDA22001E0347 /* PCH_OffsetElongationDlog.xib */; };
+		D3561F58184BDB68001E0347 /* PCH_MoveWdgDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F56184BDB68001E0347 /* PCH_MoveWdgDlog.m */; };
+		D3561F59184BDB68001E0347 /* PCH_MoveWdgDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F57184BDB68001E0347 /* PCH_MoveWdgDlog.xib */; };
+		D3561F5F184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F5E184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.m */; };
+		D3561F62184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F61184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m */; };
+		D3561F65184CE92C001E0347 /* AndersenFE_TxfoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F64184CE92C001E0347 /* AndersenFE_TxfoDataView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +109,112 @@
 		D3561EA6184A6C8D001E0347 /* AndersenFE_MacTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AndersenFE_MacTests-Info.plist"; sourceTree = "<group>"; };
 		D3561EA8184A6C8D001E0347 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D3561EAA184A6C8D001E0347 /* AndersenFE_MacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AndersenFE_MacTests.m; sourceTree = "<group>"; };
+		D3561EB4184A6D35001E0347 /* addtermdlog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = addtermdlog.mm; sourceTree = "<group>"; };
+		D3561EB5184A6D35001E0347 /* addtermdlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addtermdlog.h; sourceTree = "<group>"; };
+		D3561EB6184A6D35001E0347 /* AllTapsDialog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AllTapsDialog.mm; sourceTree = "<group>"; };
+		D3561EB7184A6D35001E0347 /* AllTapsDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTapsDialog.h; sourceTree = "<group>"; };
+		D3561EB8184A6D35001E0347 /* andersenfe.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = andersenfe.mm; sourceTree = "<group>"; };
+		D3561EB9184A6D35001E0347 /* andersenfe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = andersenfe.h; sourceTree = "<group>"; };
+		D3561EBA184A6D35001E0347 /* AndersenFolder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AndersenFolder.cpp; sourceTree = "<group>"; };
+		D3561EBB184A6D35001E0347 /* AndersenFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AndersenFolder.h; sourceTree = "<group>"; };
+		D3561EBC184A6D35001E0347 /* ChangeSegmentDlog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChangeSegmentDlog.mm; sourceTree = "<group>"; };
+		D3561EBD184A6D35001E0347 /* ChangeSegmentDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeSegmentDlog.h; sourceTree = "<group>"; };
+		D3561EC0184A6D35001E0347 /* core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core.cpp; sourceTree = "<group>"; };
+		D3561EC1184A6D35001E0347 /* core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core.h; sourceTree = "<group>"; };
+		D3561EC2184A6D35001E0347 /* duct.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = duct.cpp; sourceTree = "<group>"; };
+		D3561EC3184A6D35001E0347 /* duct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = duct.h; sourceTree = "<group>"; };
+		D3561EC4184A6D35001E0347 /* ExcelTextFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExcelTextFile.cpp; sourceTree = "<group>"; };
+		D3561EC5184A6D35001E0347 /* ExcelTextFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExcelTextFile.h; sourceTree = "<group>"; };
+		D3561EC6184A6D35001E0347 /* FluxLines.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FluxLines.cpp; sourceTree = "<group>"; };
+		D3561EC7184A6D35001E0347 /* FluxLines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FluxLines.h; sourceTree = "<group>"; };
+		D3561EC8184A6D35001E0347 /* layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = layer.cpp; sourceTree = "<group>"; };
+		D3561EC9184A6D35001E0347 /* layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layer.h; sourceTree = "<group>"; };
+		D3561ECA184A6D35001E0347 /* mainfrm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mainfrm.mm; sourceTree = "<group>"; };
+		D3561ECB184A6D35001E0347 /* mainfrm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainfrm.h; sourceTree = "<group>"; };
+		D3561ECC184A6D35001E0347 /* MoveWdgDlog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoveWdgDlog.mm; sourceTree = "<group>"; };
+		D3561ECD184A6D35001E0347 /* MoveWdgDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveWdgDlog.h; sourceTree = "<group>"; };
+		D3561ECE184A6D35001E0347 /* OffsetElongation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OffsetElongation.mm; sourceTree = "<group>"; };
+		D3561ECF184A6D35001E0347 /* OffsetElongation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffsetElongation.h; sourceTree = "<group>"; };
+		D3561ED4184A6D35001E0347 /* RegWdgDlog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RegWdgDlog.mm; sourceTree = "<group>"; };
+		D3561ED5184A6D35001E0347 /* RegWdgDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegWdgDlog.h; sourceTree = "<group>"; };
+		D3561ED6184A6D35001E0347 /* RunningMessageDlog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RunningMessageDlog.mm; sourceTree = "<group>"; };
+		D3561ED7184A6D35001E0347 /* RunningMessageDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningMessageDlog.h; sourceTree = "<group>"; };
+		D3561ED8184A6D35001E0347 /* segment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = segment.cpp; sourceTree = "<group>"; };
+		D3561ED9184A6D35001E0347 /* segment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = segment.h; sourceTree = "<group>"; };
+		D3561EDA184A6D35001E0347 /* SplitCustomDlog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SplitCustomDlog.mm; sourceTree = "<group>"; };
+		D3561EDB184A6D35001E0347 /* SplitCustomDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitCustomDlog.h; sourceTree = "<group>"; };
+		D3561EDC184A6D35001E0347 /* SplitSegmentDlog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SplitSegmentDlog.mm; sourceTree = "<group>"; };
+		D3561EDD184A6D35001E0347 /* SplitSegmentDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitSegmentDlog.h; sourceTree = "<group>"; };
+		D3561EDE184A6D35001E0347 /* terminal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = terminal.cpp; sourceTree = "<group>"; };
+		D3561EDF184A6D35001E0347 /* terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = terminal.h; sourceTree = "<group>"; };
+		D3561EE0184A6D35001E0347 /* transformer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transformer.cpp; sourceTree = "<group>"; };
+		D3561EE1184A6D35001E0347 /* transformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transformer.h; sourceTree = "<group>"; };
+		D3561EE2184A6D35001E0347 /* txfodatadlog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = txfodatadlog.mm; sourceTree = "<group>"; };
+		D3561EE3184A6D35001E0347 /* txfodatadlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = txfodatadlog.h; sourceTree = "<group>"; };
+		D3561EE4184A6D35001E0347 /* winding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = winding.cpp; sourceTree = "<group>"; };
+		D3561EE5184A6D35001E0347 /* winding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winding.h; sourceTree = "<group>"; };
+		D3561EE6184A6D35001E0347 /* windingdetaildlog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = windingdetaildlog.mm; sourceTree = "<group>"; };
+		D3561EE7184A6D35001E0347 /* windingdetaildlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windingdetaildlog.h; sourceTree = "<group>"; };
+		D3561EE8184A6D35001E0347 /* windinggen.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = windinggen.mm; sourceTree = "<group>"; };
+		D3561EE9184A6D35001E0347 /* windinggen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windinggen.h; sourceTree = "<group>"; };
+		D3561EEA184A6D35001E0347 /* WindModNumberDlog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WindModNumberDlog.mm; sourceTree = "<group>"; };
+		D3561EEB184A6D35001E0347 /* WindModNumberDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindModNumberDlog.h; sourceTree = "<group>"; };
+		D3561EEC184A6D35001E0347 /* Zlist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Zlist.cpp; sourceTree = "<group>"; };
+		D3561EED184A6D35001E0347 /* Zlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zlist.h; sourceTree = "<group>"; };
+		D3561F0C184A70FD001E0347 /* stdafx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
+		D3561F0D184A738B001E0347 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		D3561F0E184A738B001E0347 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
+		D3561F10184A73FF001E0347 /* AndersenFE_View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AndersenFE_View.h; sourceTree = "<group>"; };
+		D3561F11184A73FF001E0347 /* AndersenFE_View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AndersenFE_View.m; sourceTree = "<group>"; };
+		D3561F13184B6EBF001E0347 /* PCH_TxfoDataDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_TxfoDataDlog.h; sourceTree = "<group>"; };
+		D3561F14184B6EC0001E0347 /* PCH_TxfoDataDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_TxfoDataDlog.m; sourceTree = "<group>"; };
+		D3561F15184B6EC0001E0347 /* PCH_TxfoDataDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_TxfoDataDlog.xib; sourceTree = "<group>"; };
+		D3561F18184BAB9F001E0347 /* PCH_SplitSegmentDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_SplitSegmentDlog.h; sourceTree = "<group>"; };
+		D3561F19184BAB9F001E0347 /* PCH_SplitSegmentDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_SplitSegmentDlog.m; sourceTree = "<group>"; };
+		D3561F1A184BAB9F001E0347 /* PCH_SplitSegmentDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_SplitSegmentDlog.xib; sourceTree = "<group>"; };
+		D3561F1D184BAE76001E0347 /* PCH_AddTermDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_AddTermDlog.h; sourceTree = "<group>"; };
+		D3561F1E184BAE76001E0347 /* PCH_AddTermDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_AddTermDlog.m; sourceTree = "<group>"; };
+		D3561F1F184BAE76001E0347 /* PCH_AddTermDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_AddTermDlog.xib; sourceTree = "<group>"; };
+		D3561F22184BB8D6001E0347 /* PCH_SplitCustomDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_SplitCustomDlog.h; sourceTree = "<group>"; };
+		D3561F23184BB8D6001E0347 /* PCH_SplitCustomDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_SplitCustomDlog.m; sourceTree = "<group>"; };
+		D3561F24184BB8D6001E0347 /* PCH_SplitCustomDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_SplitCustomDlog.xib; sourceTree = "<group>"; };
+		D3561F27184BBA02001E0347 /* PCH_RunningMessageDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_RunningMessageDlog.h; sourceTree = "<group>"; };
+		D3561F28184BBA02001E0347 /* PCH_RunningMessageDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_RunningMessageDlog.m; sourceTree = "<group>"; };
+		D3561F29184BBA02001E0347 /* PCH_RunningMessageDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_RunningMessageDlog.xib; sourceTree = "<group>"; };
+		D3561F2C184BBC19001E0347 /* PCH_WindingGenDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_WindingGenDlog.h; sourceTree = "<group>"; };
+		D3561F2D184BBC19001E0347 /* PCH_WindingGenDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_WindingGenDlog.m; sourceTree = "<group>"; };
+		D3561F2E184BBC19001E0347 /* PCH_WindingGenDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_WindingGenDlog.xib; sourceTree = "<group>"; };
+		D3561F31184BBF79001E0347 /* PCH_WindingDetailDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_WindingDetailDlog.h; sourceTree = "<group>"; };
+		D3561F32184BBF79001E0347 /* PCH_WindingDetailDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_WindingDetailDlog.m; sourceTree = "<group>"; };
+		D3561F33184BBF79001E0347 /* PCH_WindingDetailDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_WindingDetailDlog.xib; sourceTree = "<group>"; };
+		D3561F36184BC17F001E0347 /* PCH_RegWdgDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_RegWdgDlog.h; sourceTree = "<group>"; };
+		D3561F37184BC17F001E0347 /* PCH_RegWdgDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_RegWdgDlog.m; sourceTree = "<group>"; };
+		D3561F38184BC17F001E0347 /* PCH_RegWdgDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_RegWdgDlog.xib; sourceTree = "<group>"; };
+		D3561F3B184BC59F001E0347 /* CFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFile.cpp; sourceTree = "<group>"; };
+		D3561F3C184BC59F001E0347 /* CFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFile.h; sourceTree = "<group>"; };
+		D3561F3E184BC74A001E0347 /* CStdioFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CStdioFile.cpp; sourceTree = "<group>"; };
+		D3561F3F184BC74A001E0347 /* CStdioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CStdioFile.h; sourceTree = "<group>"; };
+		D3561F41184BD0CE001E0347 /* PCH_ChangeSegmentDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_ChangeSegmentDlog.h; sourceTree = "<group>"; };
+		D3561F42184BD0CE001E0347 /* PCH_ChangeSegmentDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_ChangeSegmentDlog.m; sourceTree = "<group>"; };
+		D3561F43184BD0CE001E0347 /* PCH_ChangeSegmentDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_ChangeSegmentDlog.xib; sourceTree = "<group>"; };
+		D3561F46184BD616001E0347 /* PCH_WindModNumberDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_WindModNumberDlog.h; sourceTree = "<group>"; };
+		D3561F47184BD616001E0347 /* PCH_WindModNumberDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_WindModNumberDlog.m; sourceTree = "<group>"; };
+		D3561F48184BD616001E0347 /* PCH_WindModNumberDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_WindModNumberDlog.xib; sourceTree = "<group>"; };
+		D3561F4B184BD862001E0347 /* PCH_AllTapsDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_AllTapsDlog.h; sourceTree = "<group>"; };
+		D3561F4C184BD862001E0347 /* PCH_AllTapsDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_AllTapsDlog.m; sourceTree = "<group>"; };
+		D3561F4D184BD862001E0347 /* PCH_AllTapsDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_AllTapsDlog.xib; sourceTree = "<group>"; };
+		D3561F50184BDA22001E0347 /* PCH_OffsetElongationDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_OffsetElongationDlog.h; sourceTree = "<group>"; };
+		D3561F51184BDA22001E0347 /* PCH_OffsetElongationDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_OffsetElongationDlog.m; sourceTree = "<group>"; };
+		D3561F52184BDA22001E0347 /* PCH_OffsetElongationDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_OffsetElongationDlog.xib; sourceTree = "<group>"; };
+		D3561F55184BDB68001E0347 /* PCH_MoveWdgDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_MoveWdgDlog.h; sourceTree = "<group>"; };
+		D3561F56184BDB68001E0347 /* PCH_MoveWdgDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_MoveWdgDlog.m; sourceTree = "<group>"; };
+		D3561F57184BDB68001E0347 /* PCH_MoveWdgDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_MoveWdgDlog.xib; sourceTree = "<group>"; };
+		D3561F5D184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_AndersenFE_TxfoView.h; sourceTree = "<group>"; };
+		D3561F5E184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_AndersenFE_TxfoView.m; sourceTree = "<group>"; };
+		D3561F60184CE81C001E0347 /* PCH_AndersenFE_TerminalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_AndersenFE_TerminalView.h; sourceTree = "<group>"; };
+		D3561F61184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_AndersenFE_TerminalView.m; sourceTree = "<group>"; };
+		D3561F63184CE92C001E0347 /* AndersenFE_TxfoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AndersenFE_TxfoDataView.h; sourceTree = "<group>"; };
+		D3561F64184CE92C001E0347 /* AndersenFE_TxfoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AndersenFE_TxfoDataView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +282,112 @@
 			children = (
 				D3561E92184A6C8D001E0347 /* AppDelegate.h */,
 				D3561E93184A6C8D001E0347 /* AppDelegate.m */,
+				D3561F0D184A738B001E0347 /* AppController.h */,
+				D3561F0E184A738B001E0347 /* AppController.mm */,
+				D3561F10184A73FF001E0347 /* AndersenFE_View.h */,
+				D3561F11184A73FF001E0347 /* AndersenFE_View.m */,
+				D3561F5D184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.h */,
+				D3561F5E184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.m */,
+				D3561F60184CE81C001E0347 /* PCH_AndersenFE_TerminalView.h */,
+				D3561F61184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m */,
+				D3561F63184CE92C001E0347 /* AndersenFE_TxfoDataView.h */,
+				D3561F64184CE92C001E0347 /* AndersenFE_TxfoDataView.m */,
+				D3561EB4184A6D35001E0347 /* addtermdlog.mm */,
+				D3561EB5184A6D35001E0347 /* addtermdlog.h */,
+				D3561F1D184BAE76001E0347 /* PCH_AddTermDlog.h */,
+				D3561F1E184BAE76001E0347 /* PCH_AddTermDlog.m */,
+				D3561F1F184BAE76001E0347 /* PCH_AddTermDlog.xib */,
+				D3561EB6184A6D35001E0347 /* AllTapsDialog.mm */,
+				D3561EB7184A6D35001E0347 /* AllTapsDialog.h */,
+				D3561F4B184BD862001E0347 /* PCH_AllTapsDlog.h */,
+				D3561F4C184BD862001E0347 /* PCH_AllTapsDlog.m */,
+				D3561F4D184BD862001E0347 /* PCH_AllTapsDlog.xib */,
+				D3561EB8184A6D35001E0347 /* andersenfe.mm */,
+				D3561EB9184A6D35001E0347 /* andersenfe.h */,
+				D3561EBA184A6D35001E0347 /* AndersenFolder.cpp */,
+				D3561EBB184A6D35001E0347 /* AndersenFolder.h */,
+				D3561EBC184A6D35001E0347 /* ChangeSegmentDlog.mm */,
+				D3561EBD184A6D35001E0347 /* ChangeSegmentDlog.h */,
+				D3561F41184BD0CE001E0347 /* PCH_ChangeSegmentDlog.h */,
+				D3561F42184BD0CE001E0347 /* PCH_ChangeSegmentDlog.m */,
+				D3561F43184BD0CE001E0347 /* PCH_ChangeSegmentDlog.xib */,
+				D3561EC0184A6D35001E0347 /* core.cpp */,
+				D3561EC1184A6D35001E0347 /* core.h */,
+				D3561EC2184A6D35001E0347 /* duct.cpp */,
+				D3561EC3184A6D35001E0347 /* duct.h */,
+				D3561EC4184A6D35001E0347 /* ExcelTextFile.cpp */,
+				D3561EC5184A6D35001E0347 /* ExcelTextFile.h */,
+				D3561EC6184A6D35001E0347 /* FluxLines.cpp */,
+				D3561EC7184A6D35001E0347 /* FluxLines.h */,
+				D3561EC8184A6D35001E0347 /* layer.cpp */,
+				D3561EC9184A6D35001E0347 /* layer.h */,
+				D3561ECA184A6D35001E0347 /* mainfrm.mm */,
+				D3561ECB184A6D35001E0347 /* mainfrm.h */,
+				D3561ECC184A6D35001E0347 /* MoveWdgDlog.mm */,
+				D3561ECD184A6D35001E0347 /* MoveWdgDlog.h */,
+				D3561F55184BDB68001E0347 /* PCH_MoveWdgDlog.h */,
+				D3561F56184BDB68001E0347 /* PCH_MoveWdgDlog.m */,
+				D3561F57184BDB68001E0347 /* PCH_MoveWdgDlog.xib */,
+				D3561ECE184A6D35001E0347 /* OffsetElongation.mm */,
+				D3561ECF184A6D35001E0347 /* OffsetElongation.h */,
+				D3561F50184BDA22001E0347 /* PCH_OffsetElongationDlog.h */,
+				D3561F51184BDA22001E0347 /* PCH_OffsetElongationDlog.m */,
+				D3561F52184BDA22001E0347 /* PCH_OffsetElongationDlog.xib */,
+				D3561ED4184A6D35001E0347 /* RegWdgDlog.mm */,
+				D3561ED5184A6D35001E0347 /* RegWdgDlog.h */,
+				D3561F36184BC17F001E0347 /* PCH_RegWdgDlog.h */,
+				D3561F37184BC17F001E0347 /* PCH_RegWdgDlog.m */,
+				D3561F38184BC17F001E0347 /* PCH_RegWdgDlog.xib */,
+				D3561ED6184A6D35001E0347 /* RunningMessageDlog.mm */,
+				D3561ED7184A6D35001E0347 /* RunningMessageDlog.h */,
+				D3561F27184BBA02001E0347 /* PCH_RunningMessageDlog.h */,
+				D3561F28184BBA02001E0347 /* PCH_RunningMessageDlog.m */,
+				D3561F29184BBA02001E0347 /* PCH_RunningMessageDlog.xib */,
+				D3561ED8184A6D35001E0347 /* segment.cpp */,
+				D3561ED9184A6D35001E0347 /* segment.h */,
+				D3561EDA184A6D35001E0347 /* SplitCustomDlog.mm */,
+				D3561EDB184A6D35001E0347 /* SplitCustomDlog.h */,
+				D3561F22184BB8D6001E0347 /* PCH_SplitCustomDlog.h */,
+				D3561F23184BB8D6001E0347 /* PCH_SplitCustomDlog.m */,
+				D3561F24184BB8D6001E0347 /* PCH_SplitCustomDlog.xib */,
+				D3561EDC184A6D35001E0347 /* SplitSegmentDlog.mm */,
+				D3561EDD184A6D35001E0347 /* SplitSegmentDlog.h */,
+				D3561F18184BAB9F001E0347 /* PCH_SplitSegmentDlog.h */,
+				D3561F19184BAB9F001E0347 /* PCH_SplitSegmentDlog.m */,
+				D3561F1A184BAB9F001E0347 /* PCH_SplitSegmentDlog.xib */,
+				D3561F0C184A70FD001E0347 /* stdafx.h */,
+				D3561EDE184A6D35001E0347 /* terminal.cpp */,
+				D3561EDF184A6D35001E0347 /* terminal.h */,
+				D3561EE0184A6D35001E0347 /* transformer.cpp */,
+				D3561EE1184A6D35001E0347 /* transformer.h */,
+				D3561EE2184A6D35001E0347 /* txfodatadlog.mm */,
+				D3561EE3184A6D35001E0347 /* txfodatadlog.h */,
+				D3561F13184B6EBF001E0347 /* PCH_TxfoDataDlog.h */,
+				D3561F14184B6EC0001E0347 /* PCH_TxfoDataDlog.m */,
+				D3561F15184B6EC0001E0347 /* PCH_TxfoDataDlog.xib */,
+				D3561EE4184A6D35001E0347 /* winding.cpp */,
+				D3561EE5184A6D35001E0347 /* winding.h */,
+				D3561EE6184A6D35001E0347 /* windingdetaildlog.mm */,
+				D3561EE7184A6D35001E0347 /* windingdetaildlog.h */,
+				D3561F31184BBF79001E0347 /* PCH_WindingDetailDlog.h */,
+				D3561F32184BBF79001E0347 /* PCH_WindingDetailDlog.m */,
+				D3561F33184BBF79001E0347 /* PCH_WindingDetailDlog.xib */,
+				D3561EE8184A6D35001E0347 /* windinggen.mm */,
+				D3561EE9184A6D35001E0347 /* windinggen.h */,
+				D3561F2C184BBC19001E0347 /* PCH_WindingGenDlog.h */,
+				D3561F2D184BBC19001E0347 /* PCH_WindingGenDlog.m */,
+				D3561F2E184BBC19001E0347 /* PCH_WindingGenDlog.xib */,
+				D3561EEA184A6D35001E0347 /* WindModNumberDlog.mm */,
+				D3561EEB184A6D35001E0347 /* WindModNumberDlog.h */,
+				D3561F46184BD616001E0347 /* PCH_WindModNumberDlog.h */,
+				D3561F47184BD616001E0347 /* PCH_WindModNumberDlog.m */,
+				D3561F48184BD616001E0347 /* PCH_WindModNumberDlog.xib */,
+				D3561EEC184A6D35001E0347 /* Zlist.cpp */,
+				D3561EED184A6D35001E0347 /* Zlist.h */,
+				D3561F3B184BC59F001E0347 /* CFile.cpp */,
+				D3561F3C184BC59F001E0347 /* CFile.h */,
+				D3561F3E184BC74A001E0347 /* CStdioFile.cpp */,
+				D3561F3F184BC74A001E0347 /* CStdioFile.h */,
 				D3561E95184A6C8D001E0347 /* MainMenu.xib */,
 				D3561E98184A6C8D001E0347 /* Images.xcassets */,
 				D3561E87184A6C8D001E0347 /* Supporting Files */,
@@ -231,9 +502,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3561E8B184A6C8D001E0347 /* InfoPlist.strings in Resources */,
+				D3561F45184BD0CE001E0347 /* PCH_ChangeSegmentDlog.xib in Resources */,
 				D3561E99184A6C8D001E0347 /* Images.xcassets in Resources */,
+				D3561F2B184BBA02001E0347 /* PCH_RunningMessageDlog.xib in Resources */,
+				D3561F54184BDA22001E0347 /* PCH_OffsetElongationDlog.xib in Resources */,
 				D3561E91184A6C8D001E0347 /* Credits.rtf in Resources */,
+				D3561F17184B6EC0001E0347 /* PCH_TxfoDataDlog.xib in Resources */,
+				D3561F21184BAE76001E0347 /* PCH_AddTermDlog.xib in Resources */,
+				D3561F4A184BD616001E0347 /* PCH_WindModNumberDlog.xib in Resources */,
+				D3561F1C184BAB9F001E0347 /* PCH_SplitSegmentDlog.xib in Resources */,
+				D3561F59184BDB68001E0347 /* PCH_MoveWdgDlog.xib in Resources */,
+				D3561F3A184BC17F001E0347 /* PCH_RegWdgDlog.xib in Resources */,
+				D3561F30184BBC19001E0347 /* PCH_WindingGenDlog.xib in Resources */,
 				D3561E97184A6C8D001E0347 /* MainMenu.xib in Resources */,
+				D3561F35184BBF79001E0347 /* PCH_WindingDetailDlog.xib in Resources */,
+				D3561F26184BB8D6001E0347 /* PCH_SplitCustomDlog.xib in Resources */,
+				D3561F4F184BD862001E0347 /* PCH_AllTapsDlog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,8 +536,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3561EEE184A6D35001E0347 /* addtermdlog.mm in Sources */,
+				D3561F03184A6D35001E0347 /* terminal.cpp in Sources */,
+				D3561F12184A73FF001E0347 /* AndersenFE_View.m in Sources */,
+				D3561EF1184A6D35001E0347 /* AndersenFolder.cpp in Sources */,
+				D3561F07184A6D35001E0347 /* windingdetaildlog.mm in Sources */,
+				D3561F04184A6D35001E0347 /* transformer.cpp in Sources */,
+				D3561F16184B6EC0001E0347 /* PCH_TxfoDataDlog.m in Sources */,
+				D3561F2F184BBC19001E0347 /* PCH_WindingGenDlog.m in Sources */,
+				D3561F3D184BC59F001E0347 /* CFile.cpp in Sources */,
+				D3561EF4184A6D35001E0347 /* core.cpp in Sources */,
+				D3561F5F184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.m in Sources */,
+				D3561F01184A6D35001E0347 /* SplitCustomDlog.mm in Sources */,
+				D3561EF5184A6D35001E0347 /* duct.cpp in Sources */,
+				D3561F2A184BBA02001E0347 /* PCH_RunningMessageDlog.m in Sources */,
+				D3561F08184A6D35001E0347 /* windinggen.mm in Sources */,
+				D3561EF9184A6D35001E0347 /* mainfrm.mm in Sources */,
+				D3561EF8184A6D35001E0347 /* layer.cpp in Sources */,
+				D3561EF7184A6D35001E0347 /* FluxLines.cpp in Sources */,
+				D3561F4E184BD862001E0347 /* PCH_AllTapsDlog.m in Sources */,
+				D3561F49184BD616001E0347 /* PCH_WindModNumberDlog.m in Sources */,
+				D3561F65184CE92C001E0347 /* AndersenFE_TxfoDataView.m in Sources */,
+				D3561EFF184A6D35001E0347 /* RunningMessageDlog.mm in Sources */,
+				D3561F25184BB8D6001E0347 /* PCH_SplitCustomDlog.m in Sources */,
+				D3561F44184BD0CE001E0347 /* PCH_ChangeSegmentDlog.m in Sources */,
 				D3561E94184A6C8D001E0347 /* AppDelegate.m in Sources */,
+				D3561EF0184A6D35001E0347 /* andersenfe.mm in Sources */,
+				D3561F0F184A738B001E0347 /* AppController.mm in Sources */,
+				D3561F39184BC17F001E0347 /* PCH_RegWdgDlog.m in Sources */,
+				D3561F1B184BAB9F001E0347 /* PCH_SplitSegmentDlog.m in Sources */,
 				D3561E8D184A6C8D001E0347 /* main.m in Sources */,
+				D3561F02184A6D35001E0347 /* SplitSegmentDlog.mm in Sources */,
+				D3561F05184A6D35001E0347 /* txfodatadlog.mm in Sources */,
+				D3561EF2184A6D35001E0347 /* ChangeSegmentDlog.mm in Sources */,
+				D3561F06184A6D35001E0347 /* winding.cpp in Sources */,
+				D3561EFE184A6D35001E0347 /* RegWdgDlog.mm in Sources */,
+				D3561F34184BBF79001E0347 /* PCH_WindingDetailDlog.m in Sources */,
+				D3561EFB184A6D35001E0347 /* OffsetElongation.mm in Sources */,
+				D3561F09184A6D35001E0347 /* WindModNumberDlog.mm in Sources */,
+				D3561F58184BDB68001E0347 /* PCH_MoveWdgDlog.m in Sources */,
+				D3561F53184BDA22001E0347 /* PCH_OffsetElongationDlog.m in Sources */,
+				D3561F00184A6D35001E0347 /* segment.cpp in Sources */,
+				D3561EF6184A6D35001E0347 /* ExcelTextFile.cpp in Sources */,
+				D3561EEF184A6D35001E0347 /* AllTapsDialog.mm in Sources */,
+				D3561F0A184A6D35001E0347 /* Zlist.cpp in Sources */,
+				D3561F40184BC74A001E0347 /* CStdioFile.cpp in Sources */,
+				D3561EFA184A6D35001E0347 /* MoveWdgDlog.mm in Sources */,
+				D3561F20184BAE76001E0347 /* PCH_AddTermDlog.m in Sources */,
+				D3561F62184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
