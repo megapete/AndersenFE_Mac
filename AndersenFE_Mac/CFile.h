@@ -14,8 +14,15 @@
 
 #define NO_ERROR    0
 
+struct NSFileImpl;
+
 class CFile
 {
+    
+private:
+    
+    NSFileImpl *fileImpl;
+    
 public:
     
     static const int modeCreate;
@@ -26,6 +33,10 @@ public:
     static const int typeText;
     
     CFile();
+    CFile(CString fName, uint nOpenFlags);
+    virtual ~CFile();
+    
+    int openFlags;
     
     BOOL Open(CString fName, uint nOpenFlags, void* pError = NULL);
     void Close();

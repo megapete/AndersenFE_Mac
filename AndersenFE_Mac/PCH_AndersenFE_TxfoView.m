@@ -39,8 +39,27 @@
 }
 
 - (void)drawArrowAt:(NSPoint)wLoc withColor:(NSColor *)wColor
+// wLoc should hold the point (in transformer window coordinates) of the arrow
 {
+    const int arrowHeight = 15; // points (or pixels?)
+    const int arrowHeadW = 3;
+    const int arrowHeadH = 5;
     
+    [NSGraphicsContext saveGraphicsState];
+    
+    [wColor set];
+    [NSBezierPath setDefaultLineWidth:self.scale];
+    
+    NSBezierPath *newArrow = [NSBezierPath bezierPath];
+    [newArrow moveToPoint:wLoc];
+    [newArrow lineToPoint:NSMakePoint(wLoc.x, wLoc.y - arrowHeight * self.scale)];
+    [newArrow moveToPoint:wLoc];
+    [newArrow lineToPoint:NSMakePoint(wLoc.x - arrowHeadW * self.scale, wLoc.y - arrowHeadH * self.scale)];
+    [newArrow moveToPoint:wLoc];
+    [newArrow lineToPoint:NSMakePoint(wLoc.x + arrowHeadW * self.scale, wLoc.y - arrowHeadH * self.scale)];
+    [newArrow stroke];
+    
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 #pragma mark -
@@ -52,32 +71,23 @@
     NSRect transfoRect = NSMakeRect(0, 0, wOD - wID + wCoreClearance + wTankClearance, wWindowHt);
     
     // We don't want to distort the image (we want it to scale), so we'll check the scale required so that that will not happen
-    const CGFloat totalInset = 0.0;
     
-    CGFloat xScale = transfoRect.size.width / (self.frame.size.width - totalInset);
-    CGFloat yScale = transfoRect.size.height / (self.frame.size.height - totalInset);
     
-    PCH_AndersenFE_TxfoView *theView = self;
+    CGFloat xScale = transfoRect.size.width / self.frame.size.width;
+    CGFloat yScale = transfoRect.size.height / self.frame.size.height;
     
     // CGFloat offsetY = 0.0;
     
     if (xScale > yScale)
     {
-        theView.scale = xScale;
-        transfoRect.size.height = (self.frame.size.height - totalInset) * xScale;
-        
-        // if the x-dimension dictates the scale, we want the solution space centred vertically, so we adjust the new rectangle accordingly
-        
-        // CGFloat offsetY = (theMeshRect.size.height - self.associatedMesh.bounds.size.height) / 2.0;
-       // theMeshRect = NSOffsetRect(theMeshRect, 0.0, -offsetY);
+        self.scale = xScale;
+        transfoRect.size.height = self.frame.size.height * xScale;
     }
     else
     {
-        theView.scale = yScale;
-        // theMeshRect.size.width = (self.view.frame.size.width - totalInset) * yScale;
+        self.scale = yScale;
+        transfoRect.size.width = self.frame.size.width * yScale;
     }
-    
-    //theMeshRect = NSInsetRect(theMeshRect, -totalInset * theView.scale / 2.0, -totalInset * theView.scale / 2.0);
     
     [self zoomRect:transfoRect];
 }

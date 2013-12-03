@@ -62,7 +62,7 @@
 		D3561F35184BBF79001E0347 /* PCH_WindingDetailDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F33184BBF79001E0347 /* PCH_WindingDetailDlog.xib */; };
 		D3561F39184BC17F001E0347 /* PCH_RegWdgDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F37184BC17F001E0347 /* PCH_RegWdgDlog.m */; };
 		D3561F3A184BC17F001E0347 /* PCH_RegWdgDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F38184BC17F001E0347 /* PCH_RegWdgDlog.xib */; };
-		D3561F3D184BC59F001E0347 /* CFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561F3B184BC59F001E0347 /* CFile.cpp */; };
+		D3561F3D184BC59F001E0347 /* CFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561F3B184BC59F001E0347 /* CFile.mm */; };
 		D3561F40184BC74A001E0347 /* CStdioFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3561F3E184BC74A001E0347 /* CStdioFile.cpp */; };
 		D3561F44184BD0CE001E0347 /* PCH_ChangeSegmentDlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F42184BD0CE001E0347 /* PCH_ChangeSegmentDlog.m */; };
 		D3561F45184BD0CE001E0347 /* PCH_ChangeSegmentDlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561F43184BD0CE001E0347 /* PCH_ChangeSegmentDlog.xib */; };
@@ -190,7 +190,7 @@
 		D3561F36184BC17F001E0347 /* PCH_RegWdgDlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_RegWdgDlog.h; sourceTree = "<group>"; };
 		D3561F37184BC17F001E0347 /* PCH_RegWdgDlog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_RegWdgDlog.m; sourceTree = "<group>"; };
 		D3561F38184BC17F001E0347 /* PCH_RegWdgDlog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PCH_RegWdgDlog.xib; sourceTree = "<group>"; };
-		D3561F3B184BC59F001E0347 /* CFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFile.cpp; sourceTree = "<group>"; };
+		D3561F3B184BC59F001E0347 /* CFile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CFile.mm; sourceTree = "<group>"; };
 		D3561F3C184BC59F001E0347 /* CFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFile.h; sourceTree = "<group>"; };
 		D3561F3E184BC74A001E0347 /* CStdioFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CStdioFile.cpp; sourceTree = "<group>"; };
 		D3561F3F184BC74A001E0347 /* CStdioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CStdioFile.h; sourceTree = "<group>"; };
@@ -384,7 +384,7 @@
 				D3561F48184BD616001E0347 /* PCH_WindModNumberDlog.xib */,
 				D3561EEC184A6D35001E0347 /* Zlist.cpp */,
 				D3561EED184A6D35001E0347 /* Zlist.h */,
-				D3561F3B184BC59F001E0347 /* CFile.cpp */,
+				D3561F3B184BC59F001E0347 /* CFile.mm */,
 				D3561F3C184BC59F001E0347 /* CFile.h */,
 				D3561F3E184BC74A001E0347 /* CStdioFile.cpp */,
 				D3561F3F184BC74A001E0347 /* CStdioFile.h */,
@@ -544,7 +544,7 @@
 				D3561F04184A6D35001E0347 /* transformer.cpp in Sources */,
 				D3561F16184B6EC0001E0347 /* PCH_TxfoDataDlog.m in Sources */,
 				D3561F2F184BBC19001E0347 /* PCH_WindingGenDlog.m in Sources */,
-				D3561F3D184BC59F001E0347 /* CFile.cpp in Sources */,
+				D3561F3D184BC59F001E0347 /* CFile.mm in Sources */,
 				D3561EF4184A6D35001E0347 /* core.cpp in Sources */,
 				D3561F5F184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.m in Sources */,
 				D3561F01184A6D35001E0347 /* SplitCustomDlog.mm in Sources */,
@@ -794,6 +794,7 @@
 				D3561EB0184A6C8D001E0347 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3561EB1184A6C8D001E0347 /* Build configuration list for PBXNativeTarget "AndersenFE_MacTests" */ = {
 			isa = XCConfigurationList;
@@ -802,6 +803,7 @@
 				D3561EB3184A6C8D001E0347 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
