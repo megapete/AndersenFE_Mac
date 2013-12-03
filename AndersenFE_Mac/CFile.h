@@ -19,7 +19,7 @@ struct NSFileImpl;
 class CFile
 {
     
-private:
+protected:
     
     NSFileImpl *fileImpl;
     

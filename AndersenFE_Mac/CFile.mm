@@ -59,7 +59,7 @@ BOOL CFile::Open(CString fName, uint nOpenFlags, void* pError)
         }
         
         // create a new, empty file
-        int newDesc = open([pathName cStringUsingEncoding:[NSString defaultCStringEncoding]], O_CREAT);
+        int newDesc = open([pathName cStringUsingEncoding:[NSString defaultCStringEncoding]], O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
         if (newDesc < 0)
         {
             NSLog(@"Error creating new file");
@@ -136,5 +136,20 @@ void CFile::Rename(CString oldName, CString newName)
 
 uint CFile::Read(void* buffer, uint nCount)
 {
-    return 0;
+    uint bytesRead = 0;
+    
+    if (fileImpl->fileHandle)
+    {
+        // TODO: This should be wrapped in a @try / @catch block
+        NSData *readData = [fileImpl->fileHandle readDataOfLength:nCount];
+        
+        bytesRead = (uint)[readData length];
+        memcpy(buffer, [readData bytes], bytesRead);
+    }
+    else
+    {
+        NSLog(@"File handle is not valid!");
+    }
+    
+    return bytesRead;
 }
