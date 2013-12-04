@@ -28,6 +28,14 @@ struct AppControllerImpl
 @property (weak) IBOutlet AndersenFE_TxfoDataView *theTxfoData;
 @property (weak) IBOutlet PCH_AndersenFE_TerminalView *theTerminalView;
 
+- (void)updateAllViews;
+- (void)updateTxfoView;
+- (void)updateTxfoDataView;
+- (void)updateTerminalView;
 
+- (IBAction)setDosBoxPrefsLocation:(id)sender;
+- (IBAction)setDosBoxCLocation:(id)sender;
+
+- (IBAction)openXLDesignFile:(id)sender;
 
 @end

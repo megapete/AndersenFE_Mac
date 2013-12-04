@@ -70,9 +70,9 @@
                                     <action selector="newDocument:" target="-1" id="373"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Open…" keyEquivalent="o" id="72">
+                            <menuItem title="Open Design File…" keyEquivalent="o" id="72">
                                 <connections>
-                                    <action selector="openDocument:" target="-1" id="374"/>
+                                    <action selector="openXLDesignFile:" target="4aD-zX-viR" id="H9m-N5-yyF"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Open Recent" id="124">
@@ -587,6 +587,25 @@
                                         </menuItem>
                                     </items>
                                 </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="DosBox" id="qQS-ac-L5b">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="DosBox" id="ksF-z6-Eed">
+                        <items>
+                            <menuItem title="Set DosBox Preferences Location..." id="Wrs-AC-Ryr">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="setDosBoxPrefsLocation:" target="4aD-zX-viR" id="Mt4-WP-wd0"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Set DosBoxC Folder..." id="bkd-57-nQa">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="setDosBoxCLocation:" target="4aD-zX-viR" id="82f-NP-5H9"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>

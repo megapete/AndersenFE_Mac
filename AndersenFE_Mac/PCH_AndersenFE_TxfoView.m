@@ -65,10 +65,10 @@
 #pragma mark -
 #pragma mark Scale-setting routine
 
-- (void)setScaleForWindowHeight:(double)wWindowHt andWdgHt:(double)wHt withInnerID:(double)wID coreToInnerWdg:(double)wCoreClearance andOuterOD:(double)wOD tankToOuterWdg:(double)wTankClearance
+- (void)setScaleForWindowHeight:(double)wWindowHt withInnerIR:(double)wIR coreToInnerWdg:(double)wCoreClearance andOuterOR:(double)wOR tankToOuterWdg:(double)wTankClearance
 {
     // Create a rectangle size for the transformer to work with
-    NSRect transfoRect = NSMakeRect(0, 0, wOD - wID + wCoreClearance + wTankClearance, wWindowHt);
+    NSRect transfoRect = NSMakeRect(0, 0, wOR - wIR + wCoreClearance + wTankClearance, wWindowHt);
     
     // We don't want to distort the image (we want it to scale), so we'll check the scale required so that that will not happen
     

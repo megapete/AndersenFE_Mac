@@ -7,11 +7,7 @@
 #include "TxfoDataDlog.h"
 #import "PCH_TxfoDataDlog.h"
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
+
 
 /////////////////////////////////////////////////////////////////////////////
 // TxfoDataDlog dialog
