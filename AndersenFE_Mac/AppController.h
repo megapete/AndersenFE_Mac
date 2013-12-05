@@ -28,6 +28,15 @@ struct AppControllerImpl
 @property (weak) IBOutlet AndersenFE_TxfoDataView *theTxfoData;
 @property (weak) IBOutlet PCH_AndersenFE_TerminalView *theTerminalView;
 
+@property NSArray *terminalData;
+@property (weak) IBOutlet NSTextField *term1Data;
+@property (weak) IBOutlet NSTextField *term2Data;
+@property (weak) IBOutlet NSTextField *term3Data;
+@property (weak) IBOutlet NSTextField *term4Data;
+@property (weak) IBOutlet NSTextField *term5Data;
+@property (weak) IBOutlet NSTextField *term6Data;
+
+
 - (void)updateAllViews;
 - (void)updateTxfoView;
 - (void)updateTxfoDataView;

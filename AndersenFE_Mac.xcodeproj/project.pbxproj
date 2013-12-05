@@ -14,10 +14,6 @@
 		D3561E94184A6C8D001E0347 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561E93184A6C8D001E0347 /* AppDelegate.m */; };
 		D3561E97184A6C8D001E0347 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3561E95184A6C8D001E0347 /* MainMenu.xib */; };
 		D3561E99184A6C8D001E0347 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3561E98184A6C8D001E0347 /* Images.xcassets */; };
-		D3561EA0184A6C8D001E0347 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3561E9F184A6C8D001E0347 /* XCTest.framework */; };
-		D3561EA1184A6C8D001E0347 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3561E80184A6C8D001E0347 /* Cocoa.framework */; };
-		D3561EA9184A6C8D001E0347 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3561EA7184A6C8D001E0347 /* InfoPlist.strings */; };
-		D3561EAB184A6C8D001E0347 /* AndersenFE_MacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561EAA184A6C8D001E0347 /* AndersenFE_MacTests.m */; };
 		D3561EEE184A6D35001E0347 /* addtermdlog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EB4184A6D35001E0347 /* addtermdlog.mm */; };
 		D3561EEF184A6D35001E0347 /* AllTapsDialog.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EB6184A6D35001E0347 /* AllTapsDialog.mm */; };
 		D3561EF0184A6D35001E0347 /* andersenfe.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3561EB8184A6D35001E0347 /* andersenfe.mm */; };
@@ -77,17 +73,9 @@
 		D3561F5F184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F5E184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.m */; };
 		D3561F62184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F61184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m */; };
 		D3561F65184CE92C001E0347 /* AndersenFE_TxfoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F64184CE92C001E0347 /* AndersenFE_TxfoDataView.m */; };
+		D38BF569184F737E00DCDA87 /* CMyBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D38BF567184F737E00DCDA87 /* CMyBase.cpp */; };
+		D3EFD9A1184FFB02001E559C /* PCH_SegmentPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EFD9A0184FFB02001E559C /* PCH_SegmentPath.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D3561EA2184A6C8D001E0347 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D3561E75184A6C8D001E0347 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D3561E7C184A6C8D001E0347;
-			remoteInfo = AndersenFE_Mac;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D3561E7D184A6C8D001E0347 /* AndersenFE_Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AndersenFE_Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,11 +92,7 @@
 		D3561E93184A6C8D001E0347 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D3561E96184A6C8D001E0347 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D3561E98184A6C8D001E0347 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D3561E9E184A6C8D001E0347 /* AndersenFE_MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AndersenFE_MacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3561E9F184A6C8D001E0347 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D3561EA6184A6C8D001E0347 /* AndersenFE_MacTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AndersenFE_MacTests-Info.plist"; sourceTree = "<group>"; };
-		D3561EA8184A6C8D001E0347 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D3561EAA184A6C8D001E0347 /* AndersenFE_MacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AndersenFE_MacTests.m; sourceTree = "<group>"; };
 		D3561EB4184A6D35001E0347 /* addtermdlog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = addtermdlog.mm; sourceTree = "<group>"; };
 		D3561EB5184A6D35001E0347 /* addtermdlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addtermdlog.h; sourceTree = "<group>"; };
 		D3561EB6184A6D35001E0347 /* AllTapsDialog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AllTapsDialog.mm; sourceTree = "<group>"; };
@@ -215,6 +199,10 @@
 		D3561F61184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_AndersenFE_TerminalView.m; sourceTree = "<group>"; };
 		D3561F63184CE92C001E0347 /* AndersenFE_TxfoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AndersenFE_TxfoDataView.h; sourceTree = "<group>"; };
 		D3561F64184CE92C001E0347 /* AndersenFE_TxfoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AndersenFE_TxfoDataView.m; sourceTree = "<group>"; };
+		D38BF567184F737E00DCDA87 /* CMyBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMyBase.cpp; sourceTree = "<group>"; };
+		D38BF568184F737E00DCDA87 /* CMyBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMyBase.h; sourceTree = "<group>"; };
+		D3EFD99F184FFB02001E559C /* PCH_SegmentPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_SegmentPath.h; sourceTree = "<group>"; };
+		D3EFD9A0184FFB02001E559C /* PCH_SegmentPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_SegmentPath.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,15 +214,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D3561E9B184A6C8D001E0347 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D3561EA1184A6C8D001E0347 /* Cocoa.framework in Frameworks */,
-				D3561EA0184A6C8D001E0347 /* XCTest.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -242,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				D3561E86184A6C8D001E0347 /* AndersenFE_Mac */,
-				D3561EA4184A6C8D001E0347 /* AndersenFE_MacTests */,
 				D3561E7F184A6C8D001E0347 /* Frameworks */,
 				D3561E7E184A6C8D001E0347 /* Products */,
 			);
@@ -252,7 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				D3561E7D184A6C8D001E0347 /* AndersenFE_Mac.app */,
-				D3561E9E184A6C8D001E0347 /* AndersenFE_MacTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -288,6 +265,8 @@
 				D3561F11184A73FF001E0347 /* AndersenFE_View.m */,
 				D3561F5D184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.h */,
 				D3561F5E184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.m */,
+				D3EFD99F184FFB02001E559C /* PCH_SegmentPath.h */,
+				D3EFD9A0184FFB02001E559C /* PCH_SegmentPath.m */,
 				D3561F60184CE81C001E0347 /* PCH_AndersenFE_TerminalView.h */,
 				D3561F61184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m */,
 				D3561F63184CE92C001E0347 /* AndersenFE_TxfoDataView.h */,
@@ -388,6 +367,8 @@
 				D3561F3C184BC59F001E0347 /* CFile.h */,
 				D3561F3E184BC74A001E0347 /* CStdioFile.mm */,
 				D3561F3F184BC74A001E0347 /* CStdioFile.h */,
+				D38BF567184F737E00DCDA87 /* CMyBase.cpp */,
+				D38BF568184F737E00DCDA87 /* CMyBase.h */,
 				D3561E95184A6C8D001E0347 /* MainMenu.xib */,
 				D3561E98184A6C8D001E0347 /* Images.xcassets */,
 				D3561E87184A6C8D001E0347 /* Supporting Files */,
@@ -403,24 +384,6 @@
 				D3561E8C184A6C8D001E0347 /* main.m */,
 				D3561E8E184A6C8D001E0347 /* AndersenFE_Mac-Prefix.pch */,
 				D3561E8F184A6C8D001E0347 /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D3561EA4184A6C8D001E0347 /* AndersenFE_MacTests */ = {
-			isa = PBXGroup;
-			children = (
-				D3561EAA184A6C8D001E0347 /* AndersenFE_MacTests.m */,
-				D3561EA5184A6C8D001E0347 /* Supporting Files */,
-			);
-			path = AndersenFE_MacTests;
-			sourceTree = "<group>";
-		};
-		D3561EA5184A6C8D001E0347 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D3561EA6184A6C8D001E0347 /* AndersenFE_MacTests-Info.plist */,
-				D3561EA7184A6C8D001E0347 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -445,24 +408,6 @@
 			productReference = D3561E7D184A6C8D001E0347 /* AndersenFE_Mac.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D3561E9D184A6C8D001E0347 /* AndersenFE_MacTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D3561EB1184A6C8D001E0347 /* Build configuration list for PBXNativeTarget "AndersenFE_MacTests" */;
-			buildPhases = (
-				D3561E9A184A6C8D001E0347 /* Sources */,
-				D3561E9B184A6C8D001E0347 /* Frameworks */,
-				D3561E9C184A6C8D001E0347 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D3561EA3184A6C8D001E0347 /* PBXTargetDependency */,
-			);
-			name = AndersenFE_MacTests;
-			productName = AndersenFE_MacTests;
-			productReference = D3561E9E184A6C8D001E0347 /* AndersenFE_MacTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -471,11 +416,6 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Peter Huber";
-				TargetAttributes = {
-					D3561E9D184A6C8D001E0347 = {
-						TestTargetID = D3561E7C184A6C8D001E0347;
-					};
-				};
 			};
 			buildConfigurationList = D3561E78184A6C8D001E0347 /* Build configuration list for PBXProject "AndersenFE_Mac" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -491,7 +431,6 @@
 			projectRoot = "";
 			targets = (
 				D3561E7C184A6C8D001E0347 /* AndersenFE_Mac */,
-				D3561E9D184A6C8D001E0347 /* AndersenFE_MacTests */,
 			);
 		};
 /* End PBXProject section */
@@ -521,14 +460,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D3561E9C184A6C8D001E0347 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D3561EA9184A6C8D001E0347 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -536,6 +467,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D38BF569184F737E00DCDA87 /* CMyBase.cpp in Sources */,
 				D3561EEE184A6D35001E0347 /* addtermdlog.mm in Sources */,
 				D3561F03184A6D35001E0347 /* terminal.cpp in Sources */,
 				D3561F12184A73FF001E0347 /* AndersenFE_View.m in Sources */,
@@ -579,6 +511,7 @@
 				D3561F00184A6D35001E0347 /* segment.cpp in Sources */,
 				D3561EF6184A6D35001E0347 /* ExcelTextFile.cpp in Sources */,
 				D3561EEF184A6D35001E0347 /* AllTapsDialog.mm in Sources */,
+				D3EFD9A1184FFB02001E559C /* PCH_SegmentPath.m in Sources */,
 				D3561F0A184A6D35001E0347 /* Zlist.cpp in Sources */,
 				D3561F40184BC74A001E0347 /* CStdioFile.mm in Sources */,
 				D3561EFA184A6D35001E0347 /* MoveWdgDlog.mm in Sources */,
@@ -587,23 +520,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D3561E9A184A6C8D001E0347 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D3561EAB184A6C8D001E0347 /* AndersenFE_MacTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D3561EA3184A6C8D001E0347 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D3561E7C184A6C8D001E0347 /* AndersenFE_Mac */;
-			targetProxy = D3561EA2184A6C8D001E0347 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D3561E89184A6C8D001E0347 /* InfoPlist.strings */ = {
@@ -628,14 +545,6 @@
 				D3561E96184A6C8D001E0347 /* Base */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		D3561EA7184A6C8D001E0347 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D3561EA8184A6C8D001E0347 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -735,46 +644,6 @@
 			};
 			name = Release;
 		};
-		D3561EB2184A6C8D001E0347 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AndersenFE_Mac.app/Contents/MacOS/AndersenFE_Mac";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AndersenFE_Mac/AndersenFE_Mac-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "AndersenFE_MacTests/AndersenFE_MacTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		D3561EB3184A6C8D001E0347 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AndersenFE_Mac.app/Contents/MacOS/AndersenFE_Mac";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AndersenFE_Mac/AndersenFE_Mac-Prefix.pch";
-				INFOPLIST_FILE = "AndersenFE_MacTests/AndersenFE_MacTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -792,15 +661,6 @@
 			buildConfigurations = (
 				D3561EAF184A6C8D001E0347 /* Debug */,
 				D3561EB0184A6C8D001E0347 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D3561EB1184A6C8D001E0347 /* Build configuration list for PBXNativeTarget "AndersenFE_MacTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D3561EB2184A6C8D001E0347 /* Debug */,
-				D3561EB3184A6C8D001E0347 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

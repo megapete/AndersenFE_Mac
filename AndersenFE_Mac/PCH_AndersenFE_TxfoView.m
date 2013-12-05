@@ -7,6 +7,7 @@
 //
 
 #import "PCH_AndersenFE_TxfoView.h"
+#import "PCH_SegmentPath.h"
 
 @interface PCH_AndersenFE_TxfoView ()
 
@@ -28,14 +29,31 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+    self.segmentPaths = nil;
+    self.arrowLocationsAndDirections = nil;
+}
+
 #pragma mark -
 #pragma mark Drawing routines
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	[super drawRect:dirtyRect];
-	
+    [[NSColor whiteColor] set];
+    [[NSBezierPath bezierPathWithRect:self.bounds] fill];
+    
     // Drawing code here.
+    if (self.segmentPaths)
+    {
+        for (PCH_SegmentPath *nextPath in self.segmentPaths)
+        {
+            [nextPath.color set];
+            [[nextPath path] setLineWidth:self.scale];
+            [[nextPath path] stroke];
+        }
+    }
+    
 }
 
 - (void)drawArrowAt:(NSPoint)wLoc withColor:(NSColor *)wColor

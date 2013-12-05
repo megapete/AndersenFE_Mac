@@ -17,6 +17,7 @@ public:
     
     CStdioFile();
     CStdioFile(CString fName, int flags);
+    virtual ~CStdioFile();
     
     BOOL ReadString(CString& wLine);
     void WriteString(CString& wLine);

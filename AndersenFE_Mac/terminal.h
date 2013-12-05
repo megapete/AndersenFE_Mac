@@ -7,6 +7,7 @@
 
 #include "stdafx.h"
 #include <string>
+#include "CMyBase.h"
 
 // Andersen connection constants
 
@@ -23,7 +24,7 @@
 
 #define UNDEFINED_CONNECTION -1
 
-class Terminal  
+class Terminal : public CMyBase
 {
 public:
 	void SetEddyPercent(int wTerm, double wEddy);

@@ -787,8 +787,9 @@ Transformer::Transformer(Transformer& oldTxfo)
 
 	// copy terminals
 	Terminal* nextOldTerm = oldTxfo.m_TermHead;
-	Terminal* lastNewTerm;
+	Terminal* lastNewTerm = NULL;
 	m_TermHead = NULL;
+    
 	while (nextOldTerm != NULL)
 	{
 		if (m_TermHead == NULL)
@@ -804,7 +805,11 @@ Transformer::Transformer(Transformer& oldTxfo)
 
 		nextOldTerm = nextOldTerm->GetNext();
 	}
-	lastNewTerm->SetNext(NULL);
+    
+    if (lastNewTerm != NULL)
+    {
+        lastNewTerm->SetNext(NULL);
+    }
 	
 	// copy layers
 	Layer* nextOldLayer = oldTxfo.m_LayerHead;
@@ -856,7 +861,7 @@ Transformer::Transformer(Transformer& oldTxfo)
 
 Layer* Transformer::GetLayerFromSegmentNumber(int wSegNum)
 {
-	Winding* nextWdg = m_WdgHead;
+	Winding* nextWdg = NULL;
 	Layer* nextLayer;
 	Segment* nextSegment;
 	int counter = 0;

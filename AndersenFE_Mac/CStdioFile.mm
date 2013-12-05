@@ -9,7 +9,7 @@
 #include "CStdioFile.h"
 #import <Foundation/Foundation.h>
 
-struct NSFileImpl
+struct CFileImpl
 {
     NSFileHandle *fileHandle;
 };
@@ -26,19 +26,32 @@ CStdioFile::CStdioFile(CString fName, int flags)
     openFlags |= CFile::typeText;
 }
 
+CStdioFile::~CStdioFile()
+{
+    if (this->fileImpl)
+    {
+        this->fileImpl->fileHandle = nil;
+        
+        delete this->fileImpl;
+        
+        this->fileImpl = NULL;
+    }
+}
+
 BOOL CStdioFile::ReadString(CString& wLine)
 {
     // overwrite anything that may already be in wLine
     wLine = "";
     
-    if (!fileImpl->fileHandle)
+    if (!this->fileImpl->fileHandle)
     {
         NSLog(@"File handle is invalid!");
         return false;
     }
     
     // priming read
-    NSData *nextChar = [fileImpl->fileHandle readDataOfLength:1];
+    NSData *nextChar = [this->fileImpl->fileHandle readDataOfLength:1];
+    
     while ([nextChar length] > 0)
     {
         char theChar = *(char *)[nextChar bytes];
@@ -47,14 +60,14 @@ BOOL CStdioFile::ReadString(CString& wLine)
         if ((theChar == '\r') || (theChar == '\n'))
         {
             // save the old file pointer
-            unsigned long long filePointer = [fileImpl->fileHandle offsetInFile];
+            unsigned long long filePointer = [this->fileImpl->fileHandle offsetInFile];
             
             // read (peek at) the next character
-            nextChar = [fileImpl->fileHandle readDataOfLength:1];
+            nextChar = [this->fileImpl->fileHandle readDataOfLength:1];
             
             if ([nextChar length] == 0) // end of file, just return
             {
-                return true;
+                break;
             }
             
             theChar = *(char *)[nextChar bytes];
@@ -64,14 +77,20 @@ BOOL CStdioFile::ReadString(CString& wLine)
             }
             
             // next character wasn't either CR or LF, so reset the file pointer and return
-            [fileImpl->fileHandle seekToFileOffset:filePointer];
+            [this->fileImpl->fileHandle seekToFileOffset:filePointer];
             
             return true;
         }
         
         wLine += theChar;
         
-        nextChar = [fileImpl->fileHandle readDataOfLength:1];
+        
+        nextChar = [this->fileImpl->fileHandle readDataOfLength:1];
+    }
+    
+    if ([nextChar length] == 0)
+    {
+        return false;
     }
     
     return true;
@@ -91,7 +110,7 @@ void CStdioFile::WriteString(CString& wLine)
     char crlf[2] = {'\r', '\n'};
     [lineStringData appendBytes:crlf length:2];
     
-    [fileImpl->fileHandle writeData:lineStringData];
+    [this->fileImpl->fileHandle writeData:lineStringData];
     
 }
 

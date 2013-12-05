@@ -10,7 +10,7 @@
 #include <fcntl.h>
 #import <Foundation/Foundation.h>
 
-struct NSFileImpl
+struct CFileImpl
 {
     NSFileHandle *fileHandle;
 };
@@ -24,19 +24,28 @@ const int CFile::typeText =        0b00100000;
 
 CFile::CFile()
 {
-    fileImpl->fileHandle = nil;
+    this->fileImpl = new CFileImpl;
+    this->fileImpl->fileHandle = nil;
 }
 
 CFile::CFile(CString fName, uint nOpenFlags)
 {
-    fileImpl->fileHandle = nil;
+    this->fileImpl = new CFileImpl;
+    this->fileImpl->fileHandle = nil;
     
     this->Open(fName, nOpenFlags);
 }
 
 CFile::~CFile()
 {
-    fileImpl->fileHandle = nil;
+    if (this->fileImpl)
+    {
+        this->fileImpl->fileHandle = nil;
+        
+        delete this->fileImpl;
+        
+        this->fileImpl = NULL;
+    }
 }
 
 BOOL CFile::Open(CString fName, uint nOpenFlags, void* pError)
@@ -75,15 +84,15 @@ BOOL CFile::Open(CString fName, uint nOpenFlags, void* pError)
     
     if ((nOpenFlags & CFile::modeRead) && (nOpenFlags & CFile::modeWrite))
     {
-        fileImpl->fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:pathName];
+        this->fileImpl->fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:pathName];
     }
     else if (nOpenFlags & CFile::modeRead)
     {
-        fileImpl->fileHandle = [NSFileHandle fileHandleForReadingAtPath:pathName];
+        this->fileImpl->fileHandle = [NSFileHandle fileHandleForReadingAtPath:pathName];
     }
     else if (nOpenFlags & CFile::modeWrite)
     {
-        fileImpl->fileHandle = [NSFileHandle fileHandleForWritingAtPath:pathName];
+        this->fileImpl->fileHandle = [NSFileHandle fileHandleForWritingAtPath:pathName];
     }
     else
     {
@@ -132,16 +141,34 @@ void CFile::Rename(CString oldName, CString newName)
     {
         newPathName = [newPathName stringByExpandingTildeInPath];
     }
+    
+    NSFileManager *defMgr = [NSFileManager defaultManager];
+    
+    if ([defMgr fileExistsAtPath:oldPathName])
+    {
+        NSError *error;
+        
+        BOOL result = [defMgr moveItemAtPath:oldPathName toPath:newPathName error:&error];
+        
+        if (!result)
+        {
+            NSLog(@"Error during rename!");
+        }
+    }
+    else
+    {
+        NSLog(@"Error during rename! Source file does not exist");
+    }
 }
 
 uint CFile::Read(void* buffer, uint nCount)
 {
     uint bytesRead = 0;
     
-    if (fileImpl->fileHandle)
+    if (this->fileImpl->fileHandle)
     {
         // TODO: This should be wrapped in a @try / @catch block
-        NSData *readData = [fileImpl->fileHandle readDataOfLength:nCount];
+        NSData *readData = [this->fileImpl->fileHandle readDataOfLength:nCount];
         
         bytesRead = (uint)[readData length];
         memcpy(buffer, [readData bytes], bytesRead);

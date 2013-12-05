@@ -11,17 +11,18 @@
 
 #include <iostream>
 #include "stdafx.h"
+#include "CMyBase.h"
 
 #define NO_ERROR    0
 
-struct NSFileImpl;
+struct CFileImpl;
 
-class CFile
+class CFile : public CMyBase
 {
     
-protected:
+public:
     
-    NSFileImpl *fileImpl;
+    CFileImpl *fileImpl;
     
 public:
     

@@ -20,7 +20,8 @@ Terminal::Terminal()
 
 Terminal::~Terminal()
 {
-
+    m_EddyPercent = 0.0;
+	m_Next = NULL;
 }
 
 Terminal::Terminal(Terminal *wTerm) // copy constructor

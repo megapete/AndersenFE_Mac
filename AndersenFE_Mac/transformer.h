@@ -9,9 +9,8 @@
 #include "Core.h"	// Added by ClassView
 #include "Winding.h"	// Added by ClassView
 #include "Layer.h"	// Added by ClassView
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+
+
 
 class CAndersenFolder; // required forward declaration
 

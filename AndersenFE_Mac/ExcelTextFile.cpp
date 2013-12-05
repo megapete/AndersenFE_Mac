@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "AndersenFE.h"
 #include "ExcelTextFile.h"
+#include "terminal.h"
 
 
 
@@ -24,7 +25,7 @@ CExcelTextFile::~CExcelTextFile()
 
 CExcelTextFile::CExcelTextFile(CString lpszFileName, uint nOpenFlags) : CStdioFile(lpszFileName, nOpenFlags)
 {
-
+    
 }
 
 
@@ -88,6 +89,8 @@ int CExcelTextFile::InputFile(Transformer *wTxfo)
 	int lastWdgDataLine = 5;
 	if (fileVersion > 0)
 		lastWdgDataLine = 9;
+    
+    // Terminal *test = new Terminal;
 	
 	while (nextLine <= lastWdgDataLine)
 	{
@@ -115,7 +118,7 @@ int CExcelTextFile::InputFile(Transformer *wTxfo)
 		// Assume that row 1 is HV nominal, row 2 is LV nominal, any other rows that have
 		// the same terminal number as HV or LV is a tapping winding for that terminal
 
-		Terminal* aTerm;
+		Terminal* aTerm = NULL;
 
 		if (!doneTerm[rowTerm[nextLine - 2]])
 		{

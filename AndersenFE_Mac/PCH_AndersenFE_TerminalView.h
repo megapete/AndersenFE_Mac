@@ -10,4 +10,7 @@
 
 @interface PCH_AndersenFE_TerminalView : NSView
 
+@property NSArray *dataViews;
+@property NSArray *borderColors;
+
 @end
