@@ -20,7 +20,8 @@ struct AppControllerImpl
     AppController __unsafe_unretained *theAppController;
 };
 
-@interface AppController : NSObject
+@interface AppController : NSObject <NSWindowDelegate>
+
 
 // IB connection to main view
 @property (strong) IBOutlet AndersenFE_View *theMainView;

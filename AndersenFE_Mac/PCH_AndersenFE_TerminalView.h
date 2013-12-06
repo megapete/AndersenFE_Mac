@@ -11,6 +11,7 @@
 @interface PCH_AndersenFE_TerminalView : NSView
 
 @property NSArray *dataViews;
+@property int refTerminal;
 @property NSArray *borderColors;
 
 @end

@@ -34,6 +34,8 @@
 
 @property NSArray *colorArray;
 
+- (Transformer *)openInputFile:(NSString *)fName;
+
 @end
 
 @implementation AppController
@@ -144,6 +146,9 @@
     
     int i = 0;
     
+    NSMutableArray *termColors = [NSMutableArray array];
+    NSMutableArray *termFields = [NSMutableArray array];
+    
     while (nextTerm != NULL)
     {
         NSTextField *txtField = self.terminalData[i];
@@ -153,11 +158,38 @@
         
         [txtField setStringValue:[NSString stringWithFormat:@"Terminal %d\n%.3f MVA\n%.3f kV\n%s", i+1, nextTerm->m_MVA, nextTerm->m_KV, termConn.c_str()]];
         
+        [termColors addObject:self.colorArray[i]];
+        [termFields addObject:txtField];
+        
         i++;
         nextTerm = nextTerm->GetNext();
     }
     
+    if (termFields.count > 0)
+    {
+        self.theTerminalView.borderColors = [NSArray arrayWithArray:termColors];
+        self.theTerminalView.dataViews = [NSArray arrayWithArray:termFields];
+    }
+    else
+    {
+        self.theTerminalView.borderColors = nil;
+        self.theTerminalView.dataViews = nil;
+    }
+    
     [self.theTerminalView setNeedsDisplay:YES];
+}
+
+#pragma mark -
+#pragma mark Window delegate methods
+
+- (void)windowDidResize:(NSNotification *)notification
+{
+    // for now we only really care if the main window is resized, but we'll check it anyway to make future desige changes easier
+    if ([notification object] == [NSApp mainWindow])
+    {
+        [self updateAllViews];
+    }
+    
 }
 
 #pragma mark -
@@ -213,7 +245,7 @@
 #pragma mark Routine for inputting an Excel-generated design file
 - (IBAction)openXLDesignFile:(id)sender
 {
-    /*
+    
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     
     [openPanel setCanChooseDirectories:NO];
@@ -237,24 +269,33 @@
     {
         return;
     }
-     */
     
-    // CString pathName([pathString cStringUsingEncoding:[NSString defaultCStringEncoding]]);
+    Transformer *newTxfo = [self openInputFile:pathString];
     
-    CString pathName("/Users/peterhub/Documents/Huberis/Local Copies/QH1030/QH1030_AndersenInp.txt");
+    if (newTxfo == NULL)
+    {
+        delete newTxfo;
+        
+        return;
+    }
+}
+
+- (Transformer *)openInputFile:(NSString *)fName
+{
+    CString pathName([fName cStringUsingEncoding:[NSString defaultCStringEncoding]]);
     
     CExcelTextFile xlFile(pathName, CFile::modeRead);
     
     Transformer *xlTxfo = new Transformer;
     
-    xlFile.InputFile(xlTxfo);
+    int inputResult = xlFile.InputFile(xlTxfo);
     
-    _currentTxfo = xlTxfo;
+    if (inputResult != NO_TXTFILE_ERROR)
+    {
+        
+    }
     
-    _currentTxfo->m_IsValid = true;
-    
-    [self updateAllViews];
-
+    return nil;
 }
 
 
