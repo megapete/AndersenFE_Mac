@@ -7,12 +7,18 @@
 //
 
 #import "AppDelegate.h"
+#include "AppController.h"
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+}
+
+-(BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
+{
+    return [self.theAppController openInputFile:filename];
 }
 
 @end

@@ -34,7 +34,7 @@
 
 @property NSArray *colorArray;
 
-- (Transformer *)openInputFile:(NSString *)fName;
+
 
 @end
 
@@ -242,10 +242,10 @@
 }
 
 #pragma mark -
-#pragma mark Routine for inputting an Excel-generated design file
+#pragma mark Routine for inputting an Excel-generated design file & Recent files
+
 - (IBAction)openXLDesignFile:(id)sender
 {
-    
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     
     [openPanel setCanChooseDirectories:NO];
@@ -253,9 +253,18 @@
     [openPanel setTitle:@"Design file"];
     [openPanel setMessage:@"Open the required Excel-design-program-generated file"];
     
+    // set the user's Documents directory as the default
     NSString *docDirPath = @"~/Documents";
     docDirPath = [docDirPath stringByExpandingTildeInPath];
     NSURL *docDirectory = [NSURL fileURLWithPath:docDirPath isDirectory:YES];
+    
+    // if there was a successful opening of a some file, try setting the default directory to the same as that file's directory
+    if (NSURL *lastFile = [[NSUserDefaults standardUserDefaults] URLForKey:LAST_OPENED_INPUT_FILE_KEY])
+    {
+        NSMutableArray *pComps = [NSMutableArray arrayWithArray:[lastFile pathComponents]];
+        
+        
+    }
     
     [openPanel setDirectoryURL:docDirectory];
     
@@ -270,17 +279,11 @@
         return;
     }
     
-    Transformer *newTxfo = [self openInputFile:pathString];
-    
-    if (newTxfo == NULL)
-    {
-        delete newTxfo;
-        
-        return;
-    }
+    [self openInputFile:pathString];
 }
 
-- (Transformer *)openInputFile:(NSString *)fName
+
+- (BOOL)openInputFile:(NSString *)fName
 {
     CString pathName([fName cStringUsingEncoding:[NSString defaultCStringEncoding]]);
     
@@ -292,10 +295,22 @@
     
     if (inputResult != NO_TXTFILE_ERROR)
     {
+        [NSAlert alertWithMessageText:@"Bad Input File!" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Can't opem input file: Error code #%d", inputResult];
         
+        delete xlTxfo;
+        
+        return NO;
     }
     
-    return nil;
+    NSURL *docURL = [NSURL fileURLWithPath:fName];
+    
+    [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:docURL];
+    
+    [[NSUserDefaults standardUserDefaults] setURL:docURL forKey:LAST_OPENED_INPUT_FILE_KEY];
+    
+    _currentTxfo = xlTxfo;
+    
+    return YES;
 }
 
 

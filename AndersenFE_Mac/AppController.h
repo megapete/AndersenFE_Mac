@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define LAST_OPENED_INPUT_FILE_KEY  @"LastInputFile"
+
 @class AndersenFE_View;
 @class PCH_AndersenFE_TxfoView;
 @class PCH_AndersenFE_TerminalView;
@@ -21,6 +23,8 @@ struct AppControllerImpl
 };
 
 @interface AppController : NSObject <NSWindowDelegate>
+
+- (BOOL)openInputFile:(NSString *)fName;
 
 
 // IB connection to main view
