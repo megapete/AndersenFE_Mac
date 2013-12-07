@@ -41,6 +41,7 @@ struct AppControllerImpl
 @property (weak) IBOutlet NSTextField *term5Data;
 @property (weak) IBOutlet NSTextField *term6Data;
 
+- (void)setVPNRefToTermNumber:(int)wTerm;
 
 - (void)updateAllViews;
 - (void)updateTxfoView;

@@ -7,6 +7,19 @@
 //
 
 #import "PCH_AndersenFE_TerminalView.h"
+#import "AppController.h"
+
+@interface PCH_AndersenFE_TerminalView()
+
+@property int rbClickInTerminal;
+
+- (void)handleSetVPN_RefTerm:(id)sender;
+- (void)handleSetMVAToONAFF:(id)sender;
+
+@end
+
+#pragma mark -
+#pragma mark Creation routines
 
 @implementation PCH_AndersenFE_TerminalView
 
@@ -16,9 +29,13 @@
     if (self) {
         // Initialization code here.
         self.refTerminal = -1;
+        self.rbClickInTerminal = -1;
     }
     return self;
 }
+
+#pragma mark -
+#pragma mark Drawing update routine
 
 - (void)drawRect:(NSRect)dirtyRect
 {
@@ -53,6 +70,61 @@
         
         [NSGraphicsContext restoreGraphicsState];
     }
+}
+
+
+#pragma mark -
+#pragma mark Mouse event responders
+
+- (void)rightMouseDown:(NSEvent *)theEvent
+{
+    NSPoint whereClicked = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    
+    int i;
+    
+    for (i=0; i<self.dataViews.count; i++)
+    {
+        NSTextField *nextTerm = self.dataViews[i];
+        
+        if (NSPointInRect(whereClicked, nextTerm.frame))
+        {
+            break;
+        }
+    }
+    
+    if (i < self.dataViews.count)
+    {
+        NSLog(@"Right click in Terminal: %d", i);
+        self.refTerminal = i;
+        
+        // we only show a menu if the right click was in a valid terminal square
+        // Old AndersenFE Terminal contextual menu items:
+        // Run Andersen...
+        // Add Winding...
+        // Modify Terminal...
+        // Change MVA to ONAF
+        // Set VPN Reference
+        // Calculate MVA
+        
+        NSMenu *termMenu = [[NSMenu alloc] initWithTitle:@"Terminals"];
+        [termMenu addItemWithTitle:@"Set VPN Reference" action:@selector(handleSetVPN_RefTerm:) keyEquivalent:@""];
+        [termMenu addItemWithTitle:@"Change MVA to ONAFF" action:@selector(handleSetMVAToONAFF:) keyEquivalent:@""];
+        [NSMenu popUpContextMenu:termMenu withEvent:theEvent forView:self];
+    }
+}
+
+#pragma mark -
+#pragma mark Contextual menu handlers
+
+- (void)handleSetMVAToONAFF:(id)sender
+{
+    NSLog(@"Changing MVA to ONAF II");
+}
+
+- (void)handleSetVPN_RefTerm:(id)sender
+{
+    NSLog(@"Setting VPN terminal");
+    [self.theAppController setVPNRefToTermNumber:self.refTerminal];
 }
 
 @end

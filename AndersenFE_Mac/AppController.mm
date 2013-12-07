@@ -34,7 +34,7 @@
 
 @property NSArray *colorArray;
 
-
+- (void)handleTxfoChanges;
 
 @end
 
@@ -66,6 +66,8 @@
     _theApp->InitInstance();
     
     _theMainFrame = _theApp->m_pMainWnd;
+    
+    self.theTerminalView.theAppController = self;
     
     self.terminalData = [NSArray arrayWithObjects:self.term1Data, self.term2Data, self.term3Data, self.term4Data, self.term5Data, self.term6Data, nil];
 }
@@ -177,6 +179,31 @@
     }
     
     [self.theTerminalView setNeedsDisplay:YES];
+}
+
+#pragma mark -
+#pragma mark Setting transformer characteristics
+
+- (void)handleTxfoChanges
+{
+    if (_currentTxfo != NULL)
+    {
+        _currentTxfo->CalcVoltsPerTurn();
+        _currentTxfo->FixTerminalVoltages();
+        _currentTxfo->m_AndersenOutputIsValid = NO;
+    }
+    
+    [self updateAllViews];
+}
+
+- (void)setVPNRefToTermNumber:(int)wTerm
+{
+    if (_currentTxfo != NULL)
+    {
+        _currentTxfo->m_VperNTerminal = wTerm + 1;
+        
+        [self handleTxfoChanges];
+    }
 }
 
 #pragma mark -

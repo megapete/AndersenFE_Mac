@@ -8,7 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class AppController;
+
 @interface PCH_AndersenFE_TerminalView : NSView
+
+@property AppController *theAppController;
 
 @property NSArray *dataViews;
 @property int refTerminal;
