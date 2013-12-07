@@ -262,8 +262,9 @@
     if (NSURL *lastFile = [[NSUserDefaults standardUserDefaults] URLForKey:LAST_OPENED_INPUT_FILE_KEY])
     {
         NSMutableArray *pComps = [NSMutableArray arrayWithArray:[lastFile pathComponents]];
+        [pComps removeLastObject];
         
-        
+        docDirectory = [NSURL fileURLWithPathComponents:pComps];
     }
     
     [openPanel setDirectoryURL:docDirectory];
@@ -309,6 +310,8 @@
     [[NSUserDefaults standardUserDefaults] setURL:docURL forKey:LAST_OPENED_INPUT_FILE_KEY];
     
     _currentTxfo = xlTxfo;
+    
+    [self updateAllViews];
     
     return YES;
 }
