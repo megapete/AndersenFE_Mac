@@ -12,6 +12,15 @@
 
 @interface PCH_AndersenFE_TxfoView ()
 
+- (void)moveWinding:(id)sender;
+- (void)centerWinding:(id)sender;
+- (void)splitSegmentEqual:(id)sender;
+- (void)splitSegmentCustom:(id)sender;
+- (void)createParallelLayer:(id)sender;
+- (void)activate:(id)sender;
+- (void)deactivate:(id)sender;
+- (void)regWinding:(id)sender;
+
 - (void)drawArrowAt:(NSPoint)wLoc withColor:(NSColor *)wColor;
 
 @end
@@ -79,6 +88,117 @@
     [newArrow stroke];
     
     [NSGraphicsContext restoreGraphicsState];
+}
+
+
+#pragma mark -
+#pragma mark Mouse event responders
+
+- (void)rightMouseDown:(NSEvent *)theEvent
+{
+    NSPoint whereClicked = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    
+    int i;
+    
+    for (i=0; i<self.segmentPaths.count; i++)
+    {
+        NSBezierPath *nextSegment = self.segmentPaths[i];
+        
+        if ([nextSegment containsPoint:whereClicked])
+        {
+            break;
+        }
+    }
+    
+    if (i < self.segmentPaths.count)
+    {
+        self.lastRBLocation = whereClicked;
+        
+        // Modify Winding...
+        // Move winding...
+        // Center winding...
+        // ------
+        // Split segment equally
+        // Split segment custom
+        // Change segment data...
+        // -------
+        // Create parallel layer
+        // -------
+        // Activate / Deactivate
+        // -------
+        // Regulating winding...
+        
+        NSMenu *wdgMenu = [[NSMenu alloc] initWithTitle:@"Windings"];
+        [wdgMenu addItemWithTitle:@"Modify Winding..." action:@selector(unhandledEvent:) keyEquivalent:@""];
+        [[wdgMenu itemAtIndex:0] setEnabled:NO];
+        [wdgMenu addItemWithTitle:@"Move Winding..." action:@selector(moveWinding:) keyEquivalent:@""];
+        [wdgMenu addItemWithTitle:@"Center winding..." action:@selector(centerWinding:) keyEquivalent:@""];
+        [wdgMenu addItem:[NSMenuItem separatorItem]];
+        [wdgMenu addItemWithTitle:@"Split segment equally..." action:@selector(splitSegmentEqual:) keyEquivalent:@""];
+        [wdgMenu addItemWithTitle:@"Split segment custom..." action:@selector(splitSegmentCustom:) keyEquivalent:@""];
+        [wdgMenu addItemWithTitle:@"Change segment data..." action:@selector(unhandledEvent:) keyEquivalent:@""];
+        [wdgMenu addItem:[NSMenuItem separatorItem]];
+        [wdgMenu addItemWithTitle:@"Create parallel layer..." action:@selector(createParallelLayer:) keyEquivalent:@""];
+        [wdgMenu addItem:[NSMenuItem separatorItem]];
+        [wdgMenu addItemWithTitle:@"Activate" action:@selector(activate:) keyEquivalent:@""];
+        [wdgMenu addItemWithTitle:@"Deactivate" action:@selector(deactivate:) keyEquivalent:@""];
+        [wdgMenu addItem:[NSMenuItem separatorItem]];
+        [wdgMenu addItemWithTitle:@"Regulating winding..." action:@selector(regWinding:) keyEquivalent:@""];
+        
+        [NSMenu popUpContextMenu:wdgMenu withEvent:theEvent forView:self];
+    }
+    else
+    {
+        [super rightMouseDown:theEvent];
+    }
+}
+
+#pragma mark -
+#pragma mark Contextual menu handlers
+
+- (void)unhandledEvent:(id)sender
+{
+    NSLog(@"Unimplemented menu");
+}
+
+- (void)moveWinding:(id)sender
+{
+    
+}
+
+- (void)centerWinding:(id)sender
+{
+    
+}
+
+- (void)splitSegmentEqual:(id)sender
+{
+    
+}
+
+- (void)splitSegmentCustom:(id)sender
+{
+    
+}
+
+- (void)createParallelLayer:(id)sender
+{
+    
+}
+
+- (void)activate:(id)sender
+{
+    
+}
+
+- (void)deactivate:(id)sender
+{
+    
+}
+
+- (void)regWinding:(id)sender
+{
+    
 }
 
 #pragma mark -

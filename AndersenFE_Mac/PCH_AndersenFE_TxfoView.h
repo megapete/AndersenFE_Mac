@@ -17,6 +17,8 @@
 @property NSArray *arrowLocationsAndDirections;
 @property AppController *theAppController;
 
+@property NSPoint lastRBLocation;
+
 - (void)setScaleForWindowHeight:(double)wWindowHt withInnerIR:(double)wIR coreToInnerWdg:(double)wCoreClearance andOuterOR:(double)wOR tankToOuterWdg:(double)wTankClearance;
 
 @end

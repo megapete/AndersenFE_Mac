@@ -43,6 +43,7 @@ struct AppControllerImpl
 
 - (void)setVPNRefToTermNumber:(int)wTerm;
 
+
 - (void)updateAllViews;
 - (void)updateTxfoView;
 - (void)updateTxfoDataView;

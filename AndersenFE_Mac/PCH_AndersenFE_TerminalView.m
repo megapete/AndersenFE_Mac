@@ -111,6 +111,10 @@
         [termMenu addItemWithTitle:@"Change MVA to ONAFF" action:@selector(handleSetMVAToONAFF:) keyEquivalent:@""];
         [NSMenu popUpContextMenu:termMenu withEvent:theEvent forView:self];
     }
+    else
+    {
+        [super rightMouseDown:theEvent];
+    }
 }
 
 #pragma mark -
