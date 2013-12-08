@@ -40,8 +40,6 @@
 
 @property NSArray *colorArray;
 
-@property NSArray *rectArray;
-
 - (void)handleTxfoChanges;
 
 @end
@@ -95,8 +93,6 @@
 {
     NSMutableArray *segments = [NSMutableArray array];
     
-    NSMutableArray *newRectArray = [NSMutableArray array];
-    
     Winding *nextWinding = _currentTxfo->GetWdgHead();
     
     double minIR = DBL_MAX;
@@ -127,11 +123,10 @@
                     maxOR = segRect.origin.x + segRect.size.width;
                 }
                 
-                [segments addObject:[PCH_SegmentPath segmentPathWithPath:[NSBezierPath bezierPathWithRect:segRect] andColor:self.colorArray[nextWinding->m_Terminal - 1]]];
                 
-                NSDictionary *nextDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSValue valueWithPointer:nextSegment], RECTARRAY_SEGMENT_KEY, [NSValue valueWithPointer:nextLayer], RECTARRAY_LAYER_KEY, [NSValue valueWithPointer:nextWinding], RECTARRAY_WINDING_KEY, [NSValue valueWithRect:segRect], RECTARRAY_RECTANGLE_KEY, nil];
+                NSDictionary *nextDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSValue valueWithPointer:nextSegment], SEGDATA_SEGMENT_KEY, [NSValue valueWithPointer:nextLayer], SEGDATA_LAYER_KEY, [NSValue valueWithPointer:nextWinding], SEGDATA_WINDING_KEY, [NSValue valueWithRect:segRect], SEGDATA_RECTANGLE_KEY, nil];
                 
-                [newRectArray addObject:nextDictionary];
+                [segments addObject:[PCH_SegmentPath segmentPathWithPath:[NSBezierPath bezierPathWithRect:segRect] andColor:self.colorArray[nextWinding->m_Terminal - 1] andData:nextDictionary]];
                 
                 nextSegment = nextSegment->m_Next;
             }
@@ -148,8 +143,6 @@
     }
     
     [self.theTxfoView setScaleForWindowHeight:_currentTxfo->m_Core.m_WindowHeight withInnerIR:minIR coreToInnerWdg:_currentTxfo->m_InnerClearance andOuterOR:maxOR tankToOuterWdg:4.0];
-    
-    self.rectArray = [NSArray arrayWithArray:newRectArray];
     
     [self.theTxfoView setNeedsDisplay:YES];
 }

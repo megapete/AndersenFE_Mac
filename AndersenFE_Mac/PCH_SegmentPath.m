@@ -13,17 +13,18 @@
 #pragma mark -
 #pragma mark Creation routines
 
-+ (id)segmentPathWithPath:(NSBezierPath *)wPath andColor:(NSColor *)wColor
++ (id)segmentPathWithPath:(NSBezierPath *)wPath andColor:(NSColor *)wColor andData:(NSDictionary *)wData
 {
-    return [[PCH_SegmentPath alloc] initWithPath:wPath andColor:wColor];
+    return [[PCH_SegmentPath alloc] initWithPath:wPath andColor:wColor andData:wData];
 }
 
-- (id)initWithPath:(NSBezierPath *)wPath andColor:(NSColor *)wColor
+- (id)initWithPath:(NSBezierPath *)wPath andColor:(NSColor *)wColor andData:(NSDictionary *)wData
 {
     if (self = [super init])
     {
         _path = wPath;
         _color = wColor;
+        _data = wData;
     }
     
     return self;

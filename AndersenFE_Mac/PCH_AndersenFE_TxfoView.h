@@ -8,16 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef enum{txfoViewNormalMode, txfoViewSelectWdgMode} TxfoViewMode;
+
 @class AppController;
 
 @interface PCH_AndersenFE_TxfoView : NSView
 
+@property (readonly) int mode;
 @property double scale;
 @property NSArray *segmentPaths;
 @property NSArray *arrowLocationsAndDirections;
 @property AppController *theAppController;
 
 @property NSPoint lastRBLocation;
+
 
 - (void)setScaleForWindowHeight:(double)wWindowHt withInnerIR:(double)wIR coreToInnerWdg:(double)wCoreClearance andOuterOR:(double)wOR tankToOuterWdg:(double)wTankClearance;
 

@@ -11,6 +11,9 @@
 #import "AppController.h"
 
 @interface PCH_AndersenFE_TxfoView ()
+{
+    // int _mode;
+}
 
 - (void)moveWinding:(id)sender;
 - (void)centerWinding:(id)sender;
@@ -35,6 +38,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code here.
+        _mode = txfoViewNormalMode;
     }
     return self;
 }
@@ -90,21 +94,79 @@
     [NSGraphicsContext restoreGraphicsState];
 }
 
+#pragma mark -
+#pragma mark View mode changing
+
+
+- (void)setMode:(int)mode
+{
+    if (mode == txfoViewSelectWdgMode)
+    {
+        [[NSCursor crosshairCursor] set];
+    }
+    else if (mode == txfoViewNormalMode)
+    {
+        [[NSCursor arrowCursor] set];
+    }
+    else
+    {
+        NSLog(@"Bad view mode");
+        return;
+    }
+    
+    _mode = mode;
+}
 
 #pragma mark -
 #pragma mark Mouse event responders
 
-- (void)rightMouseDown:(NSEvent *)theEvent
+- (void)mouseDown:(NSEvent *)theEvent
 {
+    if (self.mode == txfoViewNormalMode)
+    {
+        [super mouseDown:theEvent];
+    }
+    
+    // we're in "winding selection" mode
     NSPoint whereClicked = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     
     int i;
     
     for (i=0; i<self.segmentPaths.count; i++)
     {
-        NSBezierPath *nextSegment = self.segmentPaths[i];
+        PCH_SegmentPath *nextSegment = self.segmentPaths[i];
+        NSValue *nextRectValue = nextSegment.data[SEGDATA_RECTANGLE_KEY];
+        NSRect segmentRect = [nextRectValue rectValue];
         
-        if ([nextSegment containsPoint:whereClicked])
+        if (NSPointInRect(whereClicked, segmentRect))
+        {
+            break;
+        }
+    }
+    
+    if (i < self.segmentPaths.count)
+    {
+        
+    }
+    
+    [self setMode:txfoViewNormalMode];
+}
+
+- (void)rightMouseDown:(NSEvent *)theEvent
+{
+    [self setMode:txfoViewNormalMode];
+    
+    NSPoint whereClicked = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    
+    int i;
+    
+    for (i=0; i<self.segmentPaths.count; i++)
+    {
+        PCH_SegmentPath *nextSegment = self.segmentPaths[i];
+        NSValue *nextRectValue = nextSegment.data[SEGDATA_RECTANGLE_KEY];
+        NSRect segmentRect = [nextRectValue rectValue];
+        
+        if (NSPointInRect(whereClicked, segmentRect))
         {
             break;
         }
@@ -130,7 +192,6 @@
         
         NSMenu *wdgMenu = [[NSMenu alloc] initWithTitle:@"Windings"];
         [wdgMenu addItemWithTitle:@"Modify Winding..." action:@selector(unhandledEvent:) keyEquivalent:@""];
-        [[wdgMenu itemAtIndex:0] setEnabled:NO];
         [wdgMenu addItemWithTitle:@"Move Winding..." action:@selector(moveWinding:) keyEquivalent:@""];
         [wdgMenu addItemWithTitle:@"Center winding..." action:@selector(centerWinding:) keyEquivalent:@""];
         [wdgMenu addItem:[NSMenuItem separatorItem]];
@@ -154,6 +215,20 @@
 }
 
 #pragma mark -
+#pragma mark Contextual menu validation
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+{
+    if ([menuItem action] == @selector(unhandledEvent:))
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
+
+#pragma mark -
 #pragma mark Contextual menu handlers
 
 - (void)unhandledEvent:(id)sender
@@ -168,7 +243,8 @@
 
 - (void)centerWinding:(id)sender
 {
-    
+    // this is both the simplest and the most complicated of the handlers in that it doesn't just call up a dialog box, but instead changes the cursor, as well as the "mode" of the view
+    [self setMode:txfoViewSelectWdgMode];
 }
 
 - (void)splitSegmentEqual:(id)sender
