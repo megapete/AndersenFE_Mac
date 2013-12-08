@@ -15,6 +15,8 @@
     // int _mode;
 }
 
+@property PCH_SegmentPath *segmentSelected;
+
 - (void)moveWinding:(id)sender;
 - (void)centerWinding:(id)sender;
 - (void)splitSegmentEqual:(id)sender;
@@ -39,6 +41,7 @@
     if (self) {
         // Initialization code here.
         _mode = txfoViewNormalMode;
+        self.segmentSelected = nil;
     }
     return self;
 }
@@ -100,21 +103,9 @@
 
 - (void)setMode:(int)mode
 {
-    if (mode == txfoViewSelectWdgMode)
-    {
-        [[NSCursor crosshairCursor] set];
-    }
-    else if (mode == txfoViewNormalMode)
-    {
-        [[NSCursor arrowCursor] set];
-    }
-    else
-    {
-        NSLog(@"Bad view mode");
-        return;
-    }
-    
     _mode = mode;
+    
+    [self.window invalidateCursorRectsForView:self];
 }
 
 #pragma mark -
@@ -159,6 +150,7 @@
     NSPoint whereClicked = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     
     int i;
+    self.segmentSelected = nil;
     
     for (i=0; i<self.segmentPaths.count; i++)
     {
@@ -168,6 +160,7 @@
         
         if (NSPointInRect(whereClicked, segmentRect))
         {
+            self.segmentSelected = nextSegment;
             break;
         }
     }
@@ -215,6 +208,25 @@
 }
 
 #pragma mark -
+#pragma mark The correct way to handle cursor-changing stuff
+
+- (void)resetCursorRects
+{
+    if (self.mode == txfoViewSelectWdgMode)
+    {
+        for (PCH_SegmentPath *nextSegment in self.segmentPaths)
+        {
+            if (nextSegment != self.segmentSelected)
+            {
+                NSValue *nextRectValue = nextSegment.data[SEGDATA_RECTANGLE_KEY];
+                NSRect segmentRect = [nextRectValue rectValue];
+                [self addCursorRect:segmentRect cursor:[NSCursor pointingHandCursor]];
+            }
+        }
+    }
+}
+
+#pragma mark -
 #pragma mark Contextual menu validation
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
@@ -244,6 +256,7 @@
 - (void)centerWinding:(id)sender
 {
     // this is both the simplest and the most complicated of the handlers in that it doesn't just call up a dialog box, but instead changes the cursor, as well as the "mode" of the view
+    
     [self setMode:txfoViewSelectWdgMode];
 }
 
