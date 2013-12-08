@@ -8,6 +8,7 @@
 
 #import "PCH_AndersenFE_TxfoView.h"
 #import "PCH_SegmentPath.h"
+#import "AppController.h"
 
 @interface PCH_AndersenFE_TxfoView ()
 

@@ -21,6 +21,12 @@
 #include "segment.h"
 #include "ExcelTextFile.h"
 
+// Keys into the dictionaries in the rectArray property
+#define RECTARRAY_RECTANGLE_KEY     @"Rectangle"
+#define RECTARRAY_WINDING_KEY       @"Winding"
+#define RECTARRAY_SEGMENT_KEY       @"Segment"
+#define RECTARRAY_LAYER_KEY         @"Layer"
+
 @interface AppController()
 {
     CMainFrame *_theMainFrame;
@@ -33,6 +39,8 @@
 @property NSURL *dosBoxCDriveURL;
 
 @property NSArray *colorArray;
+
+@property NSArray *rectArray;
 
 - (void)handleTxfoChanges;
 
@@ -68,6 +76,7 @@
     _theMainFrame = _theApp->m_pMainWnd;
     
     self.theTerminalView.theAppController = self;
+    self.theTxfoView.theAppController = self;
     
     self.terminalData = [NSArray arrayWithObjects:self.term1Data, self.term2Data, self.term3Data, self.term4Data, self.term5Data, self.term6Data, nil];
 }
@@ -85,6 +94,8 @@
 - (void)updateTxfoView
 {
     NSMutableArray *segments = [NSMutableArray array];
+    
+    NSMutableArray *newRectArray = [NSMutableArray array];
     
     Winding *nextWinding = _currentTxfo->GetWdgHead();
     
@@ -118,6 +129,10 @@
                 
                 [segments addObject:[PCH_SegmentPath segmentPathWithPath:[NSBezierPath bezierPathWithRect:segRect] andColor:self.colorArray[nextWinding->m_Terminal - 1]]];
                 
+                NSDictionary *nextDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[NSValue valueWithPointer:nextSegment], RECTARRAY_SEGMENT_KEY, [NSValue valueWithPointer:nextLayer], RECTARRAY_LAYER_KEY, [NSValue valueWithPointer:nextWinding], RECTARRAY_WINDING_KEY, [NSValue valueWithRect:segRect], RECTARRAY_RECTANGLE_KEY, nil];
+                
+                [newRectArray addObject:nextDictionary];
+                
                 nextSegment = nextSegment->m_Next;
             }
             
@@ -133,6 +148,8 @@
     }
     
     [self.theTxfoView setScaleForWindowHeight:_currentTxfo->m_Core.m_WindowHeight withInnerIR:minIR coreToInnerWdg:_currentTxfo->m_InnerClearance andOuterOR:maxOR tankToOuterWdg:4.0];
+    
+    self.rectArray = [NSArray arrayWithArray:newRectArray];
     
     [self.theTxfoView setNeedsDisplay:YES];
 }

@@ -8,11 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class AppController;
+
 @interface PCH_AndersenFE_TxfoView : NSView
 
 @property double scale;
 @property NSArray *segmentPaths;
 @property NSArray *arrowLocationsAndDirections;
+@property AppController *theAppController;
 
 - (void)setScaleForWindowHeight:(double)wWindowHt withInnerIR:(double)wIR coreToInnerWdg:(double)wCoreClearance andOuterOR:(double)wOR tankToOuterWdg:(double)wTankClearance;
 
