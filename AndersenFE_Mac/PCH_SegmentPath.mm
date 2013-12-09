@@ -8,6 +8,10 @@
 
 #import "PCH_SegmentPath.h"
 
+#include "segment.h"
+#include "layer.h"
+#include "winding.h"
+
 @implementation PCH_SegmentPath
 
 #pragma mark -
@@ -28,6 +32,31 @@
     }
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Segment data
+
+- (BOOL)isActivated
+{
+    Segment *segment = (Segment *)[self.data[SEGDATA_SEGMENT_KEY] pointerValue];
+    
+    return (BOOL)segment->IsActive();
+}
+
+#pragma mark -
+#pragma mark C++ interface routines
+
+- (void)centerWindingOnWindingOfSegment:(PCH_SegmentPath *)wSegPath
+{
+    Winding *thisWinding = (Winding *)[self.data[SEGDATA_WINDING_KEY] pointerValue];
+    Winding *refWinding = (Winding *)[wSegPath.data[SEGDATA_WINDING_KEY] pointerValue];
+    
+    double yOffset = refWinding->GetAxialCenter() - thisWinding->GetAxialCenter();
+    
+    thisWinding->OffsetZ(yOffset);
+    
+    
 }
 
 @end

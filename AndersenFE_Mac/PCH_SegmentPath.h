@@ -23,4 +23,8 @@
 + (id)segmentPathWithPath:(NSBezierPath *)wPath andColor:(NSColor *)wColor andData:(NSDictionary *)wData;
 - (id)initWithPath:(NSBezierPath *)wPath andColor:(NSColor *)wColor andData:(NSDictionary *)wData;
 
+- (BOOL)isActivated;
+
+- (void)centerWindingOnWindingOfSegment:(PCH_SegmentPath *)wSegPath;
+
 @end

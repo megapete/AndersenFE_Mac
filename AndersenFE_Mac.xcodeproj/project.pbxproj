@@ -74,7 +74,7 @@
 		D3561F62184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F61184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m */; };
 		D3561F65184CE92C001E0347 /* AndersenFE_TxfoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F64184CE92C001E0347 /* AndersenFE_TxfoDataView.m */; };
 		D38BF569184F737E00DCDA87 /* CMyBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D38BF567184F737E00DCDA87 /* CMyBase.cpp */; };
-		D3EFD9A1184FFB02001E559C /* PCH_SegmentPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EFD9A0184FFB02001E559C /* PCH_SegmentPath.m */; };
+		D3EFD9A1184FFB02001E559C /* PCH_SegmentPath.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3EFD9A0184FFB02001E559C /* PCH_SegmentPath.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -202,7 +202,7 @@
 		D38BF567184F737E00DCDA87 /* CMyBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMyBase.cpp; sourceTree = "<group>"; };
 		D38BF568184F737E00DCDA87 /* CMyBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMyBase.h; sourceTree = "<group>"; };
 		D3EFD99F184FFB02001E559C /* PCH_SegmentPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_SegmentPath.h; sourceTree = "<group>"; };
-		D3EFD9A0184FFB02001E559C /* PCH_SegmentPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCH_SegmentPath.m; sourceTree = "<group>"; };
+		D3EFD9A0184FFB02001E559C /* PCH_SegmentPath.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PCH_SegmentPath.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,7 +266,7 @@
 				D3561F5D184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.h */,
 				D3561F5E184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.m */,
 				D3EFD99F184FFB02001E559C /* PCH_SegmentPath.h */,
-				D3EFD9A0184FFB02001E559C /* PCH_SegmentPath.m */,
+				D3EFD9A0184FFB02001E559C /* PCH_SegmentPath.mm */,
 				D3561F60184CE81C001E0347 /* PCH_AndersenFE_TerminalView.h */,
 				D3561F61184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m */,
 				D3561F63184CE92C001E0347 /* AndersenFE_TxfoDataView.h */,
@@ -511,7 +511,7 @@
 				D3561F00184A6D35001E0347 /* segment.cpp in Sources */,
 				D3561EF6184A6D35001E0347 /* ExcelTextFile.cpp in Sources */,
 				D3561EEF184A6D35001E0347 /* AllTapsDialog.mm in Sources */,
-				D3EFD9A1184FFB02001E559C /* PCH_SegmentPath.m in Sources */,
+				D3EFD9A1184FFB02001E559C /* PCH_SegmentPath.mm in Sources */,
 				D3561F0A184A6D35001E0347 /* Zlist.cpp in Sources */,
 				D3561F40184BC74A001E0347 /* CStdioFile.mm in Sources */,
 				D3561EFA184A6D35001E0347 /* MoveWdgDlog.mm in Sources */,

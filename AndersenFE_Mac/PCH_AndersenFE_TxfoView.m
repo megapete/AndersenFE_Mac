@@ -131,13 +131,24 @@
         
         if (NSPointInRect(whereClicked, segmentRect))
         {
+            if (nextSegment == self.segmentSelected)
+            {
+                [self setMode:txfoViewNormalMode];
+                return;
+            }
+            
             break;
         }
     }
     
     if (i < self.segmentPaths.count)
     {
+        // center (axially) the winding in self.segmentSelected on self.segmentPaths[i]
+        PCH_SegmentPath *refSegment = self.segmentPaths[i];
         
+        [self.segmentSelected centerWindingOnWindingOfSegment:refSegment];
+        
+        [self.theAppController updateTxfoView];
     }
     
     [self setMode:txfoViewNormalMode];
@@ -234,6 +245,21 @@
     if ([menuItem action] == @selector(unhandledEvent:))
     {
         return NO;
+    }
+    
+    if ([self.segmentSelected isActivated])
+    {
+        if ([menuItem action] == @selector(activate:))
+        {
+            return NO;
+        }
+    }
+    else
+    {
+        if ([menuItem action] == @selector(deactivate:))
+        {
+            return NO;
+        }
     }
     
     return YES;
