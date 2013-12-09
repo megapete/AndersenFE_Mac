@@ -69,14 +69,44 @@
     Segment *segment = (Segment *)[self.data[SEGDATA_SEGMENT_KEY] pointerValue];
     Layer *layer = (Layer *)[self.data[SEGDATA_LAYER_KEY] pointerValue];
     
-    if (makeActive)
-    {
-        segment->m_NumTurnsActive = segment->m_NumTurnsTotal;
-    }
-    else
-    {
-        segment->m_NumTurnsActive = 0.0;
-    }
+    double turnsMultiplier = (makeActive ? 1.0 : 0.0);
+    
+    segment->m_NumTurnsActive = turnsMultiplier * segment->m_NumTurnsTotal;
+    
+    Segment* mateSeg = NULL;
+    
+	if (winding->m_IsDoubleStack)
+	{
+		mateSeg = winding->GetMateSegment(layer, segment);
+        
+		if (mateSeg != NULL)
+			mateSeg->m_NumTurnsActive = turnsMultiplier * mateSeg->m_NumTurnsTotal;
+	}
+    else if (winding->m_IsMultiStart)
+	{
+		int i;
+		int count = 0;
+        
+		i = segment->GetSegmentPosition(layer->m_SegmentHead);
+        
+		i %= winding->m_NumLoops;
+		if (i == 0)
+			i = winding->m_NumLoops;
+        
+		Segment *nSegment = layer->m_SegmentHead;
+		for (count = 1; count <= winding->m_TotalTurns &&
+             nSegment != NULL; count++)
+		{
+			if (count == i)
+			{
+				nSegment->m_NumTurnsActive = turnsMultiplier * nSegment->m_NumTurnsTotal;
+				i += winding->m_NumLoops;
+			}
+            
+			nSegment = nSegment->m_Next;
+		}
+	}
+    
 }
 
 - (BOOL)isActivated
