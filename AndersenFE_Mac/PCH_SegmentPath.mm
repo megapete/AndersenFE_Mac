@@ -37,6 +37,27 @@
 #pragma mark -
 #pragma mark Segment data
 
+- (int)currentDirection
+{
+    Winding *winding = (Winding *)[self.data[SEGDATA_WINDING_KEY] pointerValue];
+    
+    return winding->m_CurrentDirection;
+}
+
+- (void)activate:(BOOL)makeActive
+{
+    Segment *segment = (Segment *)[self.data[SEGDATA_SEGMENT_KEY] pointerValue];
+    
+    if (makeActive)
+    {
+        segment->m_NumTurnsActive = segment->m_NumTurnsTotal;
+    }
+    else
+    {
+        segment->m_NumTurnsActive = 0.0;
+    }
+}
+
 - (BOOL)isActivated
 {
     Segment *segment = (Segment *)[self.data[SEGDATA_SEGMENT_KEY] pointerValue];

@@ -24,6 +24,9 @@
 - (id)initWithPath:(NSBezierPath *)wPath andColor:(NSColor *)wColor andData:(NSDictionary *)wData;
 
 - (BOOL)isActivated;
+- (void)activate:(BOOL)makeActive;
+
+- (int)currentDirection;
 
 - (void)centerWindingOnWindingOfSegment:(PCH_SegmentPath *)wSegPath;
 

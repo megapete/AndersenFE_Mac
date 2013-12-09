@@ -26,7 +26,7 @@
 - (void)deactivate:(id)sender;
 - (void)regWinding:(id)sender;
 
-- (void)drawArrowAt:(NSPoint)wLoc withColor:(NSColor *)wColor;
+- (void)drawArrowAt:(CGFloat)wXLoc withDirection:(int)wDirection;
 
 @end
 
@@ -60,6 +60,8 @@
     [[NSColor whiteColor] set];
     [[NSBezierPath bezierPathWithRect:self.bounds] fill];
     
+    NSMutableSet *arrowSet = [NSMutableSet set];
+    
     // Drawing code here.
     if (self.segmentPaths)
     {
@@ -68,33 +70,67 @@
             [nextPath.color set];
             [[nextPath path] setLineWidth:self.scale];
             [[nextPath path] stroke];
+            
+            if (![nextPath isActivated])
+            {
+                [[nextPath.color colorWithAlphaComponent:0.25] set];
+                [[nextPath path] fill];
+            }
+            
+            [nextPath.color set];
+            
+            NSRect segRect = [nextPath.data[SEGDATA_RECTANGLE_KEY] rectValue];
+            double rectCenterX = segRect.origin.x + segRect.size.width / 2.0;
+            NSNumber *rectCenterXnumber = [NSNumber numberWithDouble:rectCenterX];
+            
+            if (![arrowSet containsObject:rectCenterXnumber])
+            {
+                [self drawArrowAt:rectCenterX withDirection:[nextPath currentDirection]];
+            }
+            
+            [arrowSet addObject:rectCenterXnumber];
         }
     }
     
 }
 
-- (void)drawArrowAt:(NSPoint)wLoc withColor:(NSColor *)wColor
-// wLoc should hold the point (in transformer window coordinates) of the arrow
+- (void)drawArrowAt:(CGFloat)wXLoc withDirection:(int)wDirection
+// wXLoc should hold the x-dimension of the point (in transformer window coordinates) of the arrow
 {
+    if (wDirection < 0)
+    {
+        wDirection = -1;
+    }
+    else if (wDirection > 0)
+    {
+        wDirection = 1;
+    }
+    
     const int arrowHeight = 15; // points (or pixels?)
     const int arrowHeadW = 3;
     const int arrowHeadH = 5;
+    const int arrowBottom = 10;
     
-    [NSGraphicsContext saveGraphicsState];
-    
-    [wColor set];
-    [NSBezierPath setDefaultLineWidth:self.scale];
     
     NSBezierPath *newArrow = [NSBezierPath bezierPath];
-    [newArrow moveToPoint:wLoc];
-    [newArrow lineToPoint:NSMakePoint(wLoc.x, wLoc.y - arrowHeight * self.scale)];
-    [newArrow moveToPoint:wLoc];
-    [newArrow lineToPoint:NSMakePoint(wLoc.x - arrowHeadW * self.scale, wLoc.y - arrowHeadH * self.scale)];
-    [newArrow moveToPoint:wLoc];
-    [newArrow lineToPoint:NSMakePoint(wLoc.x + arrowHeadW * self.scale, wLoc.y - arrowHeadH * self.scale)];
+    
+    [newArrow moveToPoint:NSMakePoint(wXLoc, arrowBottom * self.scale)];
+    [newArrow lineToPoint:NSMakePoint(wXLoc, (arrowBottom + arrowHeight) * self.scale)];
+    
+    if (wDirection < 0)
+    {
+        [newArrow moveToPoint:NSMakePoint(wXLoc, arrowBottom * self.scale)];
+    }
+    
+    NSPoint arrowHeadPoint = [newArrow currentPoint]; // in transformer window coordinates
+    
+    [newArrow lineToPoint:NSMakePoint(wXLoc - arrowHeadW * self.scale, arrowHeadPoint.y - wDirection * arrowHeadH * self.scale)];
+    [newArrow moveToPoint:arrowHeadPoint];
+    [newArrow lineToPoint:NSMakePoint(wXLoc + arrowHeadW * self.scale, arrowHeadPoint.y - wDirection * arrowHeadH * self.scale)];
+    
+    [newArrow setLineWidth:self.scale];
     [newArrow stroke];
     
-    [NSGraphicsContext restoreGraphicsState];
 }
 
 #pragma mark -
@@ -303,12 +339,14 @@
 
 - (void)activate:(id)sender
 {
-    
+    [self.segmentSelected activate:YES];
+    [self.theAppController updateTxfoView];
 }
 
 - (void)deactivate:(id)sender
 {
-    
+    [self.segmentSelected activate:NO];
+    [self.theAppController updateTxfoView];
 }
 
 - (void)regWinding:(id)sender
