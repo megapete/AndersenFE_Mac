@@ -10,6 +10,7 @@
 #import "mainfrm.h"
 #import "andersenfe.h"
 #import "PCH_AndersenFE_TxfoView.h"
+#import "AndersenFE_TxfoDataView.h"
 #import "PCH_AndersenFE_TerminalView.h"
 #import "PCH_SegmentPath.h"
 
@@ -92,6 +93,11 @@
 
 - (void)updateTxfoView
 {
+    if (_currentTxfo == NULL)
+    {
+        return;
+    }
+    
     NSMutableArray *segments = [NSMutableArray array];
     
     Winding *nextWinding = _currentTxfo->GetWdgHead();
@@ -150,12 +156,48 @@
 
 - (void)updateTxfoDataView
 {
+    if ((_currentTxfo != NULL) && (_currentTxfo->m_IsValid))
+    {
+        int verifyResult = _currentTxfo->VerifyTransformer();
+        
+        if (_currentTxfo->m_VperNTerminal == 0)
+        {
+            [self.voltsPerTurnField setStringValue:[NSString stringWithFormat:@"Volts per Turn\nRef. Terminal: UNASSIGNED\n0.000 V/N"]];
+        }
+        else
+        {
+            [self.voltsPerTurnField setStringValue:[NSString stringWithFormat:@"Volts per Turn\nRef. Terminal: %d\n%.3f V/N", _currentTxfo->m_VperNTerminal, _currentTxfo->CalcVoltsPerTurn()]];
+        }
+        
+        [self.voltsPerTurnField invalidateIntrinsicContentSize];
+        
+        if (verifyResult != AMPTURNS_ERROR)
+        {
+            [self.ampereTurnsField setStringValue:[NSString stringWithFormat:@"Total Amp-Turns\n%.1f",_currentTxfo->AmpTurns()]];
+        }
+        else
+        {
+            [self.ampereTurnsField setStringValue:[NSString stringWithFormat:@"Total Amp-Turns\n-ERROR-"]];
+        }
+        
+    }
+    else
+    {
+        [self.voltsPerTurnField setStringValue:@""];
+        [self.ampereTurnsField setStringValue:@""];
+    }
     
+    [self.theTxfoData setNeedsDisplay:YES];
 }
 
 - (void)updateTerminalView
 {
-    Terminal *nextTerm = _currentTxfo->GetTermHead();
+    Terminal *nextTerm = NULL;
+    
+    if (_currentTxfo != NULL)
+    {
+        nextTerm = _currentTxfo->GetTermHead();
+    }
     
     int i = 0;
     
@@ -202,9 +244,10 @@
         _currentTxfo->CalcVoltsPerTurn();
         _currentTxfo->FixTerminalVoltages();
         _currentTxfo->m_AndersenOutputIsValid = NO;
+        [self updateAllViews];
     }
     
-    [self updateAllViews];
+    
 }
 
 - (void)setVPNRefToTermNumber:(int)wTerm
@@ -348,6 +391,7 @@
     [[NSUserDefaults standardUserDefaults] setURL:docURL forKey:LAST_OPENED_INPUT_FILE_KEY];
     
     _currentTxfo = xlTxfo;
+    _currentTxfo->m_IsValid = YES;
     
     [self updateAllViews];
     

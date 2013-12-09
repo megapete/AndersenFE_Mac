@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Peter Huber. All rights reserved.
 //
 
+// This is basically the ObjC wrapper for the winding/layer/segment model
+
 #import <Foundation/Foundation.h>
 
 // Keys into the dictionaries in the segmentData dictionary

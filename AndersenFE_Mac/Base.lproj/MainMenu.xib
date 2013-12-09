@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4511" systemVersion="13A598" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4511" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4511"/>
     </dependencies>
@@ -669,13 +669,13 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="443" y="213" width="997" height="822"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="372" customClass="AndersenFE_View">
                 <rect key="frame" x="0.0" y="0.0" width="997" height="822"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="zYL-Ee-zGB" customClass="PCH_AndersenFE_TxfoView">
-                        <rect key="frame" x="0.0" y="0.0" width="678" height="822"/>
+                        <rect key="frame" x="0.0" y="0.0" width="659" height="822"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="OhT-DY-Arm"/>
@@ -747,15 +747,91 @@
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="qRd-Vi-4xb" customClass="AndersenFE_TxfoDataView">
                         <rect key="frame" x="678" y="0.0" width="158" height="822"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TI0-MB-a4K">
+                                <rect key="frame" x="8" y="727" width="142" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" id="NNb-tW-lI3">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3fD-mJ-ug2">
+                                <rect key="frame" x="8" y="642" width="142" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="502-Yg-AmD">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="agK-ar-ldK">
+                                <rect key="frame" x="8" y="557" width="142" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="lTE-9Q-y2h">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o7O-i7-UUc">
+                                <rect key="frame" x="8" y="472" width="142" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="Qqi-s6-pq0">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kNl-6n-ilA">
+                                <rect key="frame" x="8" y="387" width="142" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="4Tc-ZI-n8Q">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXG-kk-UWR">
+                                <rect key="frame" x="8" y="302" width="142" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="dct-Ce-K16">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O6K-Z3-fI3">
+                                <rect key="frame" x="8" y="217" width="142" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="mNP-Zt-xO1">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="usv-Lm-PE6">
+                                <rect key="frame" x="8" y="132" width="142" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="cb1-Yq-5C7">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
                         <constraints>
                             <constraint firstAttribute="width" constant="158" id="Ib6-7X-swt"/>
+                            <constraint firstItem="TI0-MB-a4K" firstAttribute="top" secondItem="qRd-Vi-4xb" secondAttribute="top" constant="20" id="pEF-NZ-32O"/>
+                            <constraint firstItem="3fD-mJ-ug2" firstAttribute="top" secondItem="TI0-MB-a4K" secondAttribute="bottom" constant="10" id="vKU-Vz-fhj"/>
                         </constraints>
                     </customView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="zYL-Ee-zGB" firstAttribute="top" secondItem="372" secondAttribute="top" id="2ek-JF-FPk"/>
                     <constraint firstAttribute="bottom" secondItem="zYL-Ee-zGB" secondAttribute="bottom" id="66b-EM-wr7"/>
-                    <constraint firstAttribute="trailing" secondItem="zYL-Ee-zGB" secondAttribute="trailing" constant="319" id="CzJ-ah-S09"/>
+                    <constraint firstAttribute="trailing" secondItem="zYL-Ee-zGB" secondAttribute="trailing" constant="338" id="CzJ-ah-S09"/>
                     <constraint firstItem="qRd-Vi-4xb" firstAttribute="top" secondItem="372" secondAttribute="top" id="IXx-fv-FC1"/>
                     <constraint firstItem="OIE-Gk-V8S" firstAttribute="top" secondItem="372" secondAttribute="top" id="XLg-nG-aAB"/>
                     <constraint firstItem="zYL-Ee-zGB" firstAttribute="leading" secondItem="372" secondAttribute="leading" id="f5I-mS-tSN"/>
@@ -778,7 +854,13 @@
         <customObject id="420" customClass="NSFontManager"/>
         <customObject id="4aD-zX-viR" customClass="AppController">
             <connections>
+                <outlet property="ampereTurnsField" destination="3fD-mJ-ug2" id="YOX-ge-uiF"/>
+                <outlet property="axialForcesField" destination="O6K-Z3-fI3" id="eKR-bZ-au4"/>
+                <outlet property="eddyLossField" destination="kNl-6n-ilA" id="63F-F6-rvn"/>
+                <outlet property="endThrustField" destination="usv-Lm-PE6" id="s38-0x-F06"/>
                 <outlet property="mainWindow" destination="371" id="VcK-0W-0Hb"/>
+                <outlet property="radialForcesField" destination="bXG-kk-UWR" id="VDl-pc-EVX"/>
+                <outlet property="stressImpedanceField" destination="o7O-i7-UUc" id="CCx-aS-6gb"/>
                 <outlet property="term1Data" destination="3hd-bS-1rt" id="VcZ-2q-hgl"/>
                 <outlet property="term2Data" destination="0oK-Qc-giU" id="mf5-t2-6eE"/>
                 <outlet property="term3Data" destination="91f-sn-MmR" id="QoB-z3-eSj"/>
@@ -789,6 +871,8 @@
                 <outlet property="theTerminalView" destination="OIE-Gk-V8S" id="c0I-Ib-vyL"/>
                 <outlet property="theTxfoData" destination="qRd-Vi-4xb" id="xS2-CR-7Ih"/>
                 <outlet property="theTxfoView" destination="zYL-Ee-zGB" id="PWJ-Ma-UYu"/>
+                <outlet property="txfoImpedanceField" destination="agK-ar-ldK" id="YDz-E2-iUj"/>
+                <outlet property="voltsPerTurnField" destination="TI0-MB-a4K" id="rST-aB-CDB"/>
             </connections>
         </customObject>
     </objects>

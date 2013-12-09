@@ -33,6 +33,7 @@ struct AppControllerImpl
 @property (weak) IBOutlet AndersenFE_TxfoDataView *theTxfoData;
 @property (weak) IBOutlet PCH_AndersenFE_TerminalView *theTerminalView;
 
+// IB Connections to Terminal View
 @property NSArray *terminalData;
 @property (weak) IBOutlet NSTextField *term1Data;
 @property (weak) IBOutlet NSTextField *term2Data;
@@ -40,6 +41,17 @@ struct AppControllerImpl
 @property (weak) IBOutlet NSTextField *term4Data;
 @property (weak) IBOutlet NSTextField *term5Data;
 @property (weak) IBOutlet NSTextField *term6Data;
+
+// IB Connecttions to Transformer Data Fields
+@property (weak) IBOutlet NSTextField *voltsPerTurnField;
+@property (weak) IBOutlet NSTextField *ampereTurnsField;
+@property (weak) IBOutlet NSTextField *txfoImpedanceField;
+@property (weak) IBOutlet NSTextField *stressImpedanceField;
+@property (weak) IBOutlet NSTextField *eddyLossField;
+@property (weak) IBOutlet NSTextField *radialForcesField;
+@property (weak) IBOutlet NSTextField *axialForcesField;
+@property (weak) IBOutlet NSTextField *endThrustField;
+
 
 - (void)setVPNRefToTermNumber:(int)wTerm;
 

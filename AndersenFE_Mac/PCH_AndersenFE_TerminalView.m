@@ -53,7 +53,7 @@
             
             if (i == self.refTerminal)
             {
-                [nextRect setLineWidth:2.0 * baseLineWidth];
+                [nextRect setLineWidth:3.0 * baseLineWidth];
             }
             else
             {
