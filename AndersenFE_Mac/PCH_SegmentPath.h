@@ -25,8 +25,12 @@
 
 - (BOOL)isActivated;
 - (void)activate:(BOOL)makeActive;
+- (void)toggleActivate;
+
+- (void)setRegulatingWindingWithNumLoops:(double)numLoops withAxialGap:(double)aGap isDoubleAxial:(BOOL)isDblAxial isMultiStart:(BOOL)isMutliStart;
 
 - (int)currentDirection;
+- (double)betweenSections;
 
 - (void)centerWindingOnWindingOfSegment:(PCH_SegmentPath *)wSegPath;
 

@@ -9,6 +9,15 @@
 #import <Cocoa/Cocoa.h>
 
 @interface PCH_RegWdgDlog : NSWindowController
+
+@property (weak) IBOutlet NSButton *doubleAxialStack;
+@property (weak) IBOutlet NSButton *multistartTappingWdg;
+
+@property (weak) IBOutlet NSTextField *distanceBewteenStacks;
+@property (weak) IBOutlet NSTextField *numberOfLoops;
+
+
+
 - (IBAction)okayButtonPushed:(id)sender;
 - (IBAction)cancelButtonPushed:(id)sender;
 

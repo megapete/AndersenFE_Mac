@@ -35,7 +35,21 @@
 }
 
 #pragma mark -
-#pragma mark Segment data
+#pragma mark Segment / Layer / Winding wrappers
+
+- (void)setRegulatingWindingWithNumLoops:(double)numLoops withAxialGap:(double)aGap isDoubleAxial:(BOOL)isDblAxial isMultiStart:(BOOL)isMutliStart
+{
+    Winding *winding = (Winding *)[self.data[SEGDATA_WINDING_KEY] pointerValue];
+    
+    winding->DefineRegulatingWdg((int)numLoops, aGap, (bool)isDblAxial, (bool)isMutliStart);
+}
+
+- (double)betweenSections
+{
+    Winding *winding = (Winding *)[self.data[SEGDATA_WINDING_KEY] pointerValue];
+    
+    return winding->m_BetweenSections;
+}
 
 - (int)currentDirection
 {
@@ -44,9 +58,16 @@
     return winding->m_CurrentDirection;
 }
 
+- (void)toggleActivate
+{
+    [self activate:![self isActivated]];
+}
+
 - (void)activate:(BOOL)makeActive
 {
+    Winding *winding = (Winding *)[self.data[SEGDATA_WINDING_KEY] pointerValue];
     Segment *segment = (Segment *)[self.data[SEGDATA_SEGMENT_KEY] pointerValue];
+    Layer *layer = (Layer *)[self.data[SEGDATA_LAYER_KEY] pointerValue];
     
     if (makeActive)
     {

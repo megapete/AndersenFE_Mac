@@ -9,6 +9,7 @@
 #import "PCH_AndersenFE_TxfoView.h"
 #import "PCH_SegmentPath.h"
 #import "AppController.h"
+#import "PCH_RegWdgDlog.h"
 
 @interface PCH_AndersenFE_TxfoView ()
 {
@@ -27,6 +28,7 @@
 - (void)regWinding:(id)sender;
 
 - (void)drawArrowAt:(CGFloat)wXLoc withDirection:(int)wDirection;
+- (void)doubleClick:(NSEvent *)theEvent;
 
 @end
 
@@ -147,8 +149,43 @@
 #pragma mark -
 #pragma mark Mouse event responders
 
+- (void)doubleClick:(NSEvent *)theEvent
+// the responder actually calls into mouseDown:, which I have written to check whether there were two clicks, in which case program flow comes here
+{
+    [self setMode:txfoViewNormalMode];
+    
+    NSPoint whereClicked = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    
+    int i;
+    self.segmentSelected = nil;
+    
+    for (i=0; i<self.segmentPaths.count; i++)
+    {
+        PCH_SegmentPath *nextSegment = self.segmentPaths[i];
+        NSValue *nextRectValue = nextSegment.data[SEGDATA_RECTANGLE_KEY];
+        NSRect segmentRect = [nextRectValue rectValue];
+        
+        if (NSPointInRect(whereClicked, segmentRect))
+        {
+            self.segmentSelected = nextSegment;
+            break;
+        }
+    }
+    
+    if (i < self.segmentPaths.count)
+    {
+        [self.segmentSelected toggleActivate];
+        [self.theAppController updateTxfoView];
+    }
+}
+
 - (void)mouseDown:(NSEvent *)theEvent
 {
+    if (theEvent.clickCount == 2)
+    {
+        [self doubleClick:theEvent];
+    }
+    
     if (self.mode == txfoViewNormalMode)
     {
         [super mouseDown:theEvent];
@@ -351,7 +388,20 @@
 
 - (void)regWinding:(id)sender
 {
+    PCH_RegWdgDlog *theDlog = [[PCH_RegWdgDlog alloc] init];
     
+    [theDlog.distanceBewteenStacks setDoubleValue:[self.segmentSelected betweenSections]];
+    
+    NSInteger result = [NSApp runModalForWindow:theDlog.window];
+    
+    if (result == NSRunStoppedResponse)
+    {
+        [self.segmentSelected setRegulatingWindingWithNumLoops:[theDlog.numberOfLoops doubleValue] withAxialGap:[theDlog.distanceBewteenStacks doubleValue] isDoubleAxial:([theDlog.doubleAxialStack state] == NSOnState) isMultiStart:([theDlog.multistartTappingWdg state] == NSOnState)];
+    }
+    
+    [theDlog.window orderOut:self];
+    
+    [self.theAppController updateTxfoView];
 }
 
 #pragma mark -
