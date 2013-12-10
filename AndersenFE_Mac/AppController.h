@@ -56,6 +56,9 @@ struct AppControllerImpl
 - (void)setVPNRefToTermNumber:(int)wTerm;
 
 
+
+
+
 - (void)updateAllViews;
 - (void)updateTxfoView;
 - (void)updateTxfoDataView;
@@ -65,6 +68,9 @@ struct AppControllerImpl
 - (IBAction)setDosBoxCLocation:(id)sender;
 
 - (IBAction)openXLDesignFile:(id)sender;
+
 - (IBAction)saveAndersenFile:(id)sender;
+- (BOOL)currentTransformerIsSaveable;
+- (void)savecCurrentTxfoAsAndersenFile:(NSString *)wPath;
 
 @end

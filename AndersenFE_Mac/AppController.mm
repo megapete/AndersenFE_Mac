@@ -323,7 +323,277 @@
 }
 
 #pragma mark -
-#pragma mark Routine for inputting an Excel-generated design file & Recent files
+#pragma mark Routines for saving Andersen files
+
+- (IBAction)saveAndersenFile:(id)sender
+{
+    if (![self currentTransformerIsSaveable])
+    {
+        NSLog(@"The current transformer is not properly defined!");
+        return;
+    }
+    
+    // Show the save dialog
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    
+    [savePanel setTitle:@"Andersen file"];
+    [savePanel setMessage:@"Save the Andersen input file"];
+    
+    // For now use the Documents folder as the default location.
+    NSString *docDirPath = @"~/Documents";
+    docDirPath = [docDirPath stringByExpandingTildeInPath];
+    NSURL *docDirectory = [NSURL fileURLWithPath:docDirPath isDirectory:YES];
+    
+    [savePanel setDirectoryURL:docDirectory];
+    
+    NSInteger runResult = [savePanel runModal];
+    
+    NSString *pathString = [[savePanel URL] path];
+    
+    [savePanel orderOut:nil];
+    
+    if (runResult == NSFileHandlingPanelCancelButton)
+    {
+        return;
+    }
+    
+    [self savecCurrentTxfoAsAndersenFile:pathString];
+}
+
+- (void)savecCurrentTxfoAsAndersenFile:(NSString *)wPath
+{
+    NSFileManager *defMgr = [NSFileManager defaultManager];
+    
+    if ([defMgr fileExistsAtPath:wPath])
+    {
+        NSError *error;
+        BOOL removeExisting = [defMgr removeItemAtPath:wPath error:&error];
+        
+        if (!removeExisting)
+        {
+            NSLog(@"Could not delete existing file!");
+            return;
+        }
+    }
+    
+    BOOL createFile = [defMgr createFileAtPath:wPath contents:[NSData data] attributes:nil];
+    if (!createFile)
+    {
+        NSLog(@"Could not create file!");
+        return;
+    }
+    
+    Transformer *wTxfo = _currentTxfo;
+    
+    // Line 1
+    // CString nLine = wTxfo->m_Description;
+    NSMutableString *nextLine = [NSMutableString stringWithCString:wTxfo->m_Description.c_str() encoding:[NSString defaultCStringEncoding]];
+    [nextLine appendString:@"\r\n"];
+    
+    NSMutableString *newFileString = [NSMutableString string];
+    
+    [newFileString appendString:nextLine];
+    
+    // take care of Andersen bug
+    double zOffset = 0.0;
+    if (wTxfo->m_LowerZ > 4.5)
+        zOffset = wTxfo->m_LowerZ - 4.5;
+    
+    // Line 2
+    /*
+    nLine.Format("%-10.1d%-10.1d%-10.1d%-10.1d%-10.1d%-10.3f%-10.3f%-10.3f\n",
+                 2, // always in inches
+                 wTxfo->m_NumPhases,
+                 wTxfo->m_Frequency,
+                 wTxfo->m_NumWoundLimbs,
+                 1, // always full height
+                 -wTxfo->m_LowerZ + zOffset,
+                 wTxfo->m_Core.m_WindowHeight - wTxfo->m_LowerZ + zOffset,
+                 wTxfo->m_Core.m_Diameter
+                 );
+    */
+    
+    nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.1d%-10.1d%-10.1d%-10.1d%-10.3f%-10.3f%-10.3f\r\n",
+                2,
+                wTxfo->m_NumPhases,
+                wTxfo->m_Frequency,
+                wTxfo->m_NumWoundLimbs,
+                1,
+                -wTxfo->m_LowerZ + zOffset,
+                wTxfo->m_Core.m_WindowHeight - wTxfo->m_LowerZ + zOffset,
+                wTxfo->m_Core.m_Diameter
+                ];
+    
+    [newFileString appendString:nextLine];
+    
+    // Line 3
+    nextLine = [NSMutableString stringWithFormat:@"%-10.3f%-10.1d%-10.3f%-10.3f%-10.3f%-10.1d%-10.1d\r\n",
+                wTxfo->m_InnerClearance,
+                0, // AL/CU shield
+                wTxfo->m_SystemGVA,
+                wTxfo->m_puImpedance, // Optional Per Unit Impedance
+                wTxfo->m_PeakFactor,
+                wTxfo->m_NumTerminals,
+                wTxfo->CountLayers()
+                ];
+    [newFileString appendString:nextLine];
+    
+    // Line 4
+    nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.3f%-10.3f%-10.3f%-10.3f%-10.1d%-10.1d\r\n",
+                wTxfo->m_OffsetElongation, // displacement/elongation
+                wTxfo->m_OffElongValue, // amount
+                0.0, // loss factor - tank
+                0.0, // loss factor - leg
+                0.0, // loss factor - yoke
+                1, // scale of flux plot
+                25 // number of flux lines
+                ];
+    [newFileString appendString:nextLine];
+    
+    // Terminal data
+    Terminal* nextTerm = wTxfo->GetTermHead();
+    while (nextTerm != NULL)
+    {
+        nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.1d%-10.3f%-10.3f\r\n",
+                    nextTerm->m_Number,
+                    nextTerm->m_Connection,
+                    nextTerm->m_MVA,
+                    nextTerm->m_KV
+                    ];
+        [newFileString appendString:nextLine];
+        
+        nextTerm = nextTerm->GetNext();
+    }
+    
+    
+    // Layer Data
+    
+    Winding* nextWinding = wTxfo->GetWdgHead();
+    int layerNum = 0;
+    int runningSegmentNum = 0;
+    
+    while (nextWinding != NULL)
+    {
+        Layer* nextLayer = nextWinding->m_LayerHead;
+        
+        
+        while (nextLayer != NULL)
+        {
+            layerNum++;
+            runningSegmentNum += nextLayer->CountSegments();
+            
+            nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.1d%-10.3f%-10.3f\n",
+                         layerNum,
+                         runningSegmentNum,
+                         nextLayer->m_InnerRadius,
+                         nextLayer->m_RadialWidth
+                         ];
+            [newFileString appendString:nextLine];
+            
+            
+            nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.1d%-10.1d%-10.1d%-10.1d%-10.3f\n",
+                         nextLayer->m_Terminal, // Terminal Number
+                         nextLayer->m_NumberParGroups,
+                         nextLayer->m_CurrentDirection,
+                         nextLayer->m_Material,
+                         nextLayer->m_NumSpacerBlocks,
+                         nextLayer->m_SpacerBlockWidth
+                         ];
+            [newFileString appendString:nextLine];
+            
+            nextLayer = nextLayer->GetNext();
+            
+        } // end while (nextLayer != NULL)
+        
+        nextWinding = nextWinding->GetNext();
+        
+    } // end while (nextWinding != NULL) [layer]
+    
+    
+    // Segment Data
+    
+    nextWinding = wTxfo->GetWdgHead();
+    runningSegmentNum = 0;
+    
+    while (nextWinding != NULL)
+    {
+        Layer* nextLayer = nextWinding->m_LayerHead;
+        Segment* nextSegment;
+        
+        while (nextLayer != NULL)
+        {
+            nextSegment = nextLayer->m_SegmentHead;
+            
+            while (nextSegment != NULL)
+            {
+                runningSegmentNum++;
+                
+                nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.3f%-10.3f%-10.3f%-10.3f\n",
+                             runningSegmentNum,
+                             nextSegment->m_MinZ,
+                             nextSegment->m_MaxZ,
+                             nextSegment->m_NumTurnsTotal,
+                             nextSegment->m_NumTurnsActive
+                             ];
+                [newFileString appendString:nextLine];
+                
+                nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.1d%-10.3f%-10.3f\n",
+                             nextSegment->m_NumStrandsPerTurn,
+                             nextSegment->m_NumStrandsPerLayer,
+                             nextSegment->m_StrandR,
+                             nextSegment->m_StrandA
+                             ];
+                [newFileString appendString:nextLine];
+                
+                
+                nextSegment = nextSegment->m_Next;
+                
+            } // end while (nextSegment != NULL)
+            
+            nextLayer = nextLayer->GetNext();
+            
+        } // end while (nextLayer != NULL)
+        
+        nextWinding = nextWinding->GetNext();
+        
+    } // end while (nextWinding != NULL) [segment]
+    
+    
+
+}
+
+- (BOOL)currentTransformerIsSaveable
+{
+    
+	if (!_currentTxfo->m_IsValid)
+	{
+		NSLog(@"Transformer is not valid");
+		return NO;
+	}
+    
+	if (_currentTxfo->m_NumTerminals == 0)
+	{
+		NSLog(@"Terminals are not defined!");
+		return NO;
+	}
+    
+	if (!_currentTxfo->TerminalsHaveWindings())
+	{
+		NSLog(@"The transformer has no windings defined for it!");
+		return NO;
+	}
+    
+	if (_currentTxfo->VerifyTransformer() != NO_TXFO_ERROR)
+    {
+        NSLog(@"Error in transformer definition!");
+        return NO;
+    }
+    
+	return YES;
+}
+
+#pragma mark -
+#pragma mark Routines for inputting an Excel-generated design file & Recent files
 
 - (IBAction)openXLDesignFile:(id)sender
 {
@@ -364,8 +634,7 @@
     [self openInputFile:pathString];
 }
 
-- (IBAction)saveAndersenFile:(id)sender {
-}
+
 
 
 - (BOOL)openInputFile:(NSString *)fName
