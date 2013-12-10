@@ -65,5 +65,6 @@ struct AppControllerImpl
 - (IBAction)setDosBoxCLocation:(id)sender;
 
 - (IBAction)openXLDesignFile:(id)sender;
+- (IBAction)saveAndersenFile:(id)sender;
 
 @end

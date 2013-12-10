@@ -94,9 +94,9 @@
                                     <action selector="performClose:" target="-1" id="193"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Save…" keyEquivalent="s" id="75">
+                            <menuItem title="Save Andersen File..." keyEquivalent="s" id="75">
                                 <connections>
-                                    <action selector="saveDocument:" target="-1" id="362"/>
+                                    <action selector="saveAndersenFile:" target="4aD-zX-viR" id="PB4-6C-cf6"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Revert to Saved" id="112">
