@@ -482,7 +482,7 @@
             layerNum++;
             runningSegmentNum += nextLayer->CountSegments();
             
-            nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.1d%-10.3f%-10.3f\n",
+            nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.1d%-10.3f%-10.3f\r\n",
                          layerNum,
                          runningSegmentNum,
                          nextLayer->m_InnerRadius,
@@ -491,7 +491,7 @@
             [newFileString appendString:nextLine];
             
             
-            nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.1d%-10.1d%-10.1d%-10.1d%-10.3f\n",
+            nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.1d%-10.1d%-10.1d%-10.1d%-10.3f\r\n",
                          nextLayer->m_Terminal, // Terminal Number
                          nextLayer->m_NumberParGroups,
                          nextLayer->m_CurrentDirection,
@@ -528,7 +528,7 @@
             {
                 runningSegmentNum++;
                 
-                nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.3f%-10.3f%-10.3f%-10.3f\n",
+                nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.3f%-10.3f%-10.3f%-10.3f\r\n",
                              runningSegmentNum,
                              nextSegment->m_MinZ,
                              nextSegment->m_MaxZ,
@@ -537,7 +537,7 @@
                              ];
                 [newFileString appendString:nextLine];
                 
-                nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.1d%-10.3f%-10.3f\n",
+                nextLine = [NSMutableString stringWithFormat:@"%-10.1d%-10.1d%-10.3f%-10.3f\r\n",
                              nextSegment->m_NumStrandsPerTurn,
                              nextSegment->m_NumStrandsPerLayer,
                              nextSegment->m_StrandR,
@@ -558,7 +558,14 @@
         
     } // end while (nextWinding != NULL) [segment]
     
+    NSError *writeError;
     
+    BOOL fileWrite = [newFileString writeToFile:wPath atomically:NO encoding:NSUTF8StringEncoding error:&writeError];
+    
+    if (!fileWrite)
+    {
+        NSLog(@"Error writing file!");
+    }
 
 }
 
