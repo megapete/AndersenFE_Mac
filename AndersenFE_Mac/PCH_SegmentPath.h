@@ -31,6 +31,10 @@
 
 - (void)setRegulatingWindingWithNumLoops:(double)numLoops withAxialGap:(double)aGap isDoubleAxial:(BOOL)isDblAxial isMultiStart:(BOOL)isMutliStart;
 
+- (void)splitSegmentEquallyInto:(double)numSegments withSectionGap:(double)wGap;
+
+- (void)setLayerAsParallel;
+
 - (int)currentDirection;
 - (double)betweenSections;
 

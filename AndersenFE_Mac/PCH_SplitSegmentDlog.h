@@ -10,8 +10,12 @@
 
 @interface PCH_SplitSegmentDlog : NSWindowController
 
-- (IBAction)okayButtonPushed:(id)sender;
+@property (weak) IBOutlet NSTextField *numSegments;
+@property (weak) IBOutlet NSTextField *distanceBetweenSegments;
 
+
+
+- (IBAction)okayButtonPushed:(id)sender;
 - (IBAction)cancelButtonPushed:(id)sender;
 
 @end

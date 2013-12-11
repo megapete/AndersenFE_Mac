@@ -10,6 +10,7 @@
 #import "PCH_SegmentPath.h"
 #import "AppController.h"
 #import "PCH_RegWdgDlog.h"
+#import "PCH_SplitSegmentDlog.h"
 
 @interface PCH_AndersenFE_TxfoView ()
 {
@@ -361,7 +362,18 @@
 
 - (void)splitSegmentEqual:(id)sender
 {
+    PCH_SplitSegmentDlog *theDlog = [[PCH_SplitSegmentDlog alloc] init];
     
+    NSInteger result = [NSApp runModalForWindow:theDlog.window];
+    
+    if (result == NSRunStoppedResponse)
+    {
+        [self.segmentSelected splitSegmentEquallyInto:[theDlog.numSegments doubleValue] withSectionGap:[theDlog.distanceBetweenSegments doubleValue]];
+    }
+    
+    [theDlog.window orderOut:self];
+    
+    [self.theAppController updateTxfoView];
 }
 
 - (void)splitSegmentCustom:(id)sender
@@ -371,7 +383,22 @@
 
 - (void)createParallelLayer:(id)sender
 {
+    // This is the correct way to instantiate an NSAlert instead of using the +alertWithMessageText:... method (see the documentation for that method)
     
+    NSAlert *parAlert = [[NSAlert alloc] init];
+    [parAlert setInformativeText:@"This operation will cause the selected layer to be split into two parallel-connected winding sections. Are you sure you want to continue?"];
+    [parAlert setMessageText:@"Create parallel layer"];
+    [parAlert addButtonWithTitle:@"Ok"];
+    [parAlert addButtonWithTitle:@"Cancel"];
+    
+    NSInteger runResult = [parAlert runModal];
+    
+    if (runResult == NSAlertFirstButtonReturn)
+    {
+        [self.segmentSelected setLayerAsParallel];
+    }
+    
+
 }
 
 - (void)activate:(id)sender

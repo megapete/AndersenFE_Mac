@@ -37,6 +37,20 @@
 #pragma mark -
 #pragma mark Segment / Layer / Winding wrappers
 
+- (void)setLayerAsParallel
+{
+    Layer *layer = (Layer *)[self.data[SEGDATA_LAYER_KEY] pointerValue];
+    
+    layer->SetLayerAsParallel();
+}
+
+- (void)splitSegmentEquallyInto:(double)numSegments withSectionGap:(double)wGap
+{
+    Segment *segment = (Segment *)[self.data[SEGDATA_SEGMENT_KEY] pointerValue];
+    
+    segment->SplitSegment((int)numSegments, wGap);
+}
+
 - (void)setRegulatingWindingWithNumLoops:(double)numLoops withAxialGap:(double)aGap isDoubleAxial:(BOOL)isDblAxial isMultiStart:(BOOL)isMutliStart
 {
     Winding *winding = (Winding *)[self.data[SEGDATA_WINDING_KEY] pointerValue];

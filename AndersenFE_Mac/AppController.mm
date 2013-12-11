@@ -656,7 +656,9 @@
     
     if (inputResult != NO_TXTFILE_ERROR)
     {
-        [NSAlert alertWithMessageText:@"Bad Input File!" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Can't opem input file: Error code #%d", inputResult];
+        NSAlert *errAlert = [NSAlert alertWithMessageText:@"Bad Input File!" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Can't open input file: Error code #%d", inputResult];
+        
+        [errAlert runModal]; // we don't care about the result of the runModal call
         
         delete xlTxfo;
         
