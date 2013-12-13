@@ -92,7 +92,7 @@
             double rectCenterX = segRect.origin.x + segRect.size.width / 2.0;
             NSNumber *rectCenterXnumber = [NSNumber numberWithDouble:rectCenterX];
             
-            [nextPath setCurrentArrowRect:NSMakeRect(rectCenterX - ARROWHEAD_WIDTH * self.scale, ARROW_BOTTOM * self.scale, ARROWHEAD_WIDTH * 2.0 * self.scale, ARROWHEAD_HEIGHT * self.scale)];
+            [nextPath setCurrentArrowRect:NSMakeRect(rectCenterX - ARROWHEAD_WIDTH * self.scale, ARROW_BOTTOM * self.scale, ARROWHEAD_WIDTH * 2.0 * self.scale, ARROW_HEIGHT * self.scale)];
             
             if (![arrowSet containsObject:rectCenterXnumber])
             {
