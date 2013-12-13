@@ -21,6 +21,7 @@
 @property NSBezierPath *path;
 @property NSColor *color;
 @property NSDictionary *data;
+@property NSRect currentArrowRect;
 
 + (id)segmentPathWithPath:(NSBezierPath *)wPath andColor:(NSColor *)wColor andData:(NSDictionary *)wData;
 - (id)initWithPath:(NSBezierPath *)wPath andColor:(NSColor *)wColor andData:(NSDictionary *)wData;
@@ -34,6 +35,8 @@
 - (void)splitSegmentEquallyInto:(double)numSegments withSectionGap:(double)wGap;
 
 - (void)setLayerAsParallel;
+
+- (void)reverseCurrent;
 
 - (int)currentDirection;
 - (double)betweenSections;

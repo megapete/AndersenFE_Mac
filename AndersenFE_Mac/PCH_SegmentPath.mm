@@ -37,6 +37,13 @@
 #pragma mark -
 #pragma mark Segment / Layer / Winding wrappers
 
+- (void)reverseCurrent
+{
+    Winding *winding = (Winding *)[self.data[SEGDATA_WINDING_KEY] pointerValue];
+    
+    winding->ReverseCurrent();
+}
+
 - (void)setLayerAsParallel
 {
     Layer *layer = (Layer *)[self.data[SEGDATA_LAYER_KEY] pointerValue];

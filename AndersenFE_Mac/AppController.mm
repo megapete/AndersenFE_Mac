@@ -29,6 +29,9 @@
 #define RECTARRAY_SEGMENT_KEY       @"Segment"
 #define RECTARRAY_LAYER_KEY         @"Layer"
 
+#define DOSBOX_APP_LOCATION_KEY      @"DosBoxAppLoc"
+#define DOSBOS_CDRIVE_LOCATION_KEY   @"DosBoxC_Loc"
+
 @interface AppController()
 {
     CMainFrame *_theMainFrame;
@@ -37,12 +40,16 @@
     Transformer *_currentTxfo;
 }
 
-@property NSURL *dosBoxPrefsURL;
+@property NSURL *dosBoxAppURL;
 @property NSURL *dosBoxCDriveURL;
 
 @property NSArray *colorArray;
 
-- (void)handleTxfoChanges;
+
+
+- (void)getDefaultDosboxLocations;
+- (BOOL)setDefaultDosboxApplicationLocation:(NSURL *)appDirURL;
+- (BOOL)setDefaultDosboxCdriveLocation:(NSURL *)cLocation;
 
 @end
 
@@ -60,8 +67,7 @@
         
         _theApp = new CAndersenFEApp(selfImpl);
         
-        self.dosBoxPrefsURL = nil;
-        self.dosBoxCDriveURL = nil;
+        [self getDefaultDosboxLocations];
         
         self.colorArray = [NSArray arrayWithObjects:[NSColor redColor], [NSColor greenColor], [NSColor orangeColor], [NSColor blueColor], [NSColor purpleColor], nil];
     }
@@ -273,54 +279,6 @@
     
 }
 
-#pragma mark -
-#pragma mark Get DosBox info
-
-- (IBAction)setDosBoxPrefsLocation:(id)sender
-{
-    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-    
-    [openPanel setCanChooseDirectories:NO];
-    [openPanel setCanChooseFiles:YES];
-    [openPanel setTitle:@"Find DosBox Configuration File"];
-    [openPanel setMessage:@"The DosBox Prefs path is usually ~/Library/Preferences/DOSBox 0.74 Preferences"];
-    
-    NSString *prefsDirPath = @"~/Library/Preferences";
-    prefsDirPath = [prefsDirPath stringByExpandingTildeInPath];
-    NSURL *prefsDirectory = [NSURL fileURLWithPath:prefsDirPath isDirectory:YES];
-    
-    [openPanel setDirectoryURL:prefsDirectory];
-    
-    NSInteger runResult = [openPanel runModal];
-    
-    if (runResult == NSFileHandlingPanelOKButton)
-    {
-        self.dosBoxPrefsURL = [openPanel URL];
-    }
-}
-
-- (IBAction)setDosBoxCLocation:(id)sender
-{
-    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-    
-    [openPanel setCanChooseDirectories:YES];
-    [openPanel setCanChooseFiles:NO];
-    [openPanel setTitle:@"Find DosBox C Drive"];
-    [openPanel setMessage:@"There is a folder you assigned to be DropBox's C Drive: Find it"];
-    
-    NSString *cDirPath = @"~/";
-    cDirPath = [cDirPath stringByExpandingTildeInPath];
-    NSURL *cDirectory = [NSURL fileURLWithPath:cDirPath isDirectory:YES];
-    
-    [openPanel setDirectoryURL:cDirectory];
-    
-    NSInteger runResult = [openPanel runModal];
-    
-    if (runResult == NSFileHandlingPanelOKButton)
-    {
-        self.dosBoxCDriveURL = [openPanel URL];
-    }
-}
 
 #pragma mark -
 #pragma mark Routines for saving Andersen files
@@ -677,6 +635,165 @@
     [self updateAllViews];
     
     return YES;
+}
+
+
+#pragma mark -
+#pragma mark DOSBox menu handlers
+
+- (void)getDefaultDosboxLocations
+{
+    NSUserDefaults *usrDef = [NSUserDefaults standardUserDefaults];
+    NSFileManager *defMgr = [NSFileManager defaultManager];
+    
+    self.dosBoxAppURL = [usrDef URLForKey:DOSBOX_APP_LOCATION_KEY];
+    
+    // make sure that the location has an object called "DOSBox.app"
+    if (self.dosBoxAppURL)
+    {
+        NSURL *appURL = [self.dosBoxAppURL URLByAppendingPathComponent:@"DOSBox.app"];
+        
+        if (![defMgr fileExistsAtPath:[appURL path]])
+        {
+            self.dosBoxAppURL = nil;
+            
+            [usrDef removeObjectForKey:DOSBOX_APP_LOCATION_KEY];
+        }
+    }
+    
+    self.dosBoxCDriveURL = [usrDef URLForKey:DOSBOS_CDRIVE_LOCATION_KEY];
+    
+    // make sure that the location has an object called "FLD12"
+    if (self.dosBoxCDriveURL)
+    {
+        NSURL *cURL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"FLD12"];
+        
+        if (![defMgr fileExistsAtPath:[cURL path]])
+        {
+            self.dosBoxCDriveURL = nil;
+            
+            [usrDef removeObjectForKey:DOSBOS_CDRIVE_LOCATION_KEY];
+        }
+    }
+}
+
+- (BOOL)setDefaultDosboxApplicationLocation:(NSURL *)appDirURL
+{
+    NSUserDefaults *usrDef = [NSUserDefaults standardUserDefaults];
+    NSFileManager *defMgr = [NSFileManager defaultManager];
+    
+    // make sure that the location has an object called "DOSBox.app"
+    if (appDirURL)
+    {
+        NSURL *appURL = [appDirURL URLByAppendingPathComponent:@"DOSBox.app"];
+        
+        if ([defMgr fileExistsAtPath:[appURL path]])
+        {
+            self.dosBoxAppURL = appDirURL;
+            
+            [usrDef setURL:appDirURL forKey:DOSBOX_APP_LOCATION_KEY];
+            
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (BOOL)setDefaultDosboxCdriveLocation:(NSURL *)cLocation
+{
+    NSUserDefaults *usrDef = [NSUserDefaults standardUserDefaults];
+    NSFileManager *defMgr = [NSFileManager defaultManager];
+    
+    // make sure that the location has an object called "DOSBox.app"
+    if (cLocation)
+    {
+        NSURL *fld12URL = [cLocation URLByAppendingPathComponent:@"FLD12"];
+        
+        if ([defMgr fileExistsAtPath:[fld12URL path]])
+        {
+            self.dosBoxCDriveURL = cLocation;
+            
+            [usrDef setURL:cLocation forKey:DOSBOS_CDRIVE_LOCATION_KEY];
+            
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (IBAction)setDosboxAppLocation:(id)sender
+{
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setCanChooseFiles:NO];
+    [openPanel setTitle:@"Find DosBox App File Directory"];
+    [openPanel setMessage:@"The DosBox App is usually in /Applications"];
+    
+    NSURL *appDirectory = self.dosBoxAppURL;
+    
+    if (!appDirectory)
+    {
+        NSString *appDirPath = @"/Applications";
+        appDirectory = [NSURL fileURLWithPath:appDirPath isDirectory:YES];
+    }
+    
+    [openPanel setDirectoryURL:appDirectory];
+    
+    NSInteger runResult = [openPanel runModal];
+    
+    if (runResult == NSFileHandlingPanelOKButton)
+    {
+        if (![self setDefaultDosboxApplicationLocation:[openPanel URL]])
+        {
+            NSAlert *badDirectoryAlert = [[NSAlert alloc] init];
+            
+            [badDirectoryAlert setInformativeText:@"The directory that you specifed does NOT contain the DOSBox application!"];
+            [badDirectoryAlert setMessageText:@"Bad directory!"];
+            [badDirectoryAlert addButtonWithTitle:@"Ok"];
+            
+            [badDirectoryAlert runModal]; // we don't care about the result
+        }
+    }
+}
+
+- (IBAction)setDosboxCdriveLocation:(id)sender
+{
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setCanChooseFiles:NO];
+    [openPanel setTitle:@"Set DosBox C Drive"];
+    [openPanel setMessage:@"Select the folder that contains the FLD12 and FLD8 directories"];
+    
+    NSURL *cDirectory = self.dosBoxCDriveURL;
+    
+    if (!cDirectory)
+    {
+        NSString *cDirPath = @"~/Documents";
+        cDirPath = [cDirPath stringByExpandingTildeInPath];
+        cDirectory = [NSURL fileURLWithPath:cDirPath isDirectory:YES];
+    }
+    
+    [openPanel setDirectoryURL:cDirectory];
+    
+    NSInteger runResult = [openPanel runModal];
+    
+    if (runResult == NSFileHandlingPanelOKButton)
+    {
+        if (![self setDefaultDosboxCdriveLocation:[openPanel URL]])
+        {
+            NSAlert *badDirectoryAlert = [[NSAlert alloc] init];
+            
+            [badDirectoryAlert setInformativeText:@"The directory that you specifed does NOT contain FLD12!"];
+            [badDirectoryAlert setMessageText:@"Bad directory!"];
+            [badDirectoryAlert addButtonWithTitle:@"Ok"];
+            
+            [badDirectoryAlert runModal]; // we don't care about the result
+        }
+    }
 }
 
 

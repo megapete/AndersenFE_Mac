@@ -12,6 +12,12 @@
 #import "PCH_RegWdgDlog.h"
 #import "PCH_SplitSegmentDlog.h"
 
+#define ARROW_HEIGHT        15
+#define ARROWHEAD_WIDTH     3
+#define ARROWHEAD_HEIGHT    5
+#define ARROW_BOTTOM        10
+
+
 @interface PCH_AndersenFE_TxfoView ()
 {
     // int _mode;
@@ -86,6 +92,8 @@
             double rectCenterX = segRect.origin.x + segRect.size.width / 2.0;
             NSNumber *rectCenterXnumber = [NSNumber numberWithDouble:rectCenterX];
             
+            [nextPath setCurrentArrowRect:NSMakeRect(rectCenterX - ARROWHEAD_WIDTH * self.scale, ARROW_BOTTOM * self.scale, ARROWHEAD_WIDTH * 2.0 * self.scale, ARROWHEAD_HEIGHT * self.scale)];
+            
             if (![arrowSet containsObject:rectCenterXnumber])
             {
                 [self drawArrowAt:rectCenterX withDirection:[nextPath currentDirection]];
@@ -109,27 +117,21 @@
         wDirection = 1;
     }
     
-    const int arrowHeight = 15; // points (or pixels?)
-    const int arrowHeadW = 3;
-    const int arrowHeadH = 5;
-    const int arrowBottom = 10;
-    
-    
     NSBezierPath *newArrow = [NSBezierPath bezierPath];
     
-    [newArrow moveToPoint:NSMakePoint(wXLoc, arrowBottom * self.scale)];
-    [newArrow lineToPoint:NSMakePoint(wXLoc, (arrowBottom + arrowHeight) * self.scale)];
+    [newArrow moveToPoint:NSMakePoint(wXLoc, ARROW_BOTTOM * self.scale)];
+    [newArrow lineToPoint:NSMakePoint(wXLoc, (ARROW_BOTTOM + ARROW_HEIGHT) * self.scale)];
     
     if (wDirection < 0)
     {
-        [newArrow moveToPoint:NSMakePoint(wXLoc, arrowBottom * self.scale)];
+        [newArrow moveToPoint:NSMakePoint(wXLoc, ARROW_BOTTOM * self.scale)];
     }
     
     NSPoint arrowHeadPoint = [newArrow currentPoint]; // in transformer window coordinates
     
-    [newArrow lineToPoint:NSMakePoint(wXLoc - arrowHeadW * self.scale, arrowHeadPoint.y - wDirection * arrowHeadH * self.scale)];
+    [newArrow lineToPoint:NSMakePoint(wXLoc - ARROWHEAD_WIDTH * self.scale, arrowHeadPoint.y - wDirection * ARROWHEAD_HEIGHT * self.scale)];
     [newArrow moveToPoint:arrowHeadPoint];
-    [newArrow lineToPoint:NSMakePoint(wXLoc + arrowHeadW * self.scale, arrowHeadPoint.y - wDirection * arrowHeadH * self.scale)];
+    [newArrow lineToPoint:NSMakePoint(wXLoc + ARROWHEAD_WIDTH * self.scale, arrowHeadPoint.y - wDirection * ARROWHEAD_HEIGHT * self.scale)];
     
     [newArrow setLineWidth:self.scale];
     [newArrow stroke];
@@ -158,11 +160,23 @@
     NSPoint whereClicked = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     
     int i;
+    
+    PCH_SegmentPath *oldSegmentSelected = self.segmentSelected;
     self.segmentSelected = nil;
+    
+    BOOL gotCurrentArrow = NO;
     
     for (i=0; i<self.segmentPaths.count; i++)
     {
         PCH_SegmentPath *nextSegment = self.segmentPaths[i];
+        
+        if (NSPointInRect(whereClicked, nextSegment.currentArrowRect))
+        {
+            self.segmentSelected = nextSegment;
+            gotCurrentArrow = YES;
+            break;
+        }
+        
         NSValue *nextRectValue = nextSegment.data[SEGDATA_RECTANGLE_KEY];
         NSRect segmentRect = [nextRectValue rectValue];
         
@@ -173,11 +187,20 @@
         }
     }
     
-    if (i < self.segmentPaths.count)
+    if (gotCurrentArrow)
+    {
+        // reverse the current directiom
+        [self.segmentSelected reverseCurrent];
+        
+        self.segmentSelected = oldSegmentSelected;
+        [self.theAppController handleTxfoChanges];
+    }
+    else if (i < self.segmentPaths.count)
     {
         [self.segmentSelected toggleActivate];
-        [self.theAppController updateTxfoView];
+        [self.theAppController handleTxfoChanges];
     }
+    
 }
 
 - (void)mouseDown:(NSEvent *)theEvent
@@ -373,7 +396,7 @@
     
     [theDlog.window orderOut:self];
     
-    [self.theAppController updateTxfoView];
+    [self.theAppController handleTxfoChanges];
 }
 
 - (void)splitSegmentCustom:(id)sender
@@ -398,19 +421,19 @@
         [self.segmentSelected setLayerAsParallel];
     }
     
-
+    [self.theAppController handleTxfoChanges];
 }
 
 - (void)activate:(id)sender
 {
     [self.segmentSelected activate:YES];
-    [self.theAppController updateTxfoView];
+    [self.theAppController handleTxfoChanges];
 }
 
 - (void)deactivate:(id)sender
 {
     [self.segmentSelected activate:NO];
-    [self.theAppController updateTxfoView];
+    [self.theAppController handleTxfoChanges];
 }
 
 - (void)regWinding:(id)sender
@@ -428,7 +451,7 @@
     
     [theDlog.window orderOut:self];
     
-    [self.theAppController updateTxfoView];
+    [self.theAppController handleTxfoChanges];
 }
 
 #pragma mark -

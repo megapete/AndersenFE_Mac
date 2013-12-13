@@ -26,6 +26,8 @@ struct AppControllerImpl
 
 - (BOOL)openInputFile:(NSString *)fName;
 
+- (IBAction)setDosboxAppLocation:(id)sender;
+- (IBAction)setDosboxCdriveLocation:(id)sender;
 
 // IB connection to main view
 @property (strong) IBOutlet AndersenFE_View *theMainView;
@@ -52,20 +54,14 @@ struct AppControllerImpl
 @property (weak) IBOutlet NSTextField *axialForcesField;
 @property (weak) IBOutlet NSTextField *endThrustField;
 
+- (void)handleTxfoChanges;
 
 - (void)setVPNRefToTermNumber:(int)wTerm;
-
-
-
-
 
 - (void)updateAllViews;
 - (void)updateTxfoView;
 - (void)updateTxfoDataView;
 - (void)updateTerminalView;
-
-- (IBAction)setDosBoxPrefsLocation:(id)sender;
-- (IBAction)setDosBoxCLocation:(id)sender;
 
 - (IBAction)openXLDesignFile:(id)sender;
 
