@@ -25,6 +25,7 @@ Transformer::Transformer()
 	m_IsValid = false;
 	m_OffElongValue = 0.0;
 	m_OffsetElongation = 0;
+    m_CurrentCoolingStage = COOLING_STAGE_ONAN;
 
 	InitializeTxfo();
 }
@@ -51,6 +52,25 @@ void Transformer::AddTerminal(Terminal *wTerm)
 
 	return;
 
+}
+
+double Transformer::CoolingPerUnit(int wStage)
+{
+    if (wStage == COOLING_STAGE_ONAN)
+    {
+        return 1.0;
+    }
+    else if (wStage == COOLING_STAGE_ONAF)
+    {
+        return m_FirstFanStage / 100.0;
+    }
+    else if (wStage == COOLING_STAGE_ONAFF)
+    {
+        return m_SecondFanStage / 100.0;
+    }
+    
+    return 0.0;
+    
 }
 
 void Transformer::AddWinding(Winding *wWdg)
@@ -147,6 +167,7 @@ void Transformer::InitializeTxfo()
 	m_OffElongValue = 0.0;
 	m_OffsetElongation = 0;
 	m_puImpedance = 0.0;
+    m_CurrentCoolingStage = COOLING_STAGE_ONAN;
 
 	m_Prev = NULL;
 	m_Next = NULL;

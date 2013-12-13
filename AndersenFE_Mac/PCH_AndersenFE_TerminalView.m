@@ -14,7 +14,9 @@
 @property int rbClickInTerminal;
 
 - (void)handleSetVPN_RefTerm:(id)sender;
-- (void)handleSetMVAToONAFF:(id)sender;
+- (void)raiseMVAToNextStage:(id)sender;
+- (void)lowerMVAToPrevStage:(id)sender;
+- (void)runAndersenProgram:(id)sender;
 
 @end
 
@@ -107,8 +109,13 @@
         // Calculate MVA
         
         NSMenu *termMenu = [[NSMenu alloc] initWithTitle:@"Terminals"];
+        [termMenu addItemWithTitle:@"Run Andersen Program..." action:@selector(runAndersenProgram:) keyEquivalent:@""];
+        [termMenu addItem:[NSMenuItem separatorItem]];
         [termMenu addItemWithTitle:@"Set VPN Reference" action:@selector(handleSetVPN_RefTerm:) keyEquivalent:@""];
-        [termMenu addItemWithTitle:@"Change MVA to ONAFF" action:@selector(handleSetMVAToONAFF:) keyEquivalent:@""];
+        [termMenu addItem:[NSMenuItem separatorItem]];
+        [termMenu addItemWithTitle:@"Lower MVA to previous fan stage" action:@selector(lowerMVAToPrevStage:) keyEquivalent:@""];
+        [termMenu addItemWithTitle:@"Raise MVA to next fan stage" action:@selector(raiseMVAToNextStage:) keyEquivalent:@""];
+        
         [NSMenu popUpContextMenu:termMenu withEvent:theEvent forView:self];
     }
     else
@@ -120,9 +127,19 @@
 #pragma mark -
 #pragma mark Contextual menu handlers
 
-- (void)handleSetMVAToONAFF:(id)sender
+- (void)runAndersenProgram:(id)sender
 {
-    NSLog(@"Changing MVA to ONAF II");
+    
+}
+
+- (void)lowerMVAToPrevStage:(id)sender
+{
+    [self.theAppController changeFanStageWithDirection:-1];
+}
+
+- (void)raiseMVAToNextStage:(id)sender
+{
+    [self.theAppController changeFanStageWithDirection:+1];
 }
 
 - (void)handleSetVPN_RefTerm:(id)sender

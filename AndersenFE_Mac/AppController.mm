@@ -243,6 +243,35 @@
 #pragma mark -
 #pragma mark Setting transformer characteristics
 
+- (void)changeFanStageWithDirection:(int)fanStageDirection
+{
+    // clamp fanStageDirection to -1,0,1
+    fanStageDirection = MAX(fanStageDirection, -1);
+    fanStageDirection = MIN(fanStageDirection, 1);
+    
+    int newCoolingStage = _currentTxfo->m_CurrentCoolingStage + fanStageDirection;
+    
+    newCoolingStage = MAX(newCoolingStage, COOLING_STAGE_ONAN);
+    newCoolingStage = MIN(newCoolingStage, COOLING_STAGE_ONAFF);
+    
+    if (newCoolingStage != _currentTxfo->m_CurrentCoolingStage)
+    {
+        double newMVAMultiplier = (_currentTxfo->CoolingPerUnit(newCoolingStage)) / (_currentTxfo->CoolingPerUnit(_currentTxfo->m_CurrentCoolingStage));
+        
+        _currentTxfo->m_CurrentCoolingStage = newCoolingStage;
+        
+        Terminal* nextTerm = _currentTxfo->GetTermHead();
+        
+        while (nextTerm != NULL)
+        {
+            nextTerm->m_MVA *= newMVAMultiplier;
+            nextTerm = nextTerm->GetNext();
+        }
+        
+        [self handleTxfoChanges];
+    }
+}
+
 - (void)handleTxfoChanges
 {
     if (_currentTxfo != NULL)

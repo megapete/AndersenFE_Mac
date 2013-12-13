@@ -10,6 +10,9 @@
 #include "Winding.h"	// Added by ClassView
 #include "Layer.h"	// Added by ClassView
 
+#define COOLING_STAGE_ONAN      0
+#define COOLING_STAGE_ONAF      1
+#define COOLING_STAGE_ONAFF     2
 
 
 class CAndersenFolder; // required forward declaration
@@ -17,6 +20,8 @@ class CAndersenFolder; // required forward declaration
 class Transformer  
 {
 public:
+    double CoolingPerUnit(int wStage);
+    int m_CurrentCoolingStage;
 	double GetTerminalVoltage(int wTerm);
 	double m_puImpedance;
 	Transformer* GetPrev();
