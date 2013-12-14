@@ -59,6 +59,7 @@ struct AppControllerImpl
 - (void)setVPNRefToTermNumber:(int)wTerm;
 
 - (void)changeFanStageWithDirection:(int)fanStageDirection;
+- (int)currentTxfoCoolingStage;
 
 - (void)updateAllViews;
 - (void)updateTxfoView;
@@ -66,6 +67,10 @@ struct AppControllerImpl
 - (void)updateTerminalView;
 
 - (IBAction)openXLDesignFile:(id)sender;
+
+- (void)runAndersenForCurrentTransformerWithError:(NSError **)wError;
+
+- (BOOL)andersenFoldersAreValid;
 
 - (IBAction)saveAndersenFile:(id)sender;
 - (BOOL)currentTransformerIsSaveable;

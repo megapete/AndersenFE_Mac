@@ -125,6 +125,29 @@
 }
 
 #pragma mark -
+#pragma mark Contextual menu validation
+
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+{
+    if ([menuItem action] == @selector(runAndersenProgram:))
+    {
+        return [self.theAppController andersenFoldersAreValid] && [self.theAppController currentTransformerIsSaveable];
+    }
+    
+    if ([menuItem action] == @selector(lowerMVAToPrevStage:))
+    {
+        return !([self.theAppController currentTxfoCoolingStage] == 0);
+    }
+    
+    if ([menuItem action] == @selector(raiseMVAToNextStage:))
+    {
+        return !([self.theAppController currentTxfoCoolingStage] == 2);
+    }
+    
+    return YES;
+}
+
+#pragma mark -
 #pragma mark Contextual menu handlers
 
 - (void)runAndersenProgram:(id)sender

@@ -45,7 +45,11 @@
 
 @property NSArray *colorArray;
 
+- (BOOL)transformerIsSaveable:(Transformer *)wTxfo;
+- (void)saveTxfo:(Transformer *)wTxfo asAndersenFile:(NSString *)wPath;
+- (void)saveTxfo:(Transformer *)wTxfo asAndersenFileURL:(NSURL *)wURL;
 
+- (void)runAndersenWithTxfo:(Transformer *)wTxfo withError:(NSError **)wError;
 
 - (void)getDefaultDosboxLocations;
 - (BOOL)setDefaultDosboxApplicationLocation:(NSURL *)appDirURL;
@@ -241,7 +245,12 @@
 }
 
 #pragma mark -
-#pragma mark Setting transformer characteristics
+#pragma mark Setting/Getting transformer characteristics
+
+- (int)currentTxfoCoolingStage
+{
+    return _currentTxfo->m_CurrentCoolingStage;
+}
 
 - (void)changeFanStageWithDirection:(int)fanStageDirection
 {
@@ -349,6 +358,16 @@
 
 - (void)savecCurrentTxfoAsAndersenFile:(NSString *)wPath
 {
+    [self saveTxfo:NULL asAndersenFile:wPath];
+}
+
+- (void)saveTxfo:(Transformer *)wTxfo asAndersenFileURL:(NSURL *)wURL
+{
+    [self saveTxfo:wTxfo asAndersenFile:[wURL path]];
+}
+
+- (void)saveTxfo:(Transformer *)wTxfo asAndersenFile:(NSString *)wPath
+{
     NSFileManager *defMgr = [NSFileManager defaultManager];
     
     if ([defMgr fileExistsAtPath:wPath])
@@ -370,7 +389,10 @@
         return;
     }
     
-    Transformer *wTxfo = _currentTxfo;
+    if (wTxfo == NULL)
+    {
+        wTxfo = _currentTxfo;
+    }
     
     // Line 1
     // CString nLine = wTxfo->m_Description;
@@ -558,26 +580,31 @@
 
 - (BOOL)currentTransformerIsSaveable
 {
+    return [self transformerIsSaveable:_currentTxfo];
+}
+
+- (BOOL)transformerIsSaveable:(Transformer *)wTxfo
+{
     
-	if (!_currentTxfo->m_IsValid)
+	if (!wTxfo->m_IsValid)
 	{
 		NSLog(@"Transformer is not valid");
 		return NO;
 	}
     
-	if (_currentTxfo->m_NumTerminals == 0)
+	if (wTxfo->m_NumTerminals == 0)
 	{
 		NSLog(@"Terminals are not defined!");
 		return NO;
 	}
     
-	if (!_currentTxfo->TerminalsHaveWindings())
+	if (!wTxfo->TerminalsHaveWindings())
 	{
 		NSLog(@"The transformer has no windings defined for it!");
 		return NO;
 	}
     
-	if (_currentTxfo->VerifyTransformer() != NO_TXFO_ERROR)
+	if (wTxfo->VerifyTransformer() != NO_TXFO_ERROR)
     {
         NSLog(@"Error in transformer definition!");
         return NO;
@@ -668,7 +695,70 @@
 
 
 #pragma mark -
-#pragma mark DOSBox menu handlers
+#pragma mark DOSBox menu handlers & other associated stuff
+
+- (void)runAndersenForCurrentTransformerWithError:(NSError *__autoreleasing *)wError
+{
+    [self runAndersenWithTxfo:NULL withError:wError];
+}
+
+- (void)runAndersenWithTxfo:(Transformer *)wTxfo withError:(NSError *__autoreleasing *)wError
+{
+    if (wTxfo == NULL)
+    {
+        wTxfo = _currentTxfo;
+    }
+    
+    if (![self transformerIsSaveable:wTxfo])
+    {
+        NSLog(@"Transformer is not saveable (should be checked in calling routine)");
+        return;
+    }
+    
+    // remove the files that will be created by Andersen
+    NSFileManager *defMgr = [NSFileManager defaultManager];
+    NSURL *fld12URL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"FLD12"];
+    NSURL *fld8URL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"FLD8"];
+    NSURL *graphicsURL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"graphics"];
+    
+    if (![defMgr removeItemAtURL:[fld12URL URLByAppendingPathComponent:@"OUTPUT"] error:wError])
+    {
+        return;
+    }
+    
+    if (![defMgr removeItemAtURL:[fld12URL URLByAppendingPathComponent:@"INP1.FIL"] error:wError])
+    {
+        return;
+    }
+    
+    if (![defMgr removeItemAtURL:[fld12URL URLByAppendingPathComponent:@"INP2.FIL"] error:wError])
+    {
+        return;
+    }
+    
+    if (![defMgr removeItemAtURL:[fld12URL URLByAppendingPathComponent:@"SEGMENT.FIL"] error:wError])
+    {
+        return;
+    }
+    
+    if (![defMgr removeItemAtURL:[graphicsURL URLByAppendingPathComponent:@"FOR.FIL"] error:wError])
+    {
+        return;
+    }
+    
+    if (![defMgr removeItemAtURL:[graphicsURL URLByAppendingPathComponent:@"BAS.FIL"] error:wError])
+    {
+        return;
+    }
+    
+    [self saveTxfo:wTxfo asAndersenFileURL:[fld12URL URLByAppendingPathComponent:@"INP1.FIL"]];
+    
+}
+
+- (BOOL)andersenFoldersAreValid
+{
+    return (self.dosBoxAppURL && self.dosBoxCDriveURL);
+}
 
 - (void)getDefaultDosboxLocations
 {
