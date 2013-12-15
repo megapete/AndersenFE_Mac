@@ -718,40 +718,88 @@
     // remove the files that will be created by Andersen
     NSFileManager *defMgr = [NSFileManager defaultManager];
     NSURL *fld12URL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"FLD12"];
-    NSURL *fld8URL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"FLD8"];
+    // NSURL *fld8URL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"FLD8"];
     NSURL *graphicsURL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"graphics"];
     
     if (![defMgr removeItemAtURL:[fld12URL URLByAppendingPathComponent:@"OUTPUT"] error:wError])
     {
-        return;
+        if (!([*wError code] == NSFileNoSuchFileError))
+        {
+            return;
+        }
     }
     
     if (![defMgr removeItemAtURL:[fld12URL URLByAppendingPathComponent:@"INP1.FIL"] error:wError])
     {
-        return;
+        if (!([*wError code] == NSFileNoSuchFileError))
+        {
+            return;
+        }
     }
     
     if (![defMgr removeItemAtURL:[fld12URL URLByAppendingPathComponent:@"INP2.FIL"] error:wError])
     {
-        return;
+        if (!([*wError code] == NSFileNoSuchFileError))
+        {
+            return;
+        }
     }
     
     if (![defMgr removeItemAtURL:[fld12URL URLByAppendingPathComponent:@"SEGMENT.FIL"] error:wError])
     {
-        return;
+        if (!([*wError code] == NSFileNoSuchFileError))
+        {
+            return;
+        }
     }
     
     if (![defMgr removeItemAtURL:[graphicsURL URLByAppendingPathComponent:@"FOR.FIL"] error:wError])
     {
-        return;
+        if (!([*wError code] == NSFileNoSuchFileError))
+        {
+            return;
+        }
     }
     
     if (![defMgr removeItemAtURL:[graphicsURL URLByAppendingPathComponent:@"BAS.FIL"] error:wError])
     {
-        return;
+        if (!([*wError code] == NSFileNoSuchFileError))
+        {
+            return;
+        }
     }
     
     [self saveTxfo:wTxfo asAndersenFileURL:[fld12URL URLByAppendingPathComponent:@"INP1.FIL"]];
+    
+    NSTask *andersenTask = [[NSTask alloc] init];
+    
+    NSURL *launchURL = [self.dosBoxAppURL URLByAppendingPathComponent:@"DOSBox.app/Contents/MacOS/DOSBox"];
+    NSURL *batchFileURL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"RUN_PH.bat"];
+    
+    [andersenTask setLaunchPath:[launchURL path]];
+    
+    [andersenTask setArguments:[NSArray arrayWithObjects:[batchFileURL path], @"-exit", nil]];
+    
+    NSPipe *errPipe = [[NSPipe alloc] init];
+    [andersenTask setStandardError:errPipe];
+    
+    @try
+    {
+        [andersenTask launch];
+        [andersenTask waitUntilExit];
+    }
+    @catch (NSException *exception)
+    {
+        NSLog(@"Exception when trying to launch clang: %@", [exception reason]);
+        return;
+    }
+    
+    if (![defMgr fileExistsAtPath:[[fld12URL URLByAppendingPathComponent:@"OUTPUT"] path]])
+    {
+        NSLog(@"Andersen program failed to create OUTPUT file");
+        return;
+    }
+    
     
 }
 

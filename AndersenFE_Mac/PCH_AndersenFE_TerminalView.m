@@ -152,7 +152,9 @@
 
 - (void)runAndersenProgram:(id)sender
 {
+    NSError *wError;
     
+    [self.theAppController runAndersenForCurrentTransformerWithError:&wError];
 }
 
 - (void)lowerMVAToPrevStage:(id)sender
