@@ -194,7 +194,41 @@
         
         if (_currentTxfo->m_AndersenOutputIsValid)
         {
-            _currentTxfo->GetOutputData();
+            [self.txfoImpedanceField setStringValue:[NSString stringWithFormat:@"Txfo Impedance\n%.2f%%\n@ %.3f MVA", _currentTxfo->m_Impedance[0], _currentTxfo->m_Impedance[1]]];
+            
+            [self.stressImpedanceField setStringValue:[NSString stringWithFormat:@"Stress Calc. Imp.\n%.2f%%\n@ %.3f MVA", _currentTxfo->m_Impedance[2], _currentTxfo->m_Impedance[1]]];
+            
+            NSMutableString *eddyLossString = [NSMutableString stringWithString:@"Eddy Losses"];
+            Terminal *nextTerm = _currentTxfo->GetTermHead();
+            while (nextTerm != NULL)
+            {
+                [eddyLossString appendFormat:@"\nTerminal: %d: %.1f%%", nextTerm->m_Number, nextTerm->m_EddyPercent];
+                
+                nextTerm = nextTerm->GetNext();
+            }
+            
+            [self.eddyLossField setStringValue:eddyLossString];
+            
+            [self.radialForcesField setStringValue:[NSString stringWithFormat:@"Radial Forces\nMax. Hoop: %.1f\nMax. Comp: %.1f\nMin. Rad. Sup'ts: %.1f", _currentTxfo->m_MaxHoopStress, _currentTxfo->m_MaxCompStress, _currentTxfo->m_MinRadSupports]];
+            
+            [self.axialForcesField setStringValue:[NSString stringWithFormat:@"Axial Forces\nIn Blocks: %.1f\nCombined: %.1f", _currentTxfo->m_MaxAxialStress, _currentTxfo->m_MaxCombinedStress]];
+            
+            [self.endThrustField setStringValue:[NSString stringWithFormat:@"End Thrust\nTop: %.1f lbs\nBot.: %.1f lbs", _currentTxfo->m_TopEndThrust, _currentTxfo->m_BottomEndThrust]];
+            
+        }
+        else
+        {
+            [self.txfoImpedanceField setStringValue:[NSString stringWithFormat:@"Txfo Impedance\n%.2f%%\n@ %.3f MVA", 0.0, 0.0]];
+            
+            [self.stressImpedanceField setStringValue:[NSString stringWithFormat:@"Stress Calc. Imp.\n%.2f%%\n@ %.3f MVA", 0.0, 0.0]];
+            
+            [self.eddyLossField setStringValue:@"Eddy Losses"];
+            
+            [self.radialForcesField setStringValue:@"Radial Forces"];
+            
+            [self.axialForcesField setStringValue:@"Axial Forces"];
+            
+            [self.endThrustField setStringValue:@"End Thrust"];
         }
         
     }
@@ -826,16 +860,14 @@
     
     [savePanel orderOut:nil];
     
-    if (runResult == NSFileHandlingPanelCancelButton)
+    if (runResult == NSFileHandlingPanelOKButton)
     {
-        return;
-    }
-    
-    NSError *saveError;
-    
-    if (![defMgr copyItemAtURL:outputURL toURL:[savePanel URL] error:&saveError])
-    {
-        NSLog(@"Error  while copying OUTPUT file: %@", [saveError localizedDescription]);
+        NSError *saveError;
+        
+        if (![defMgr copyItemAtURL:outputURL toURL:[savePanel URL] error:&saveError])
+        {
+            NSLog(@"Error  while copying OUTPUT file: %@", [saveError localizedDescription]);
+        }
     }
     
     [self updateTxfoDataView];
@@ -879,6 +911,8 @@
                 {
                     NSString *nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
                     
+                    nLine++;
+                    
                     if ([nextString rangeOfString:wFindString1].location != NSNotFound)
                     {
                         // nextSeg->m_MaxAccumAxiallyLbs = (double)atof(nLine.Right(12));
@@ -896,6 +930,137 @@
         }
         
         nextWdg = nextWdg->GetNext();
+    }
+    
+    wFindString1 = @"CRITICAL STRESSES ETC.";
+    while (nLine < fileLines.count)
+    {
+        NSString *nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+        nLine++;
+        
+        if ([nextString rangeOfString:wFindString1].location != NSNotFound)
+        {
+            // bump past next line
+            nLine++;
+            nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+            NSRange infoRange = NSMakeRange(21, 13);
+            wTxfo->m_MaxHoopStress = [[nextString substringWithRange:infoRange] doubleValue];
+            
+            nLine++;
+            nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+            infoRange = NSMakeRange(25, 9);
+            wTxfo->m_MaxCompStress = [[nextString substringWithRange:infoRange] doubleValue];
+            
+            nLine++;
+            nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+            infoRange = NSMakeRange(28, 5);
+            wTxfo->m_MinRadSupports = [[nextString substringWithRange:infoRange] doubleValue];
+            
+            nLine += 2;
+            nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+            infoRange = NSMakeRange(44, 8);
+            wTxfo->m_MaxAxialStress = [[nextString substringWithRange:infoRange] doubleValue];
+            
+            nLine += 2;
+            nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+            infoRange = NSMakeRange(34, 9);
+            wTxfo->m_MaxCombinedStress = [[nextString substringWithRange:infoRange] doubleValue];
+            nLine++;
+            
+            break;
+        }
+    }
+    
+    wFindString1 = @"BASED ON MAGNETIC ENERGY";
+    while (nLine < fileLines.count)
+    {
+        NSString *nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+        nLine++;
+        
+        if ([nextString rangeOfString:wFindString1].location != NSNotFound)
+        {
+            NSRange infoRange = NSMakeRange(nextString.length - 8, 8);
+            wTxfo->m_Impedance[1] = [[nextString substringWithRange:infoRange] doubleValue];
+            break;
+        }
+    }
+    
+    wFindString1 = @"IMPEDANCE";
+    while (nLine < fileLines.count)
+    {
+        NSString *nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+        nLine++;
+        
+        if ([nextString rangeOfString:wFindString1].location != NSNotFound)
+        {
+            nextString = [nextString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\t "]];
+            
+            // CString::Right(x) := -[NSString substringWithRange:NSMakeRange(NSString.length - x, x)
+            // x = nextString.length - wFindString1.length
+            NSRange infoRange = NSMakeRange(wFindString1.length, nextString.length - wFindString1.length);
+            wTxfo->m_Impedance[0] = [[nextString substringWithRange:infoRange] doubleValue] * 100.0;
+            wTxfo->m_Impedance[2] = wTxfo->m_Impedance[0];
+            break;
+        }
+    }
+    
+    wFindString1 = @"PU IMPEDANCE USED IN CALCULATIONS OF FORCES AND STRESSES";
+    while (nLine < fileLines.count)
+    {
+        NSString *nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+        nLine++;
+        
+        if ([nextString rangeOfString:wFindString1].location != NSNotFound)
+        {
+            nextString = [nextString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\t "]];
+            
+            // CString::Right(x) := -[NSString substringWithRange:NSMakeRange(NSString.length - x, x)
+            // x = nextString.length - wFindString1.length
+            NSRange infoRange = NSMakeRange(wFindString1.length, nextString.length - wFindString1.length);
+            wTxfo->m_Impedance[2] = [[nextString substringWithRange:infoRange] doubleValue] * 100.0;
+            break;
+        }
+    }
+    
+    wFindString1 = @"TERMINAL NUMBER";
+    
+    for (int i=1; i<=wTxfo->m_NumTerminals; i++)
+    {
+        while (nLine < fileLines.count)
+        {
+            NSString *nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+            nLine++;
+            
+            if ([nextString rangeOfString:wFindString1].location != NSNotFound)
+            {
+                nLine += 2;
+                NSString *nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+                nLine++;
+                
+                NSRange infoRange = NSMakeRange(nextString.length - 7, 7);
+                wTxfo->GetTermHead()->SetEddyPercent(i, [[nextString substringWithRange:infoRange] doubleValue] * 100.0);
+                break;
+            }
+        }
+    }
+    
+    wFindString1 = @", UPPER SUPPORT";
+    while (nLine < fileLines.count)
+    {
+        NSString *nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+        nLine++;
+        
+        if ([nextString rangeOfString:wFindString1].location != NSNotFound)
+        {
+            NSRange infoRange = NSMakeRange(nextString.length - 10, 10);
+            wTxfo->m_TopEndThrust = [[nextString substringWithRange:infoRange] doubleValue];
+            
+            NSString *nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+            wTxfo->m_BottomEndThrust = [[nextString substringWithRange:infoRange] doubleValue];
+            nLine++;
+
+            break;
+        }
     }
 }
 
