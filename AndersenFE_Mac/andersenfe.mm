@@ -3,10 +3,10 @@
 
 #include "stdafx.h"
 #include "AndersenFE.h"
-#include "AndersenFolder.h"
+//#include "AndersenFolder.h"
 #include "AppController.h"
 
-#include "MainFrm.h"
+// #include "MainFrm.h"
 
 
 
@@ -33,8 +33,8 @@ CAndersenFEApp::CAndersenFEApp(AppControllerImpl *tCtrl)
 
 BOOL CAndersenFEApp::InitInstance()
 {
-	CMainFrame* pFrame = new CMainFrame(theController);
-	m_pMainWnd = pFrame;
+	// CMainFrame* pFrame = new CMainFrame(theController);
+	// m_pMainWnd = pFrame;
 
     /* Probably won't need this
 	m_StartSaveOutput = new CEvent(false, true);

@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include "AndersenFE.h"
 #include "Transformer.h"
-#include "AndersenFolder.h"
+// #include "AndersenFolder.h"
 #include <string>
 #include "CStdioFile.h"
 
@@ -499,7 +499,7 @@ void Transformer::GetOutputData(CString* wFileName)
 	
 	if (wFileName == NULL)
 	{
-		m_DefaultFolder->ReadAndersenFolderName(&fName);
+		// m_DefaultFolder->ReadAndersenFolderName(&fName);
 		fName += "FLD12\\OUTPUT";
 
 		// tApp->m_UseFld12Output->Lock();
