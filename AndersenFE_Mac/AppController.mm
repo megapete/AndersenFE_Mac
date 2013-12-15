@@ -49,6 +49,8 @@
 - (void)saveTxfo:(Transformer *)wTxfo asAndersenFile:(NSString *)wPath;
 - (void)saveTxfo:(Transformer *)wTxfo asAndersenFileURL:(NSURL *)wURL;
 
+- (void)setOutputDataForTransformer:(Transformer *)wTxfo withFileURL:(NSURL *)outputURL;
+
 - (void)runAndersenWithTxfo:(Transformer *)wTxfo withError:(NSError **)wError;
 
 - (void)getDefaultDosboxLocations;
@@ -188,6 +190,11 @@
         else
         {
             [self.ampereTurnsField setStringValue:[NSString stringWithFormat:@"Total Amp-Turns\n-ERROR-"]];
+        }
+        
+        if (_currentTxfo->m_AndersenOutputIsValid)
+        {
+            _currentTxfo->GetOutputData();
         }
         
     }
@@ -794,13 +801,102 @@
         return;
     }
     
-    if (![defMgr fileExistsAtPath:[[fld12URL URLByAppendingPathComponent:@"OUTPUT"] path]])
+    NSURL *outputURL = [fld12URL URLByAppendingPathComponent:@"OUTPUT"];
+    
+    if (![defMgr fileExistsAtPath:[outputURL path]])
     {
         NSLog(@"Andersen program failed to create OUTPUT file");
         return;
     }
     
+    wTxfo->m_AndersenOutputIsValid = YES;
     
+    [self setOutputDataForTransformer:wTxfo withFileURL:outputURL];
+    
+    // If we get here, we have run Andersen successfully (or, more accurately, we have an OUTPUT file in FLD12), so give the user the option to save the file as something else
+    
+    NSSavePanel *savePanel = [NSSavePanel savePanel];
+    
+    [savePanel setTitle:@"Andersen OUTPUT file"];
+    [savePanel setMessage:@"Save the Andersen output file (press Cancel if unneeded)"];
+    
+    [savePanel setDirectoryURL:fld12URL];
+    
+    NSInteger runResult = [savePanel runModal];
+    
+    [savePanel orderOut:nil];
+    
+    if (runResult == NSFileHandlingPanelCancelButton)
+    {
+        return;
+    }
+    
+    NSError *saveError;
+    
+    if (![defMgr copyItemAtURL:outputURL toURL:[savePanel URL] error:&saveError])
+    {
+        NSLog(@"Error  while copying OUTPUT file: %@", [saveError localizedDescription]);
+    }
+    
+    [self updateTxfoDataView];
+}
+
+- (void)setOutputDataForTransformer:(Transformer *)wTxfo withFileURL:(NSURL *)outputURL
+{
+    NSError *theError;
+    
+    NSString *theFile = [NSString stringWithContentsOfURL:outputURL encoding:NSUTF8StringEncoding error:&theError];
+    
+    if (!theFile)
+    {
+        NSLog(@"Could not read OUTPUT file: %@", [theError localizedDescription]);
+        return;
+    }
+    
+    NSArray *fileLines = [theFile componentsSeparatedByString:@"\n"];
+    
+    // For now, this routine follows the logic of the old MFC program which only used the "per segment" data to extract the "MAX. ACCUM. AXIALLY" data for use in figuring out tilting forces - after that only the critical stresses (ie: maximumums of all the segments) are extracted and presented. This should probably be changed to show the "per winding" max stresses or something.
+    
+    NSString *wFindString1 = @"MAX. ACCUM. AXIALLY,";
+    
+    Winding* nextWdg = wTxfo->GetWdgHead();
+    Layer* nextLayer;
+    Segment* nextSeg;
+    
+    int nLine = 0;
+    
+    NSCharacterSet *crlf = [NSCharacterSet characterSetWithCharactersInString:@"\r\n"];
+    
+    while (nextWdg != NULL)
+    {
+        nextLayer = nextWdg->m_LayerHead;
+        while (nextLayer != NULL)
+        {
+            nextSeg = nextLayer->m_SegmentHead;
+            while (nextSeg != NULL)
+            {
+                while (nLine < fileLines.count)
+                {
+                    NSString *nextString = [fileLines[nLine] stringByTrimmingCharactersInSet:crlf];
+                    
+                    if ([nextString rangeOfString:wFindString1].location != NSNotFound)
+                    {
+                        // nextSeg->m_MaxAccumAxiallyLbs = (double)atof(nLine.Right(12));
+                        // CString::Right(x) := -[NSString substringWithRange:NSMakeRange(NSString.length - x, x)
+                        NSRange infoRange = NSMakeRange(nextString.length - 12, 12);
+                        nextSeg->m_MaxAccumAxiallyLbs = [[nextString substringWithRange:infoRange] doubleValue];
+                        break;
+                    }
+                }
+                
+                nextSeg = nextSeg->m_Next;
+            }
+            
+            nextLayer = nextLayer->GetNext();
+        }
+        
+        nextWdg = nextWdg->GetNext();
+    }
 }
 
 - (BOOL)andersenFoldersAreValid

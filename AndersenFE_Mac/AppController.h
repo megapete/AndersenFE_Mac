@@ -54,6 +54,7 @@ struct AppControllerImpl
 @property (weak) IBOutlet NSTextField *axialForcesField;
 @property (weak) IBOutlet NSTextField *endThrustField;
 
+
 - (void)handleTxfoChanges;
 
 - (void)setVPNRefToTermNumber:(int)wTerm;
