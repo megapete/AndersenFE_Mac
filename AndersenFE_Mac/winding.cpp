@@ -61,7 +61,7 @@ void Winding::SetNext(Winding *wWdg)
 Layer* Winding::CompileLayerList()
 {
 	int i;
-	Layer* result;
+	Layer* result = NULL;
 	Layer* lastLayer = NULL;
 
 	CalculateRadialTurnDimn();
@@ -467,9 +467,9 @@ CZlist* Winding::SetDefaultZlist()
 {
 	int i;
 
-	CZlist* result;
+	CZlist* result = NULL;
 	// CZlist* newPtr;
-	CZlist* sectionHead;
+	CZlist* sectionHead = NULL;
 	CZlist* lastPtr = NULL;
 
 	CZlist* tapPtr = NULL;
@@ -580,7 +580,7 @@ CZlist* Winding::SetDefaultZlist()
 		}
 	}
 
-	double zPerSection;
+	double zPerSection = 0.0;
 	double oldZPerSection = 
 		(m_ElectricalHeight - 
 		(m_NumAxialSections - 1) * m_BetweenSections) /
@@ -746,7 +746,11 @@ CZlist* Winding::SetDefaultZlist()
 		else
 			lastPtr->m_Next = sectionHead;
 
-		lastPtr = sectionHead->GetTail();
+        if (sectionHead != NULL)
+        {
+            lastPtr = sectionHead->GetTail();
+        }
+        
 		zMin = zMin + zPerSection + m_BetweenSections;
 	}
 
@@ -762,7 +766,7 @@ CZlist* Winding::SetDefaultZlist()
 CZlist* Winding::SetTapSection(double copperHt, double zOffset)
 {
 	double zNext = zOffset;
-	CZlist* result;
+	CZlist* result = NULL;
 	CZlist* newPtr;
 	CZlist* lastPtr = NULL;
 
@@ -1142,7 +1146,7 @@ Winding::Winding(Winding *oldWdg)
 
 	// copy layers
 	Layer* nextOldLayer = oldWdg->m_LayerHead;
-	Layer* lastNewLayer;
+	Layer* lastNewLayer = NULL;
 	m_LayerHead = NULL;
 	while (nextOldLayer != NULL)
 	{
@@ -1159,7 +1163,11 @@ Winding::Winding(Winding *oldWdg)
 
 		nextOldLayer = nextOldLayer->GetNext();
 	}
-	lastNewLayer->SetNext(NULL);
+    
+    if (lastNewLayer != NULL)
+    {
+        lastNewLayer->SetNext(NULL);
+    }
 
 
 }

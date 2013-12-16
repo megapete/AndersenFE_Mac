@@ -51,7 +51,7 @@
 
 - (void)setOutputDataForTransformer:(Transformer *)wTxfo withFileURL:(NSURL *)outputURL;
 
-- (void)runAndersenWithTxfo:(Transformer *)wTxfo withError:(NSError **)wError;
+- (BOOL)runAndersenWithTxfo:(Transformer *)wTxfo withError:(NSError **)wError;
 
 - (void)getDefaultDosboxLocations;
 - (BOOL)setDefaultDosboxApplicationLocation:(NSURL *)appDirURL;
@@ -194,9 +194,9 @@
         
         if (_currentTxfo->m_AndersenOutputIsValid)
         {
-            [self.txfoImpedanceField setStringValue:[NSString stringWithFormat:@"Txfo Impedance\n%.2f%%\n@ %.3f MVA", _currentTxfo->m_Impedance[0], _currentTxfo->m_Impedance[1]]];
+            [self.txfoImpedanceField setStringValue:[NSString stringWithFormat:@"Transformer Impedance\n%.2f%% @ %.3f MVA", _currentTxfo->m_Impedance[0], _currentTxfo->m_Impedance[1]]];
             
-            [self.stressImpedanceField setStringValue:[NSString stringWithFormat:@"Stress Calc. Imp.\n%.2f%%\n@ %.3f MVA", _currentTxfo->m_Impedance[2], _currentTxfo->m_Impedance[1]]];
+            [self.stressImpedanceField setStringValue:[NSString stringWithFormat:@"Stress Calc. Impedance\n%.2f%% @ %.3f MVA", _currentTxfo->m_Impedance[2], _currentTxfo->m_Impedance[1]]];
             
             NSMutableString *eddyLossString = [NSMutableString stringWithString:@"Eddy Losses"];
             Terminal *nextTerm = _currentTxfo->GetTermHead();
@@ -209,18 +209,18 @@
             
             [self.eddyLossField setStringValue:eddyLossString];
             
-            [self.radialForcesField setStringValue:[NSString stringWithFormat:@"Radial Forces\nMax. Hoop: %.1f\nMax. Comp: %.1f\nMin. Rad. Sup'ts: %.1f", _currentTxfo->m_MaxHoopStress, _currentTxfo->m_MaxCompStress, _currentTxfo->m_MinRadSupports]];
+            [self.radialForcesField setStringValue:[NSString stringWithFormat:@"Radial Forces\nMax. Hoop: %.1f psi\nMax. Comp: %.1f psi\nMin. Rad. Supports: %.1f", _currentTxfo->m_MaxHoopStress, _currentTxfo->m_MaxCompStress, _currentTxfo->m_MinRadSupports]];
             
-            [self.axialForcesField setStringValue:[NSString stringWithFormat:@"Axial Forces\nIn Blocks: %.1f\nCombined: %.1f", _currentTxfo->m_MaxAxialStress, _currentTxfo->m_MaxCombinedStress]];
+            [self.axialForcesField setStringValue:[NSString stringWithFormat:@"Axial Forces\nIn Spacer Blocks: %.1f psi\nCombined: %.1f psi", _currentTxfo->m_MaxAxialStress, _currentTxfo->m_MaxCombinedStress]];
             
-            [self.endThrustField setStringValue:[NSString stringWithFormat:@"End Thrust\nTop: %.1f lbs\nBot.: %.1f lbs", _currentTxfo->m_TopEndThrust, _currentTxfo->m_BottomEndThrust]];
+            [self.endThrustField setStringValue:[NSString stringWithFormat:@"End Thrust\nTop: %.1f lbs\nBottom: %.1f lbs", _currentTxfo->m_TopEndThrust, _currentTxfo->m_BottomEndThrust]];
             
         }
         else
         {
-            [self.txfoImpedanceField setStringValue:[NSString stringWithFormat:@"Txfo Impedance\n%.2f%%\n@ %.3f MVA", 0.0, 0.0]];
+            [self.txfoImpedanceField setStringValue:[NSString stringWithFormat:@"Transformer Impedance\n%.2f%% @ %.3f MVA", 0.0, 0.0]];
             
-            [self.stressImpedanceField setStringValue:[NSString stringWithFormat:@"Stress Calc. Imp.\n%.2f%%\n@ %.3f MVA", 0.0, 0.0]];
+            [self.stressImpedanceField setStringValue:[NSString stringWithFormat:@"Stress Calc. Impedance\n%.2f%% @ %.3f MVA", 0.0, 0.0]];
             
             [self.eddyLossField setStringValue:@"Eddy Losses"];
             
@@ -738,12 +738,12 @@
 #pragma mark -
 #pragma mark DOSBox menu handlers & other associated stuff
 
-- (void)runAndersenForCurrentTransformerWithError:(NSError *__autoreleasing *)wError
+- (BOOL)runAndersenForCurrentTransformerWithError:(NSError *__autoreleasing *)wError
 {
-    [self runAndersenWithTxfo:NULL withError:wError];
+    return [self runAndersenWithTxfo:NULL withError:wError];
 }
 
-- (void)runAndersenWithTxfo:(Transformer *)wTxfo withError:(NSError *__autoreleasing *)wError
+- (BOOL)runAndersenWithTxfo:(Transformer *)wTxfo withError:(NSError *__autoreleasing *)wError
 {
     if (wTxfo == NULL)
     {
@@ -753,7 +753,7 @@
     if (![self transformerIsSaveable:wTxfo])
     {
         NSLog(@"Transformer is not saveable (should be checked in calling routine)");
-        return;
+        return NO;
     }
     
     // remove the files that will be created by Andersen
@@ -766,7 +766,7 @@
     {
         if (!([*wError code] == NSFileNoSuchFileError))
         {
-            return;
+            return NO;
         }
     }
     
@@ -774,7 +774,7 @@
     {
         if (!([*wError code] == NSFileNoSuchFileError))
         {
-            return;
+            return NO;
         }
     }
     
@@ -782,7 +782,7 @@
     {
         if (!([*wError code] == NSFileNoSuchFileError))
         {
-            return;
+            return NO;
         }
     }
     
@@ -790,7 +790,7 @@
     {
         if (!([*wError code] == NSFileNoSuchFileError))
         {
-            return;
+            return NO;
         }
     }
     
@@ -798,7 +798,7 @@
     {
         if (!([*wError code] == NSFileNoSuchFileError))
         {
-            return;
+            return NO;
         }
     }
     
@@ -806,7 +806,7 @@
     {
         if (!([*wError code] == NSFileNoSuchFileError))
         {
-            return;
+            return NO;
         }
     }
     
@@ -832,7 +832,7 @@
     @catch (NSException *exception)
     {
         NSLog(@"Exception when trying to launch clang: %@", [exception reason]);
-        return;
+        return NO;
     }
     
     NSURL *outputURL = [fld12URL URLByAppendingPathComponent:@"OUTPUT"];
@@ -840,7 +840,7 @@
     if (![defMgr fileExistsAtPath:[outputURL path]])
     {
         NSLog(@"Andersen program failed to create OUTPUT file");
-        return;
+        return NO;
     }
     
     wTxfo->m_AndersenOutputIsValid = YES;
@@ -867,10 +867,14 @@
         if (![defMgr copyItemAtURL:outputURL toURL:[savePanel URL] error:&saveError])
         {
             NSLog(@"Error  while copying OUTPUT file: %@", [saveError localizedDescription]);
+            
+            return NO;
         }
     }
     
     [self updateTxfoDataView];
+    
+    return NO;
 }
 
 - (void)setOutputDataForTransformer:(Transformer *)wTxfo withFileURL:(NSURL *)outputURL

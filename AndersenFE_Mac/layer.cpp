@@ -104,7 +104,11 @@ Layer::Layer(Layer *wLayer)
 
 		nextOldSegment = nextOldSegment->m_Next;
 	}
-	lastNewSegment->m_Next = NULL;
+    
+    if (lastNewSegment != NULL)
+    {
+        lastNewSegment->m_Next = NULL;
+    }
 
 }
 

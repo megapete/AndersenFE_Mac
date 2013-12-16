@@ -69,7 +69,7 @@ struct AppControllerImpl
 
 - (IBAction)openXLDesignFile:(id)sender;
 
-- (void)runAndersenForCurrentTransformerWithError:(NSError **)wError;
+- (BOOL)runAndersenForCurrentTransformerWithError:(NSError **)wError;
 
 - (BOOL)andersenFoldersAreValid;
 

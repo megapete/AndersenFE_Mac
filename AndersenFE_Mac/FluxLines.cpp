@@ -96,22 +96,25 @@ void CFluxLines::Insert(CFluxLines *wPrev, bool atTail)
 {
 	ASSERT(wPrev != NULL);
 
-	if (atTail == true)
-	{
-		CFluxLines* nNode = wPrev;
-		while (nNode->Next() != NULL)
-		{
-			nNode = nNode->Next();
-		}
-
-		nNode->SetNext(this);
-		m_Next = NULL;
-	}
-	else
-	{
-		SetNext(wPrev->Next());
-		wPrev->SetNext(this);
-	}
+    if (wPrev != NULL)
+    {
+        if (atTail == true)
+        {
+            CFluxLines* nNode = wPrev;
+            while (nNode->Next() != NULL)
+            {
+                nNode = nNode->Next();
+            }
+            
+            nNode->SetNext(this);
+            m_Next = NULL;
+        }
+        else
+        {
+            SetNext(wPrev->Next());
+            wPrev->SetNext(this);
+        }
+    }
 }
 
 void CFluxLines::AddHead(CFluxLines *wHead)

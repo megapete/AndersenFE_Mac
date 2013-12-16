@@ -83,8 +83,8 @@ int CExcelTextFile::InputFile(Transformer *wTxfo)
 	wTxfo->m_NumTerminals = 0;
 	bool doneTerm[9] = {false, false, false, false, false, false, false, false, false};
 	bool columnIsValid[9] = {false, false, false, false, false, false, false, false, false};
-	int newTermNum[64];
-	bool atLeastOneDoubleStack = false;
+	int newTermNum[64] = {0};
+	// bool atLeastOneDoubleStack = false;
 
 	int lastWdgDataLine = 5;
 	if (fileVersion > 0)
@@ -356,7 +356,7 @@ int CExcelTextFile::InputFile(Transformer *wTxfo)
 
 		if (aType == 'Y')
 		{
-			atLeastOneDoubleStack = true;
+			// atLeastOneDoubleStack = true;
 
 			wWdg->m_NumberParGroups = 2;
 			wWdg->m_NumAxialSections = 2;

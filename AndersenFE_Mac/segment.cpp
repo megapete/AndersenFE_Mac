@@ -75,11 +75,12 @@ void Segment::AdjustGapToNextSegment(double wGap, int type)
 		return;
 
 	double oldGap = m_Next->m_MinZ - m_MaxZ;
-	double diffThis, diffNext;
+	// double diffThis, diffNext;
 
 	if (oldGap == wGap)
 		return;
 
+    /* This code doesn't do anything ???
 	if (type == 0)
 	{
 		diffThis = -(wGap - oldGap) / 2;
@@ -95,6 +96,7 @@ void Segment::AdjustGapToNextSegment(double wGap, int type)
 		diffThis = -(wGap - oldGap);
 		diffNext = 0;
 	}
+     */
 }
 
 bool Segment::IsActive()
