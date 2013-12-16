@@ -817,6 +817,12 @@
     NSURL *launchURL = [self.dosBoxAppURL URLByAppendingPathComponent:@"DOSBox.app/Contents/MacOS/DOSBox"];
     NSURL *batchFileURL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"RUN_PH.bat"];
     
+    if (![defMgr fileExistsAtPath:[batchFileURL path]])
+    {
+        NSLog(@"Missing RUN_PH.bat file in C:");
+        return NO;
+    }
+    
     [andersenTask setLaunchPath:[launchURL path]];
     
     [andersenTask setArguments:[NSArray arrayWithObjects:[batchFileURL path], @"-exit", nil]];

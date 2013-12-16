@@ -441,6 +441,11 @@
     PCH_RegWdgDlog *theDlog = [[PCH_RegWdgDlog alloc] init];
     
     [theDlog.distanceBewteenStacks setDoubleValue:[self.segmentSelected betweenSections]];
+    NSPoint newOrigin = [NSApp mainWindow].frame.origin;
+    newOrigin.x += 100;
+    newOrigin.y += 100;
+    [theDlog.window setFrameOrigin:newOrigin];
+    [theDlog.window setIsVisible:YES];
     
     NSInteger result = [NSApp runModalForWindow:theDlog.window];
     
