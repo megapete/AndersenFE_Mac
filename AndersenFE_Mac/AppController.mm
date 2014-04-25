@@ -458,10 +458,18 @@
     [savePanel setTitle:@"Andersen file"];
     [savePanel setMessage:@"Save the Andersen input file"];
     
-    // For now use the Documents folder as the default location.
+    // Use the last-opened input file directory as the default location (if none, use Documents).
     NSString *docDirPath = @"~/Documents";
     docDirPath = [docDirPath stringByExpandingTildeInPath];
     NSURL *docDirectory = [NSURL fileURLWithPath:docDirPath isDirectory:YES];
+    
+    if (NSURL *lastInputFile = [[NSUserDefaults standardUserDefaults] URLForKey:LAST_OPENED_INPUT_FILE_KEY])
+    {
+        NSMutableArray *pComps = [NSMutableArray arrayWithArray:[lastInputFile pathComponents]];
+        [pComps removeLastObject];
+        
+        docDirectory = [NSURL fileURLWithPathComponents:pComps];
+    }
     
     [savePanel setDirectoryURL:docDirectory];
     
@@ -753,7 +761,7 @@
     docDirPath = [docDirPath stringByExpandingTildeInPath];
     NSURL *docDirectory = [NSURL fileURLWithPath:docDirPath isDirectory:YES];
     
-    // if there was a successful opening of a some file, try setting the default directory to the same as that file's directory
+    // if there was a successful opening of a file, try setting the default directory to the same as that file's directory
     if (NSURL *lastFile = [[NSUserDefaults standardUserDefaults] URLForKey:LAST_OPENED_INPUT_FILE_KEY])
     {
         NSMutableArray *pComps = [NSMutableArray arrayWithArray:[lastFile pathComponents]];
@@ -942,7 +950,20 @@
     [savePanel setTitle:@"Andersen OUTPUT file"];
     [savePanel setMessage:@"Save the Andersen output file (press Cancel if unneeded)"];
     
-    [savePanel setDirectoryURL:fld12URL];
+    // Use the last-opened input file directory as the default location (if none, use Documents).
+    NSString *docDirPath = @"~/Documents";
+    docDirPath = [docDirPath stringByExpandingTildeInPath];
+    NSURL *docDirectory = [NSURL fileURLWithPath:docDirPath isDirectory:YES];
+    
+    if (NSURL *lastInputFile = [[NSUserDefaults standardUserDefaults] URLForKey:LAST_OPENED_INPUT_FILE_KEY])
+    {
+        NSMutableArray *pComps = [NSMutableArray arrayWithArray:[lastInputFile pathComponents]];
+        [pComps removeLastObject];
+        
+        docDirectory = [NSURL fileURLWithPathComponents:pComps];
+    }
+    
+    [savePanel setDirectoryURL:docDirectory];
     
     NSInteger runResult = [savePanel runModal];
     
