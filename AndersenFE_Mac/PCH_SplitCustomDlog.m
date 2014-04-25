@@ -16,7 +16,7 @@
 
 - (id)init
 {
-    self = [super initWithWindowNibName:@"PCH_SlitCustomDlog"];
+    self = [super initWithWindowNibName:@"PCH_SplitCustomDlog"];
     if (self) {
         // Initialization code here.
     }

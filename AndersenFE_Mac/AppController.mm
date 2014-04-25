@@ -288,6 +288,90 @@
 #pragma mark -
 #pragma mark Setting/Getting transformer characteristics
 
+- (void)setMVAToZeroForTerminal:(int)wTerm
+{
+    Terminal* nextTerm = _currentTxfo->GetTermHead();
+    
+    while (nextTerm != NULL)
+    {
+        if (nextTerm->m_Number == (wTerm + 1))
+        {
+            nextTerm->m_MVA = 0.0;
+            break;
+        }
+        
+        nextTerm = nextTerm->GetNext();
+    }
+    
+    if (nextTerm != NULL)
+    {
+        [self handleTxfoChanges];
+    }
+}
+
+
+- (void)setMVAToBalanceAmpTurnsForTerminal:(int)wTerm
+{
+    // first we need to set the amp-turns to zero for this terminal
+    Terminal* targetTerm = _currentTxfo->GetTermHead();
+    while (targetTerm != NULL)
+    {
+        if (targetTerm->m_Number == (wTerm + 1))
+        {
+            targetTerm->m_MVA = 0.0;
+            break;
+        }
+        
+        targetTerm = targetTerm->GetNext();
+    }
+    
+    if (targetTerm == NULL)
+    {
+        NSLog(@"Undefined terminal number");
+        return;
+    }
+    
+    double ampTurns = _currentTxfo->AmpTurns();
+    if (fabs(ampTurns) <= 10)
+    {
+        return;
+    }
+    
+    
+    
+    Winding *nextWinding = _currentTxfo->GetWdgHead();
+    double cumTurns = 0.0;
+    while (nextWinding != NULL)
+    {
+        if (nextWinding->m_Terminal == wTerm + 1)
+        {
+            cumTurns += nextWinding->GetActiveTurns() * nextWinding->m_CurrentDirection;
+        }
+        
+        nextWinding = nextWinding->GetNext();
+    }
+    
+    if (cumTurns == 0.0)
+    {
+        return;
+    }
+    
+    double termAmpsRequired = -(ampTurns / cumTurns);
+    
+    double mvPerLeg = targetTerm->m_KV / 1000.0;
+    
+	if (targetTerm->m_Connection != SINGLE)
+	{
+		if (targetTerm->m_Connection != DELTA)
+			mvPerLeg /= sqrt(3.0);
+	}
+    
+    targetTerm->m_MVA = mvPerLeg * termAmpsRequired * (targetTerm->m_Connection == SINGLE ? 1.0 : 3.0);
+    
+    [self handleTxfoChanges];
+    
+}
+
 - (int)currentTxfoCoolingStage
 {
     return _currentTxfo->m_CurrentCoolingStage;
@@ -331,8 +415,6 @@
         _currentTxfo->m_AndersenOutputIsValid = NO;
         [self updateAllViews];
     }
-    
-    
 }
 
 - (void)setVPNRefToTermNumber:(int)wTerm

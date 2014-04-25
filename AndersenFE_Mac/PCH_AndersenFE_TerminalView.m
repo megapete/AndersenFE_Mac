@@ -16,7 +16,10 @@
 - (void)handleSetVPN_RefTerm:(id)sender;
 - (void)raiseMVAToNextStage:(id)sender;
 - (void)lowerMVAToPrevStage:(id)sender;
+- (void)setMVAToZero:(id)sender;
+- (void)setMVAToBalanceNI:(id)sender;
 - (void)runAndersenProgram:(id)sender;
+
 
 @end
 
@@ -115,6 +118,9 @@
         [termMenu addItem:[NSMenuItem separatorItem]];
         [termMenu addItemWithTitle:@"Lower MVA to previous fan stage" action:@selector(lowerMVAToPrevStage:) keyEquivalent:@""];
         [termMenu addItemWithTitle:@"Raise MVA to next fan stage" action:@selector(raiseMVAToNextStage:) keyEquivalent:@""];
+        [termMenu addItem:[NSMenuItem separatorItem]];
+        [termMenu addItemWithTitle:@"Set MVA to zero" action:@selector(setMVAToZero:) keyEquivalent:@""];
+        [termMenu addItemWithTitle:@"Set MVA to balance amp-turns" action:@selector(setMVAToBalanceNI:) keyEquivalent:@""];
         
         [NSMenu popUpContextMenu:termMenu withEvent:theEvent forView:self];
     }
@@ -149,6 +155,16 @@
 
 #pragma mark -
 #pragma mark Contextual menu handlers
+
+- (void)setMVAToBalanceNI:(id)sender
+{
+    [self.theAppController setMVAToBalanceAmpTurnsForTerminal:self.refTerminal];
+}
+
+- (void)setMVAToZero:(id)sender
+{
+    [self.theAppController setMVAToZeroForTerminal:self.refTerminal];
+}
 
 - (void)runAndersenProgram:(id)sender
 {

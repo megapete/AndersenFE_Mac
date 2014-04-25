@@ -10,6 +10,9 @@
 
 @interface PCH_AddTermDlog : NSWindowController
 
+
+- (instancetype)initAsModifyTerm;
+
 - (IBAction)okayButtonPushed:(id)sender;
 - (IBAction)cancelButtonPushed:(id)sender;
 

@@ -10,6 +10,8 @@
 
 @interface PCH_AddTermDlog ()
 
+@property BOOL isModify;
+
 @end
 
 @implementation PCH_AddTermDlog
@@ -19,7 +21,18 @@
     self = [super initWithWindowNibName:@"PCH_AddTermDlog"];
     if (self) {
         // Initialization code here.
+        self.isModify = NO;
     }
+    return self;
+}
+
+- (instancetype)initAsModifyTerm
+{
+    if (self = [self init])
+    {
+        self.isModify = YES;
+    }
+    
     return self;
 }
 

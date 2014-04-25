@@ -62,6 +62,9 @@ struct AppControllerImpl
 - (void)changeFanStageWithDirection:(int)fanStageDirection;
 - (int)currentTxfoCoolingStage;
 
+- (void)setMVAToZeroForTerminal:(int)wTerm;
+- (void)setMVAToBalanceAmpTurnsForTerminal:(int)wTerm;
+
 - (void)updateAllViews;
 - (void)updateTxfoView;
 - (void)updateTxfoDataView;
