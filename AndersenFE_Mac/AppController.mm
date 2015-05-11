@@ -13,6 +13,7 @@
 #import "AndersenFE_TxfoDataView.h"
 #import "PCH_AndersenFE_TerminalView.h"
 #import "PCH_SegmentPath.h"
+#import "PCH_OffsetElongationDlog.h"
 
 
 #include "stdafx.h"
@@ -899,6 +900,8 @@
             return NO;
         }
     }
+    
+    // Bring up the OffsetElongation dialog
     
     [self saveTxfo:wTxfo asAndersenFileURL:[fld12URL URLByAppendingPathComponent:@"INP1.FIL"]];
     

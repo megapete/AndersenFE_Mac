@@ -1230,7 +1230,7 @@ double Winding::GetActiveTurns()
 		nextSeg = nextLayer->m_SegmentHead;
 		while (nextSeg != NULL)
 		{
-			result += nextSeg->m_NumTurnsActive;
+			result += nextSeg->m_NumTurnsActive / nextLayer->m_NumberParGroups;
 			nextSeg = nextSeg->m_Next;
 		}
 		nextLayer = nextLayer->GetNext();
