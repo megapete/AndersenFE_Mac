@@ -358,7 +358,7 @@
     
     double termAmpsRequired = -(ampTurns / cumTurns);
     
-    double mvPerLeg = targetTerm->m_KV / 1000.0;
+    double mvPerLeg = cumTurns * _currentTxfo->m_VoltsPerTurn / 1.0E6;
     
 	if (targetTerm->m_Connection != SINGLE)
 	{
