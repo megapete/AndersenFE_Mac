@@ -359,7 +359,7 @@
     
     double termAmpsRequired = -(ampTurns / cumTurns);
     
-    double mvPerLeg = cumTurns * _currentTxfo->m_VoltsPerTurn / 1.0E6;
+    double mvPerLeg = targetTerm->m_KV / 1000;
     
 	if (targetTerm->m_Connection != SINGLE)
 	{
@@ -902,6 +902,18 @@
     }
     
     // Bring up the OffsetElongation dialog
+    
+    PCH_OffsetElongationDlog *theDlog = [[PCH_OffsetElongationDlog alloc] init];
+    NSInteger result = [NSApp runModalForWindow:theDlog.window];
+    
+    if (result == NSRunStoppedResponse)
+    {
+        if ([[theDlog.impedanceSelector selectedCell] tag] == 1)
+        {
+            wTxfo->m_puImpedance = [theDlog.fixedImpedance doubleValue] / 100.0;
+        }
+    }
+    [theDlog.window orderOut:self];
     
     [self saveTxfo:wTxfo asAndersenFileURL:[fld12URL URLByAppendingPathComponent:@"INP1.FIL"]];
     

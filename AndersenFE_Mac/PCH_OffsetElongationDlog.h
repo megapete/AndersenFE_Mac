@@ -12,4 +12,7 @@
 - (IBAction)okayButtonPushed:(id)sender;
 - (IBAction)cancelButtonPushed:(id)sender;
 
+@property (strong) IBOutlet NSTextField *fixedImpedance;
+@property (strong) IBOutlet NSMatrix *impedanceSelector;
+
 @end
