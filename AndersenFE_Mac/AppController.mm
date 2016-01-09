@@ -182,6 +182,7 @@
             [self.voltsPerTurnField setStringValue:[NSString stringWithFormat:@"Volts per Turn\nRef. Terminal: %d\n%.3f V/N", _currentTxfo->m_VperNTerminal, _currentTxfo->CalcVoltsPerTurn()]];
         }
         
+        NSString *textVal = self.voltsPerTurnField.stringValue;
         [self.voltsPerTurnField invalidateIntrinsicContentSize];
         
         if (verifyResult != AMPTURNS_ERROR)
@@ -239,6 +240,7 @@
         [self.ampereTurnsField setStringValue:@""];
     }
     
+    [self.theTxfoData setNeedsLayout:YES];
     [self.theTxfoData setNeedsDisplay:YES];
 }
 

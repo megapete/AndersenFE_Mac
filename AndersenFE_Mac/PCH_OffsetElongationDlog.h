@@ -14,5 +14,10 @@
 
 @property (strong) IBOutlet NSTextField *fixedImpedance;
 @property (strong) IBOutlet NSMatrix *impedanceSelector;
+@property (weak) IBOutlet NSTextField *elongationField;
+
+@property (weak) IBOutlet NSTextField *offsetField;
+
+- (IBAction)handleElongOffsetButtonGroup:(id)sender;
 
 @end

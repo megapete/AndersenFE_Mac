@@ -40,4 +40,9 @@
     [NSApp abortModal];
 }
 
+- (IBAction)handleElongOffsetButtonGroup:(id)sender
+{
+    
+}
+
 @end
