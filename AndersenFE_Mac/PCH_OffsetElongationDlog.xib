@@ -9,9 +9,11 @@
         <customObject id="-2" userLabel="File's Owner" customClass="PCH_OffsetElongationDlog">
             <connections>
                 <outlet property="elongationField" destination="7VT-rz-4do" id="Cva-ii-Z67"/>
+                <outlet property="elongationRadioButton" destination="Nlx-OD-2U9" id="TZE-Xq-6IT"/>
                 <outlet property="fixedImpedance" destination="1aF-oM-njt" id="TPY-Fp-fiq"/>
                 <outlet property="impedanceSelector" destination="z4r-UM-gWO" id="0Sh-Rd-84s"/>
                 <outlet property="offsetField" destination="uWD-5W-Inm" id="oAU-Oz-Xk1"/>
+                <outlet property="offsetRadioButton" destination="v61-kj-6gL" id="6eq-Up-xIy"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
         </customObject>

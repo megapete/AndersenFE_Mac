@@ -1153,6 +1153,17 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
         {
             wTxfo->m_puImpedance = [theDlog.fixedImpedance doubleValue] / 100.0;
         }
+        
+        wTxfo->m_OffsetElongation = theDlog.offsetElongation;
+        
+        if (theDlog.offsetElongation == 1)
+        {
+            wTxfo->m_OffElongValue = [theDlog.offsetField doubleValue];
+        }
+        else if (theDlog.offsetElongation == 2)
+        {
+            wTxfo->m_OffElongValue = [theDlog.elongationField doubleValue];
+        }
     }
     else
     {

@@ -19,6 +19,7 @@
     self = [super initWithWindowNibName:@"PCH_OffsetElongationDlog"];
     if (self) {
         // Initialization code here.
+        self.offsetElongation = 0;
     }
     return self;
 }
@@ -42,7 +43,20 @@
 
 - (IBAction)handleElongOffsetButtonGroup:(id)sender
 {
+    NSButton *buttonPushed = sender;
     
+    if (buttonPushed == self.offsetRadioButton)
+    {
+        self.offsetElongation = 1;
+    }
+    else if (buttonPushed == self.elongationRadioButton)
+    {
+        self.offsetElongation = 2;
+    }
+    else
+    {
+        self.offsetElongation = 0;
+    }
 }
 
 @end

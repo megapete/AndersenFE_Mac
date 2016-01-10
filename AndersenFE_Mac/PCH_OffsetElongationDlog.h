@@ -19,5 +19,10 @@
 @property (weak) IBOutlet NSTextField *offsetField;
 
 - (IBAction)handleElongOffsetButtonGroup:(id)sender;
+@property (weak) IBOutlet NSButton *elongationRadioButton;
+@property (weak) IBOutlet NSButton *offsetRadioButton;
+
+// Set to 0 for "none", 1 for "offset" and 2 for "elongation"
+@property int offsetElongation;
 
 @end
