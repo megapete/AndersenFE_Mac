@@ -18,6 +18,8 @@ typedef enum{txfoViewNormalMode, txfoViewSelectWdgMode} TxfoViewMode;
 @property double scale;
 @property NSArray *segmentPaths;
 @property NSArray *arrowLocationsAndDirections;
+@property NSArray *fluxLines;
+@property double fluxYMax;
 @property AppController *theAppController;
 
 @property NSPoint lastRBLocation;

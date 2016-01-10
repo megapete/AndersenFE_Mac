@@ -23,6 +23,7 @@
 #include "layer.h"
 #include "segment.h"
 #include "ExcelTextFile.h"
+#include "FluxLines.h"
 
 // Keys into the dictionaries in the rectArray property
 #define RECTARRAY_RECTANGLE_KEY     @"Rectangle"
@@ -33,18 +34,54 @@
 #define DOSBOX_APP_LOCATION_KEY      @"DosBoxAppLoc"
 #define DOSBOS_CDRIVE_LOCATION_KEY   @"DosBoxC_Loc"
 
+// Helper functions from the original AndersenFE progra,
+void ExtractNextNumber(CStdioFile &wFile, CString &wString)
+{
+    wString.erase();
+    
+    char a = ' ';
+    uint readResult;
+    
+    while ((a != '.') && ((a < '0') || (a > '9')))
+    {
+        readResult = wFile.Read(&a, 1);
+        if (readResult < 1)
+        {
+            NSLog(@"Reached EOF when reading BAS.FIL (top loop)");
+            return;
+        }
+    }
+    
+    while ((a == '.') || ((a >= '0') && (a <= '9')))
+    {
+        wString += a;
+        
+        readResult = wFile.Read(&a, 1);
+        if (readResult < 1)
+        {
+            NSLog(@"Reached EOF when reading BAS.FIL (bottom loop)");
+            return;
+        }
+    }
+}
+
+
+
 @interface AppController()
 {
     CMainFrame *_theMainFrame;
     CAndersenFEApp *_theApp;
     
     Transformer *_currentTxfo;
+    CFluxLines *_fluxLines;
 }
 
 @property NSURL *dosBoxAppURL;
 @property NSURL *dosBoxCDriveURL;
 
 @property NSArray *colorArray;
+
+@property BOOL showFluxLines;
 
 - (BOOL)transformerIsSaveable:(Transformer *)wTxfo;
 - (void)saveTxfo:(Transformer *)wTxfo asAndersenFile:(NSString *)wPath;
@@ -57,6 +94,8 @@
 - (void)getDefaultDosboxLocations;
 - (BOOL)setDefaultDosboxApplicationLocation:(NSURL *)appDirURL;
 - (BOOL)setDefaultDosboxCdriveLocation:(NSURL *)cLocation;
+
+- (void)deleteFluxData;
 
 @end
 
@@ -73,10 +112,11 @@
         selfImpl->theAppController = self;
         
         _theApp = new CAndersenFEApp(selfImpl);
+        self.showFluxLines = NO;
         
         [self getDefaultDosboxLocations];
         
-        self.colorArray = [NSArray arrayWithObjects:[NSColor redColor], [NSColor greenColor], [NSColor orangeColor], [NSColor blueColor], [NSColor purpleColor], nil];
+        self.colorArray = [NSArray arrayWithObjects:[NSColor redColor], [NSColor greenColor], [NSColor orangeColor], [NSColor blueColor], [NSColor purpleColor], [NSColor brownColor], nil];
     }
     
     return self;
@@ -182,7 +222,6 @@
             [self.voltsPerTurnField setStringValue:[NSString stringWithFormat:@"Volts per Turn\nRef. Terminal: %d\n%.3f V/N", _currentTxfo->m_VperNTerminal, _currentTxfo->CalcVoltsPerTurn()]];
         }
         
-        NSString *textVal = self.voltsPerTurnField.stringValue;
         [self.voltsPerTurnField invalidateIntrinsicContentSize];
         
         if (verifyResult != AMPTURNS_ERROR)
@@ -272,6 +311,16 @@
         
         i++;
         nextTerm = nextTerm->GetNext();
+    }
+    
+    // clear the rest of the terminal data
+    for (; i < 6; i++)
+    {
+        NSTextField *txtField = self.terminalData[i];
+        [txtField setStringValue:[NSString stringWithFormat:@"Terminal %d", i+1]];
+        
+        [termColors addObject:self.colorArray[i]];
+        [termFields addObject:txtField];
     }
     
     if (termFields.count > 0)
@@ -493,6 +542,190 @@
 - (void)savecCurrentTxfoAsAndersenFile:(NSString *)wPath
 {
     [self saveTxfo:NULL asAndersenFile:wPath];
+}
+
+- (void)deleteFluxData
+{
+    self.showFluxLines = false;
+    
+    if (_fluxLines == NULL)
+        return;
+    
+    CFluxLines* nextHead = _fluxLines->NextHead();
+    
+    while (_fluxLines != NULL)
+    {
+        delete _fluxLines;
+        _fluxLines = nextHead;
+        
+        if (_fluxLines != NULL)
+            nextHead = _fluxLines->NextHead();
+    }
+    
+    _fluxLines = NULL;
+}
+
+- (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem
+{
+    SEL theAction = [anItem action];
+    
+    if (theAction == @selector(handleShowFluxLines:))
+    {
+        if (_currentTxfo != nil && _currentTxfo->m_AndersenOutputIsValid)
+        {
+            return YES;
+        }
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (IBAction)handleShowFluxLines:(id)sender
+{
+    if (self.showFluxLines)
+    {
+        // We're already showing the flux lines, hide them instead
+        [self deleteFluxData];
+        self.theTxfoView.fluxLines = nil;
+        [self.showFluxLinesMenuItem setState:NSOffState];
+        [self updateTxfoView];
+        return;
+    }
+    
+    // open the file that we are going to read in
+    CStdioFile theFile;
+    CString filName = self.dosBoxCDriveURL.path.UTF8String;
+    // m_AndersenFolder.ReadAndersenFolderName(&filName);
+    filName += _T("/GRAPHICS/BAS.FIL");
+    
+    bool openError = theFile.Open(filName, CFile::modeRead | CFile::typeText);
+    
+    if (openError == false)
+    {
+        NSLog(@"Couldn't open Graphics\bas.fil");
+        return;
+    }
+    
+    CString inString;
+    theFile.ReadString(inString); // discard the first blank line
+    
+    ExtractNextNumber(theFile, inString); // N
+    ExtractNextNumber(theFile, inString); // ITIC
+    ExtractNextNumber(theFile, inString); // LNVER
+    int LNVER = atoi(inString.c_str());
+    ExtractNextNumber(theFile, inString); // LNHOR
+    int LNHOR = atoi(inString.c_str());
+    ExtractNextNumber(theFile, inString); // SCALE
+    ExtractNextNumber(theFile, inString); // PERCV
+    ExtractNextNumber(theFile, inString); // XMAX
+    double xMax = atof(inString.c_str());
+    ExtractNextNumber(theFile, inString); // YMAX
+    double yMax = atof(inString.c_str());
+    
+    [self deleteFluxData];
+    // topmost node is a single-element list holding the max dimensions for scaling
+    _fluxLines = new CFluxLines(xMax, yMax);
+    CFluxLines* lastHead = _fluxLines;
+    
+    // discard ticmark data
+    int i;
+    for (i=0; i<LNVER+LNHOR; i++)
+        ExtractNextNumber(theFile, inString);
+    
+    int IPNTS;
+    int ICOL;
+    
+    // primimg read
+    ExtractNextNumber(theFile, inString); // IPNTS
+    IPNTS = atoi(inString.c_str());
+    ExtractNextNumber(theFile, inString); // ICOL
+    ICOL = atoi(inString.c_str());
+    
+    while (IPNTS != 0)
+    {
+        // only ICOL = 4 interests us
+        if (ICOL == 4)
+        {
+            lastHead->AddHead(new CFluxLines);
+            CFluxLines* lastNode = lastHead->NextHead();
+            lastHead = lastNode;
+            
+            for (i=0; i<IPNTS; i++)
+            // the first IPNTS values are X values
+            {
+                ExtractNextNumber(theFile, inString); // x-values
+                lastNode->SetX(atof(inString.c_str()));
+                if (i != IPNTS - 1)
+                {
+                    lastNode->SetNext(new CFluxLines);
+                }
+                
+                lastNode = lastNode->Next();
+            }
+            
+            lastNode = lastHead;
+            for (i=0; i<IPNTS; i++)
+            // the last IPNTS values are Y values
+            {
+                ExtractNextNumber(theFile, inString); // y-values
+                lastNode->SetY(atof(inString.c_str()));
+                lastNode = lastNode->Next();
+            }
+        }
+        else
+            // throw away everything else
+        {
+            for (i=0; i<IPNTS*2; i++)
+                ExtractNextNumber(theFile, inString);
+        }
+        
+        ExtractNextNumber(theFile, inString); // IPNTS
+        IPNTS = atoi(inString.c_str());
+        ExtractNextNumber(theFile, inString); // ICOL
+        ICOL = atoi(inString.c_str());
+    }
+    
+    // The dimensional values in the bas.fil file are all metric, so we need to convert them.
+    // The first value is the core window size, which we don't need, so we'll bump right past it
+    CFluxLines *nextHead = _fluxLines->NextHead();
+    
+    CFluxLines* nextNode;
+    
+    NSMutableArray *fluxArray = [NSMutableArray array];
+    
+    while (nextHead != NULL)
+    {
+        nextNode = nextHead;
+        //CPoint lastPoint((int)(nextNode->X() * fluxScale), CoreRect.bottom - (int)(nextNode->Y() * fluxScale));
+        // lastPoint.Offset(CoreRect.left, 0);
+        // NSPoint lastPoint = NSMakePoint(nextNode->X(), nextNode->Y());
+        
+        // First point of next line
+        NSBezierPath *nextPath = [NSBezierPath bezierPath];
+        [nextPath moveToPoint:NSMakePoint(nextNode->X() / 25.4, nextNode->Y() / 25.4)];
+        nextNode = nextNode->Next();
+        
+        while (nextNode != NULL)
+        {
+            [nextPath lineToPoint:NSMakePoint(nextNode->X() / 25.4, nextNode->Y() / 25.4)];
+            
+            nextNode = nextNode->Next();
+        }
+        
+        [fluxArray addObject:nextPath];
+        
+        nextHead = nextHead->NextHead();
+    }
+    
+    self.theTxfoView.fluxLines = [NSArray arrayWithArray:fluxArray];
+    // m_wndView.m_FluxListHead = m_FluxLines;
+    // m_wndView.InvalidateRect(m_wndView.m_CCRect);
+    
+    [self.showFluxLinesMenuItem setState:NSOnState];
+    [self updateTxfoView];
+    self.showFluxLines = true;
 }
 
 - (void)saveTxfo:(Transformer *)wTxfo asAndersenFileURL:(NSURL *)wURL
@@ -819,8 +1052,13 @@
     
     [[NSUserDefaults standardUserDefaults] setURL:docURL forKey:LAST_OPENED_INPUT_FILE_KEY];
     
+    delete _currentTxfo;
     _currentTxfo = xlTxfo;
+    _currentTxfo->m_AndersenOutputIsValid = NO;
     _currentTxfo->m_IsValid = YES;
+    [self.showFluxLinesMenuItem setState:NSOffState];
+    self.showFluxLines = NO;
+    self.theTxfoView.fluxLines = nil;
     
     [self updateAllViews];
     

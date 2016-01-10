@@ -54,7 +54,7 @@ inline std::string string_format(const std::string fmt_str, ...) {
         final_n = vsnprintf(&formatted[0], n, fmt_str.c_str(), ap);
         va_end(ap);
         if (final_n < 0 || final_n >= n)
-            n += labs(final_n - n + 1);
+            n += (final_n - n + 1);
         else
             break;
     }

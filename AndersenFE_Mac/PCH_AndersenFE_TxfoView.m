@@ -59,6 +59,7 @@
 {
     self.segmentPaths = nil;
     self.arrowLocationsAndDirections = nil;
+    self.fluxLines = nil;
 }
 
 #pragma mark -
@@ -100,6 +101,17 @@
             }
             
             [arrowSet addObject:rectCenterXnumber];
+        }
+    }
+    
+    if (self.fluxLines)
+    {
+        [[NSColor blackColor] set];
+        
+        for (NSBezierPath *nextPath in self.fluxLines)
+        {
+            [nextPath setLineWidth:self.scale];
+            [nextPath stroke];
         }
     }
     

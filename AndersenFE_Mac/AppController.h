@@ -22,7 +22,7 @@ struct AppControllerImpl
     AppController __unsafe_unretained *theAppController;
 };
 
-@interface AppController : NSObject <NSWindowDelegate>
+@interface AppController : NSObject <NSWindowDelegate, NSUserInterfaceValidations>
 
 - (BOOL)openInputFile:(NSString *)fName;
 
@@ -79,5 +79,9 @@ struct AppControllerImpl
 - (IBAction)saveAndersenFile:(id)sender;
 - (BOOL)currentTransformerIsSaveable;
 - (void)savecCurrentTxfoAsAndersenFile:(NSString *)wPath;
+
+// Flux line stuff
+- (IBAction)handleShowFluxLines:(id)sender;
+@property (weak) IBOutlet NSMenuItem *showFluxLinesMenuItem;
 
 @end

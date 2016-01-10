@@ -614,10 +614,17 @@
                 <menuItem title="View" id="295">
                     <menu key="submenu" title="View" id="296">
                         <items>
-                            <menuItem title="Show Toolbar" keyEquivalent="t" id="297">
+                            <menuItem title="Show Fluxlines" id="297">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="handleShowFluxLines:" target="4aD-zX-viR" id="pnw-rY-a4K"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="whh-NH-rBc"/>
+                            <menuItem title="Show Toolbar" keyEquivalent="t" id="OjY-8c-T18">
                                 <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
-                                    <action selector="toggleToolbarShown:" target="-1" id="366"/>
+                                    <action selector="toggleToolbarShown:" target="-1" id="wfu-ID-bSA"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Customize Toolbar…" id="298">
@@ -882,6 +889,7 @@
                 <outlet property="endThrustField" destination="usv-Lm-PE6" id="s38-0x-F06"/>
                 <outlet property="mainWindow" destination="371" id="VcK-0W-0Hb"/>
                 <outlet property="radialForcesField" destination="bXG-kk-UWR" id="VDl-pc-EVX"/>
+                <outlet property="showFluxLinesMenuItem" destination="297" id="xmm-qp-oMv"/>
                 <outlet property="stressImpedanceField" destination="o7O-i7-UUc" id="CCx-aS-6gb"/>
                 <outlet property="term1Data" destination="3hd-bS-1rt" id="VcZ-2q-hgl"/>
                 <outlet property="term2Data" destination="0oK-Qc-giU" id="mf5-t2-6eE"/>
