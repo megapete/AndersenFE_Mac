@@ -34,7 +34,7 @@
 #define DOSBOX_APP_LOCATION_KEY      @"DosBoxAppLoc"
 #define DOSBOS_CDRIVE_LOCATION_KEY   @"DosBoxC_Loc"
 
-// Helper functions from the original AndersenFE progra,
+// Helper functions from the original AndersenFE program
 void ExtractNextNumber(CStdioFile &wFile, CString &wString)
 {
     wString.erase();
@@ -1145,15 +1145,22 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     
     PCH_OffsetElongationDlog *theDlog = [[PCH_OffsetElongationDlog alloc] init];
     NSInteger result = [NSApp runModalForWindow:theDlog.window];
+    [theDlog.window orderOut:self];
     
-    if (result == NSRunStoppedResponse)
+    if (result == NSModalResponseStop)
     {
         if ([[theDlog.impedanceSelector selectedCell] tag] == 1)
         {
             wTxfo->m_puImpedance = [theDlog.fixedImpedance doubleValue] / 100.0;
         }
     }
-    [theDlog.window orderOut:self];
+    else
+    {
+        NSLog(@"User chose cancel");
+        return NO;
+    }
+    
+    
     
     [self saveTxfo:wTxfo asAndersenFileURL:[fld12URL URLByAppendingPathComponent:@"INP1.FIL"]];
     
