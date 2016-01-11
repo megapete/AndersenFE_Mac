@@ -26,11 +26,12 @@
     return self;
 }
 
-- (instancetype)initAsModifyTerm
+- (instancetype)initAsModifyTermNumber:(int)termNum
 {
     if (self = [self init])
     {
         self.isModify = YES;
+        self.termNum = termNum;
     }
     
     return self;

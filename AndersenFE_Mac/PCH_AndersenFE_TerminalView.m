@@ -14,6 +14,7 @@
 @property int rbClickInTerminal;
 
 - (void)handleSetVPN_RefTerm:(id)sender;
+- (void)modifyTerminalData:(id)sender;
 - (void)raiseMVAToNextStage:(id)sender;
 - (void)lowerMVAToPrevStage:(id)sender;
 - (void)setMVAToZero:(id)sender;
@@ -114,6 +115,8 @@
         NSMenu *termMenu = [[NSMenu alloc] initWithTitle:@"Terminals"];
         [termMenu addItemWithTitle:@"Run Andersen Program..." action:@selector(runAndersenProgram:) keyEquivalent:@""];
         [termMenu addItem:[NSMenuItem separatorItem]];
+        [termMenu addItemWithTitle:@"Modify Terminal Data..." action:@selector(modifyTerminalData:) keyEquivalent:@""];
+        [termMenu addItem:[NSMenuItem separatorItem]];
         [termMenu addItemWithTitle:@"Set VPN Reference" action:@selector(handleSetVPN_RefTerm:) keyEquivalent:@""];
         [termMenu addItem:[NSMenuItem separatorItem]];
         [termMenu addItemWithTitle:@"Lower MVA to previous fan stage" action:@selector(lowerMVAToPrevStage:) keyEquivalent:@""];
@@ -155,6 +158,11 @@
 
 #pragma mark -
 #pragma mark Contextual menu handlers
+
+- (void)modifyTerminalData:(id)sender
+{
+    [self.theAppController handleModifyOfTermNumber:self.refTerminal];
+}
 
 - (void)setMVAToBalanceNI:(id)sender
 {

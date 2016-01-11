@@ -59,6 +59,8 @@ struct AppControllerImpl
 
 - (void)setVPNRefToTermNumber:(int)wTerm;
 
+- (void)handleModifyOfTermNumber:(int)wTerm;
+
 - (void)changeFanStageWithDirection:(int)fanStageDirection;
 - (int)currentTxfoCoolingStage;
 

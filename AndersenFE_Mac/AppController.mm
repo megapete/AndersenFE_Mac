@@ -34,7 +34,7 @@
 #define DOSBOX_APP_LOCATION_KEY      @"DosBoxAppLoc"
 #define DOSBOS_CDRIVE_LOCATION_KEY   @"DosBoxC_Loc"
 
-// Helper functions from the original AndersenFE program
+// Helper function(s) from the original AndersenFE program
 void ExtractNextNumber(CStdioFile &wFile, CString &wString)
 {
     wString.erase();

@@ -10,8 +10,12 @@
 
 @interface PCH_AddTermDlog : NSWindowController
 
+@property int termNum;
+@property double kv;
+@property double mva;
+@property int connection;
 
-- (instancetype)initAsModifyTerm;
+- (instancetype)initAsModifyTermNumber:(int)termNum;
 
 - (IBAction)okayButtonPushed:(id)sender;
 - (IBAction)cancelButtonPushed:(id)sender;
