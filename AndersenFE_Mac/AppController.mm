@@ -1245,10 +1245,21 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     if (runResult == NSFileHandlingPanelOKButton)
     {
         NSError *saveError;
+        BOOL isDirectory = NO;
+        
+        if ([defMgr fileExistsAtPath:savePanel.URL.path isDirectory:&isDirectory])
+        {
+            if (![defMgr removeItemAtURL:savePanel.URL error:&saveError])
+            {
+                NSLog(@"Error while trying to delete existing OUTPUT file: %@", [saveError localizedDescription]);
+                
+                return NO;
+            }
+        }
         
         if (![defMgr copyItemAtURL:outputURL toURL:[savePanel URL] error:&saveError])
         {
-            NSLog(@"Error  while copying OUTPUT file: %@", [saveError localizedDescription]);
+            NSLog(@"Error while copying OUTPUT file: %@", [saveError localizedDescription]);
             
             return NO;
         }
