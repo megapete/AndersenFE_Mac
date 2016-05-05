@@ -1089,9 +1089,16 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     
     // remove the files that will be created by Andersen
     NSFileManager *defMgr = [NSFileManager defaultManager];
+    
+    /* Old method
     NSURL *fld12URL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"FLD12"];
     // NSURL *fld8URL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"FLD8"];
     NSURL *graphicsURL = [self.dosBoxCDriveURL URLByAppendingPathComponent:@"graphics"];
+    */
+    
+    // At the time of this writing, the FLD12 program (compiled from Andersen's source code) does everything in the user's temporary directory. I don't think it's necessary to erase all these files, but it can't hurt.
+    NSURL *fld12URL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+    NSURL *graphicsURL = fld12URL;
     
     if (![defMgr removeItemAtURL:[fld12URL URLByAppendingPathComponent:@"OUTPUT"] error:wError])
     {
@@ -1171,8 +1178,8 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
         return NO;
     }
     
-    
-    
+    /* Old method
+     
     [self saveTxfo:wTxfo asAndersenFileURL:[fld12URL URLByAppendingPathComponent:@"INP1.FIL"]];
     
     NSTask *andersenTask = [[NSTask alloc] init];
@@ -1190,6 +1197,18 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     
     [andersenTask setArguments:[NSArray arrayWithObjects:[batchFileURL path], @"-exit", nil]];
     
+    NSPipe *errPipe = [[NSPipe alloc] init];
+    [andersenTask setStandardError:errPipe];
+     
+    */
+    
+    NSString *inputFilePath = [fld12URL URLByAppendingPathComponent:@"AndInFile.inp"].path;
+    
+    [self saveTxfo:wTxfo asAndersenFile:inputFilePath];
+    
+    NSTask *andersenTask = [[NSTask alloc] init];
+    [andersenTask setLaunchPath:@"/usr/local/bin/FLD12"];
+    [andersenTask setArguments:[NSArray arrayWithObject:inputFilePath]];
     NSPipe *errPipe = [[NSPipe alloc] init];
     [andersenTask setStandardError:errPipe];
     
