@@ -339,7 +339,7 @@
 		D3561E75184A6C8D001E0347 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Peter Huber";
 			};
 			buildConfigurationList = D3561E78184A6C8D001E0347 /* Build configuration list for PBXProject "AndersenFE_Mac" */;
@@ -476,6 +476,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -536,6 +537,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AndersenFE_Mac/AndersenFE_Mac-Prefix.pch";
 				INFOPLIST_FILE = "AndersenFE_Mac/AndersenFE_Mac-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.huberis-tech.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -549,6 +551,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AndersenFE_Mac/AndersenFE_Mac-Prefix.pch";
 				INFOPLIST_FILE = "AndersenFE_Mac/AndersenFE_Mac-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.huberis-tech.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
