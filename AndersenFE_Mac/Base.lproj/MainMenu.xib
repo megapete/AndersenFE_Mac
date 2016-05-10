@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15D9c" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15F18b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="101100" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -592,21 +592,15 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="DosBox" id="qQS-ac-L5b">
+                <menuItem title="DosBox" enabled="NO" id="qQS-ac-L5b">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="DosBox" id="ksF-z6-Eed">
                         <items>
-                            <menuItem title="Set DosBox Application Location..." id="Wrs-AC-Ryr">
+                            <menuItem title="Set DosBox Application Location..." enabled="NO" id="Wrs-AC-Ryr">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="setDosboxAppLocation:" target="4aD-zX-viR" id="hvH-s3-eQl"/>
-                                </connections>
                             </menuItem>
-                            <menuItem title="Set DosBox 'C' Location..." id="bkd-57-nQa">
+                            <menuItem title="Set DosBox 'C' Location..." enabled="NO" id="bkd-57-nQa">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="setDosboxCdriveLocation:" target="4aD-zX-viR" id="Bv6-R3-6dB"/>
-                                </connections>
                             </menuItem>
                         </items>
                     </menu>

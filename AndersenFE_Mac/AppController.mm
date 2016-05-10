@@ -76,8 +76,8 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     CFluxLines *_fluxLines;
 }
 
-@property NSURL *dosBoxAppURL;
-@property NSURL *dosBoxCDriveURL;
+// @property NSURL *dosBoxAppURL;
+// @property NSURL *dosBoxCDriveURL;
 
 @property NSArray *colorArray;
 
@@ -594,17 +594,20 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
         return;
     }
     
+    // At the time of this writing, the FLD12 program (compiled from Andersen's source code) does everything in the user's temporary directory. I don't think it's necessary to erase all these files, but it can't hurt.
+    NSURL *graphicsURL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+
     // open the file that we are going to read in
     CStdioFile theFile;
-    CString filName = self.dosBoxCDriveURL.path.UTF8String;
+    CString filName = graphicsURL.path.UTF8String;
     // m_AndersenFolder.ReadAndersenFolderName(&filName);
-    filName += _T("/GRAPHICS/BAS.FIL");
+    filName += _T("/BAS.FIL");
     
     bool openError = theFile.Open(filName, CFile::modeRead | CFile::typeText);
     
     if (openError == false)
     {
-        NSLog(@"Couldn't open Graphics\bas.fil");
+        NSLog(@"Couldn't open BAS.FIL");
         return;
     }
     
@@ -1482,11 +1485,15 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
 
 - (BOOL)andersenFoldersAreValid
 {
-    return (self.dosBoxAppURL && self.dosBoxCDriveURL);
+    // return (self.dosBoxAppURL && self.dosBoxCDriveURL);
+    
+    return YES;
 }
 
 - (void)getDefaultDosboxLocations
 {
+    /* OLD CODE
+     
     NSUserDefaults *usrDef = [NSUserDefaults standardUserDefaults];
     NSFileManager *defMgr = [NSFileManager defaultManager];
     
@@ -1519,10 +1526,15 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
             [usrDef removeObjectForKey:DOSBOS_CDRIVE_LOCATION_KEY];
         }
     }
+     */
+    
+    // Do nothing
 }
 
 - (BOOL)setDefaultDosboxApplicationLocation:(NSURL *)appDirURL
 {
+    /* OLD CODE
+     
     NSUserDefaults *usrDef = [NSUserDefaults standardUserDefaults];
     NSFileManager *defMgr = [NSFileManager defaultManager];
     
@@ -1540,12 +1552,16 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
             return YES;
         }
     }
+     */
     
-    return NO;
+    // dummy function
+    return YES;
 }
 
 - (BOOL)setDefaultDosboxCdriveLocation:(NSURL *)cLocation
 {
+    /* OLD CODE
+     
     NSUserDefaults *usrDef = [NSUserDefaults standardUserDefaults];
     NSFileManager *defMgr = [NSFileManager defaultManager];
     
@@ -1563,12 +1579,15 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
             return YES;
         }
     }
+     */
     
-    return NO;
+    // dummy function
+    return YES;
 }
 
 - (IBAction)setDosboxAppLocation:(id)sender
 {
+    /* OLD CODE
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     
     [openPanel setCanChooseDirectories:YES];
@@ -1601,10 +1620,14 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
             [badDirectoryAlert runModal]; // we don't care about the result
         }
     }
+     */
+    
+    // Does nothing
 }
 
 - (IBAction)setDosboxCdriveLocation:(id)sender
 {
+    /* OLD CODE
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     
     [openPanel setCanChooseDirectories:YES];
@@ -1638,6 +1661,9 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
             [badDirectoryAlert runModal]; // we don't care about the result
         }
     }
+    */
+    
+    // Does nothing
 }
 
 
