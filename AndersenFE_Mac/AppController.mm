@@ -1222,7 +1222,7 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     }
     @catch (NSException *exception)
     {
-        NSLog(@"Exception when trying to launch clang: %@", [exception reason]);
+        NSLog(@"Exception when trying to launch FLD12: %@", [exception reason]);
         return NO;
     }
     
