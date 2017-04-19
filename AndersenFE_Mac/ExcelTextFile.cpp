@@ -80,6 +80,7 @@ int CExcelTextFile::InputFile(Transformer *wTxfo)
 	double rowKVA[9];
 	char rowConn[9];
 	int rowTerm[9];
+    int rowCurrentDir[9]; // TODO: Implement current direction
 	wTxfo->m_NumTerminals = 0;
 	bool doneTerm[9] = {false, false, false, false, false, false, false, false, false};
 	bool columnIsValid[9] = {false, false, false, false, false, false, false, false, false};
@@ -90,13 +91,19 @@ int CExcelTextFile::InputFile(Transformer *wTxfo)
 	if (fileVersion > 0)
 		lastWdgDataLine = 9;
     
+    int rowTabs = 3;
+    if (fileVersion >= 2)
+    {
+        rowTabs = 4;
+        int removeThis = 3;
+    }
     // Terminal *test = new Terminal;
 	
 	while (nextLine <= lastWdgDataLine)
 	{
 		if (ReadString(lineString) == FALSE)
 			return (1000 + nextLine);
-		if (CountTabs(lineString) != 3)
+		if (CountTabs(lineString) != rowTabs)
 			return (1000 + nextLine);
 
 		nextTab = 0;
@@ -105,6 +112,11 @@ int CExcelTextFile::InputFile(Transformer *wTxfo)
 		rowConn[nextLine - 2] = ExtractChar(lineString, &nextTab);
 
 		rowTerm[nextLine - 2] = ExtractValue(lineString, &nextTab);
+        
+        if (rowTabs == 4)
+        {
+            rowCurrentDir[nextLine - 2] = ExtractValue(lineString, &nextTab);
+        }
 
 		if (rowTerm[nextLine - 2] == 0)
 		{
