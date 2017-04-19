@@ -95,7 +95,6 @@ int CExcelTextFile::InputFile(Transformer *wTxfo)
     if (fileVersion >= 2)
     {
         rowTabs = 4;
-        int removeThis = 3;
     }
     // Terminal *test = new Terminal;
 	
