@@ -21,4 +21,9 @@
     return [self.theAppController openInputFile:filename];
 }
 
+-(BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
+{
+    return YES;
+}
+
 @end
