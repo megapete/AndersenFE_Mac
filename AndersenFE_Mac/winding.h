@@ -10,10 +10,10 @@
 #endif // _MSC_VER > 1000
 
 #include "stdafx.h"
-#include "Layer.h"
-#include "Duct.h"
+#include "layer.h"
+#include "duct.h"
 #include <math.h>
-#include <FLOAT.H>
+#include <float.h>
 // #include <afxtempl.h>
 #include "Zlist.h"	// Added by ClassView
 

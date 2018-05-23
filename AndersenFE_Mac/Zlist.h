@@ -5,7 +5,7 @@
 #if !defined(AFX_ZLIST_H__BFC93C26_8D30_4581_98D4_AEFE608321C9__INCLUDED_)
 #define AFX_ZLIST_H__BFC93C26_8D30_4581_98D4_AEFE608321C9__INCLUDED_
 
-#include "Segment.h"	// Added by ClassView
+#include "segment.h"	// Added by ClassView
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000

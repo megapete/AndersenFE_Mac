@@ -5,8 +5,8 @@
 #if !defined(AFX_EXCELTEXTFILE_H__D8A95F9D_7C41_4403_BB96_A78C8EF5182C__INCLUDED_)
 #define AFX_EXCELTEXTFILE_H__D8A95F9D_7C41_4403_BB96_A78C8EF5182C__INCLUDED_
 
-#include "Transformer.h"	// Added by ClassView
-#include "Winding.h"	// Added by ClassView
+#include "transformer.h"	// Added by ClassView
+#include "winding.h"	// Added by ClassView
 #include "CStdioFile.h"
 
 // Return codes

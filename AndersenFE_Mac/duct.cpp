@@ -3,8 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "AndersenFE.h"
-#include "Duct.h"
+#include "andersenfe.h"
+#include "duct.h"
 
 
 

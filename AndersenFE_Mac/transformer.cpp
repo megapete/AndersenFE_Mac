@@ -3,8 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "AndersenFE.h"
-#include "Transformer.h"
+#include "andersenfe.h"
+#include "transformer.h"
 // #include "AndersenFolder.h"
 #include <string>
 #include "CStdioFile.h"

@@ -361,6 +361,10 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     }
 }
 
+- (void)setMVAToNumberForTerminal:(int)wTerm
+{
+    
+}
 
 - (void)setMVAToBalanceAmpTurnsForTerminal:(int)wTerm
 {
@@ -456,6 +460,11 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
         
         [self handleTxfoChanges];
     }
+}
+
+- (void)handleModifyOfTermNumber:(int)wTerm
+{
+    
 }
 
 - (void)handleTxfoChanges

@@ -3,8 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "AndersenFE.h"
-#include "Winding.h"
+#include "andersenfe.h"
+#include "winding.h"
 #include <vector>
 
 

@@ -3,8 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "AndersenFE.h"
-#include "Layer.h"
+#include "andersenfe.h"
+#include "layer.h"
 
 
 

@@ -5,7 +5,7 @@
 #if !defined(AFX_LAYER_H__AEE4819C_C0F8_4575_875A_BFB8C3947668__INCLUDED_)
 #define AFX_LAYER_H__AEE4819C_C0F8_4575_875A_BFB8C3947668__INCLUDED_
 
-#include "Segment.h"	// Added by ClassView
+#include "segment.h"	// Added by ClassView
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000

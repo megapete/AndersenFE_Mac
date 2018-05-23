@@ -124,6 +124,7 @@
         [termMenu addItem:[NSMenuItem separatorItem]];
         [termMenu addItemWithTitle:@"Set MVA to zero" action:@selector(setMVAToZero:) keyEquivalent:@""];
         [termMenu addItemWithTitle:@"Set MVA to balance amp-turns" action:@selector(setMVAToBalanceNI:) keyEquivalent:@""];
+        [termMenu addItemWithTitle:@"Set MVA to ..." action:@selector(setMVAToNumber:) keyEquivalent:@""];
         
         [NSMenu popUpContextMenu:termMenu withEvent:theEvent forView:self];
     }
@@ -172,6 +173,11 @@
 - (void)setMVAToZero:(id)sender
 {
     [self.theAppController setMVAToZeroForTerminal:self.refTerminal];
+}
+
+- (void)setMVAToNumber:(id)sender
+{
+    
 }
 
 - (void)runAndersenProgram:(id)sender

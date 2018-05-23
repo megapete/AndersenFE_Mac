@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "AndersenFE.h"
+#include "andersenfe.h"
 #include "ExcelTextFile.h"
 #include "terminal.h"
 

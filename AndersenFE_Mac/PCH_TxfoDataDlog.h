@@ -17,7 +17,7 @@ struct txfoDataDlogImpl
 
 @interface PCH_TxfoDataDlog : NSWindowController
 
-@property (strong) IBOutlet NSTextField *description;
+@property (strong) IBOutlet NSTextField *desc;
 
 - (IBAction)okayButtonPressed:(id)sender;
 - (IBAction)cancelButtonPressed:(id)sender;
