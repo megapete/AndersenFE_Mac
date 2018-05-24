@@ -177,7 +177,7 @@
 
 - (void)setMVAToNumber:(id)sender
 {
-    
+    [self.theAppController setMVAToNumberForTerminal:self.refTerminal];
 }
 
 - (void)runAndersenProgram:(id)sender

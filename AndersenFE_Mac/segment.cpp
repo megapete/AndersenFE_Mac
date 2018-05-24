@@ -3,8 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "AndersenFE.h"
-#include "Segment.h"
+#include "andersenfe.h"
+#include "segment.h"
 
 
 

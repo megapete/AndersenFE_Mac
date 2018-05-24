@@ -66,6 +66,7 @@ struct AppControllerImpl
 
 - (void)setMVAToZeroForTerminal:(int)wTerm;
 - (void)setMVAToBalanceAmpTurnsForTerminal:(int)wTerm;
+- (void)setMVAToNumberForTerminal:(int)wTerm;
 
 - (void)updateAllViews;
 - (void)updateTxfoView;

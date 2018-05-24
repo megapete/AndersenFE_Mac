@@ -59,6 +59,8 @@
 		D3561F62184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F61184CE81C001E0347 /* PCH_AndersenFE_TerminalView.m */; };
 		D3561F65184CE92C001E0347 /* AndersenFE_TxfoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3561F64184CE92C001E0347 /* AndersenFE_TxfoDataView.m */; };
 		D38BF569184F737E00DCDA87 /* CMyBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D38BF567184F737E00DCDA87 /* CMyBase.cpp */; };
+		D3AF915820B6050700F4A796 /* SetMVADlog.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AF915620B6050700F4A796 /* SetMVADlog.m */; };
+		D3AF915920B6050700F4A796 /* SetMVADlog.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3AF915720B6050700F4A796 /* SetMVADlog.xib */; };
 		D3EFD9A1184FFB02001E559C /* PCH_SegmentPath.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3EFD9A0184FFB02001E559C /* PCH_SegmentPath.mm */; };
 /* End PBXBuildFile section */
 
@@ -156,6 +158,9 @@
 		D3561F64184CE92C001E0347 /* AndersenFE_TxfoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AndersenFE_TxfoDataView.m; sourceTree = "<group>"; };
 		D38BF567184F737E00DCDA87 /* CMyBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMyBase.cpp; sourceTree = "<group>"; };
 		D38BF568184F737E00DCDA87 /* CMyBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMyBase.h; sourceTree = "<group>"; };
+		D3AF915520B6050700F4A796 /* SetMVADlog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetMVADlog.h; sourceTree = "<group>"; };
+		D3AF915620B6050700F4A796 /* SetMVADlog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetMVADlog.m; sourceTree = "<group>"; };
+		D3AF915720B6050700F4A796 /* SetMVADlog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetMVADlog.xib; sourceTree = "<group>"; };
 		D3EFD99F184FFB02001E559C /* PCH_SegmentPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_SegmentPath.h; sourceTree = "<group>"; };
 		D3EFD9A0184FFB02001E559C /* PCH_SegmentPath.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PCH_SegmentPath.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +221,9 @@
 				D3561E93184A6C8D001E0347 /* AppDelegate.m */,
 				D3561F0D184A738B001E0347 /* AppController.h */,
 				D3561F0E184A738B001E0347 /* AppController.mm */,
+				D3AF915520B6050700F4A796 /* SetMVADlog.h */,
+				D3AF915620B6050700F4A796 /* SetMVADlog.m */,
+				D3AF915720B6050700F4A796 /* SetMVADlog.xib */,
 				D3561F10184A73FF001E0347 /* AndersenFE_View.h */,
 				D3561F11184A73FF001E0347 /* AndersenFE_View.m */,
 				D3561F5D184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.h */,
@@ -339,7 +347,7 @@
 		D3561E75184A6C8D001E0347 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Peter Huber";
 			};
 			buildConfigurationList = D3561E78184A6C8D001E0347 /* Build configuration list for PBXProject "AndersenFE_Mac" */;
@@ -376,6 +384,7 @@
 				D3561F4A184BD616001E0347 /* PCH_WindModNumberDlog.xib in Resources */,
 				D3561F1C184BAB9F001E0347 /* PCH_SplitSegmentDlog.xib in Resources */,
 				D3561F59184BDB68001E0347 /* PCH_MoveWdgDlog.xib in Resources */,
+				D3AF915920B6050700F4A796 /* SetMVADlog.xib in Resources */,
 				D3561F3A184BC17F001E0347 /* PCH_RegWdgDlog.xib in Resources */,
 				D3561F30184BBC19001E0347 /* PCH_WindingGenDlog.xib in Resources */,
 				D3561E97184A6C8D001E0347 /* MainMenu.xib in Resources */,
@@ -401,6 +410,7 @@
 				D3561F3D184BC59F001E0347 /* CFile.mm in Sources */,
 				D3561EF4184A6D35001E0347 /* core.cpp in Sources */,
 				D3561F5F184CE6E5001E0347 /* PCH_AndersenFE_TxfoView.m in Sources */,
+				D3AF915820B6050700F4A796 /* SetMVADlog.m in Sources */,
 				D3561EF5184A6D35001E0347 /* duct.cpp in Sources */,
 				D3561F2A184BBA02001E0347 /* PCH_RunningMessageDlog.m in Sources */,
 				D3561EF8184A6D35001E0347 /* layer.cpp in Sources */,
@@ -467,19 +477,32 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -505,19 +528,32 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

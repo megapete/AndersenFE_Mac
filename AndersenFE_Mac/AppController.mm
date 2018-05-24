@@ -14,7 +14,7 @@
 #import "PCH_AndersenFE_TerminalView.h"
 #import "PCH_SegmentPath.h"
 #import "PCH_OffsetElongationDlog.h"
-
+#import "SetMVADlog.h"
 
 #include "stdafx.h"
 #include "transformer.h"
@@ -363,7 +363,35 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
 
 - (void)setMVAToNumberForTerminal:(int)wTerm
 {
+    SetMVADlog *theDlog = [[SetMVADlog alloc] init];
+    NSInteger result = [NSApp runModalForWindow:theDlog.window];
+    [theDlog.window orderOut:self];
     
+    if (result == NSModalResponseStop)
+    {
+        NSLog(@"User chose okay");
+        Terminal* nextTerm = _currentTxfo->GetTermHead();
+        
+        while (nextTerm != NULL)
+        {
+            if (nextTerm->m_Number == (wTerm + 1))
+            {
+                nextTerm->m_MVA = [theDlog.mva doubleValue];
+                break;
+            }
+            
+            nextTerm = nextTerm->GetNext();
+        }
+        
+        if (nextTerm != NULL)
+        {
+            [self handleTxfoChanges];
+        }
+    }
+    else
+    {
+        NSLog(@"User chose cancel");
+    }
 }
 
 - (void)setMVAToBalanceAmpTurnsForTerminal:(int)wTerm
