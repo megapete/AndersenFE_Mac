@@ -401,7 +401,7 @@
     
     NSInteger result = [NSApp runModalForWindow:theDlog.window];
     
-    if (result == NSRunStoppedResponse)
+    if (result == NSModalResponseStop)
     {
         [self.segmentSelected splitSegmentEquallyInto:[theDlog.numSegments doubleValue] withSectionGap:[theDlog.distanceBetweenSegments doubleValue]];
     }
@@ -461,7 +461,7 @@
     
     NSInteger result = [NSApp runModalForWindow:theDlog.window];
     
-    if (result == NSRunStoppedResponse)
+    if (result == NSModalResponseStop)
     {
         [self.segmentSelected setRegulatingWindingWithNumLoops:[theDlog.numberOfLoops doubleValue] withAxialGap:[theDlog.distanceBewteenStacks doubleValue] isDoubleAxial:([theDlog.doubleAxialStack state] == NSOnState) isMultiStart:([theDlog.multistartTappingWdg state] == NSOnState)];
     }

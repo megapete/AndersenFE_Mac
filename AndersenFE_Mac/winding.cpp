@@ -318,6 +318,84 @@ Layer* Winding::CompileLayerList()
 	
 		
 	}
+    else if (exactRadialTurnsPerLayer < 1.0)
+    {
+        // This is a helical winding with a duct(s) between multiple radial conductors that make up a turn
+        
+        int totalNumberOfLayers = m_NumRadialDucts + 1;
+        
+        double radialStrandsPerTurn;
+        int strandsPerTurn = m_CondNumAxial * m_CondNumRadial * m_CondNumStrands;
+        
+        if (m_CondType == CTC_COND)
+        {
+            radialStrandsPerTurn = (double)m_CondNumRadial * ((m_CondNumStrands - 1) / 2);
+        }
+        else
+        {
+            radialStrandsPerTurn = (double)m_CondNumRadial * (double)m_CondNumStrands;
+        }
+        
+        double numStrPerLayer = radialStrandsPerTurn / totalNumberOfLayers;
+        
+        
+        for (i=0; i<=m_NumRadialDucts; i++)
+        {
+            Layer* nextLayer = new Layer;
+
+            if (i == 0)
+                result = nextLayer;
+            else
+                lastLayer->SetNext(nextLayer);
+
+            // Enter the data for the new layer
+            nextLayer->m_CurrentDirection = m_CurrentDirection;
+            nextLayer->m_InnerRadius = lastInnerRadius + lastRadialBuild + lastRadDuctDimn * m_RadialOverBuild;
+            lastRadDuctDimn = m_RadialDuctDimn;
+            nextLayer->m_Material = m_Material;
+            nextLayer->m_NumberParGroups = m_NumberParGroups;
+            nextLayer->m_NumSpacerBlocks = m_NumSpacerBlocks;
+            nextLayer->m_SpacerBlockWidth = m_SpacerBlockWidth;
+            nextLayer->m_Terminal = m_Terminal;
+            
+            nextLayer->m_RadialWidth = m_RadialTurnDimn / totalNumberOfLayers * m_RadialOverBuild;
+
+            // runningNumberOfLayers += newNumberOfLayers;
+            lastRadialBuild = nextLayer->m_RadialWidth;
+            lastInnerRadius = nextLayer->m_InnerRadius;
+            lastLayer = nextLayer;
+
+            // set up the segment data (axial sections)
+            CZlist* nextZ = m_Zlist;
+            Segment* newPtr;
+            Segment* lastPtr = NULL;
+
+            while (nextZ != NULL)
+            {
+                newPtr = new Segment;
+
+                if (lastPtr == NULL)
+                    nextLayer->m_SegmentHead = newPtr;
+                else
+                    lastPtr->m_Next = newPtr;
+
+                newPtr->m_MaxZ = nextZ->m_Zmax;
+                newPtr->m_MinZ = nextZ->m_Zmin;
+                newPtr->m_NumTurnsTotal = nextZ->m_Turns / totalNumberOfLayers;
+                newPtr->m_IsTappingSegment = nextZ->m_TapSection;
+                nextZ = nextZ->m_Next;
+
+                newPtr->m_NumStrandsPerLayer = (int)numStrPerLayer;
+                newPtr->m_NumStrandsPerTurn = strandsPerTurn / totalNumberOfLayers;
+                newPtr->m_NumTurnsActive = newPtr->m_NumTurnsTotal;
+                newPtr->m_StrandA = m_StrandDimnAxial;
+                newPtr->m_StrandR = m_StrandDimnRadial;
+
+                lastPtr = newPtr;
+            } // end while
+            
+        } // end for (i=
+    }
 	else
 	{
 		for (i=0; i<=m_NumRadialDucts; i++)

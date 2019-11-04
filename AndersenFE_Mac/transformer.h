@@ -5,10 +5,10 @@
 #if !defined(AFX_TRANSFORMER_H__3D490720_74FE_40BE_AB60_FB26CCA6A547__INCLUDED_)
 #define AFX_TRANSFORMER_H__3D490720_74FE_40BE_AB60_FB26CCA6A547__INCLUDED_
 
-#include "Terminal.h"	// Added by ClassView
-#include "Core.h"	// Added by ClassView
-#include "Winding.h"	// Added by ClassView
-#include "Layer.h"	// Added by ClassView
+#include "terminal.h"	// Added by ClassView
+#include "core.h"	// Added by ClassView
+#include "winding.h"	// Added by ClassView
+#include "layer.h"	// Added by ClassView
 
 #define COOLING_STAGE_ONAN      0
 #define COOLING_STAGE_ONAF      1

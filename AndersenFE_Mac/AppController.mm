@@ -1077,7 +1077,9 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     
     if (inputResult != NO_TXTFILE_ERROR)
     {
-        NSAlert *errAlert = [NSAlert alertWithMessageText:@"Bad Input File!" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Can't open input file: Error code #%d", inputResult];
+        NSAlert *errAlert = [[NSAlert alloc] init];
+        errAlert.informativeText = [NSString stringWithFormat:@"Can't open input file: Error code #%d", inputResult];
+        // NSAlert *errAlert = [NSAlert alertWithMessageText:@"Bad Input File!" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@"Can't open input file: Error code #%d", inputResult];
         
         [errAlert runModal]; // we don't care about the result of the runModal call
         
