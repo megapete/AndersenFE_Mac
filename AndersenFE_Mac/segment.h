@@ -19,7 +19,7 @@
 class Segment  
 {
 public:
-	Segment* SplitSegmentCustom(double wZ, double wGap, double wTurns);
+	Segment* SplitSegmentCustom(double percentNewBottom);
 	int GetSegmentPosition(Segment* wHead);
 	double m_MaxAccumAxiallyLbs;
 	bool IsActive();

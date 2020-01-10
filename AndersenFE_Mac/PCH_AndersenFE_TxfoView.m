@@ -11,6 +11,7 @@
 #import "AppController.h"
 #import "PCH_RegWdgDlog.h"
 #import "PCH_SplitSegmentDlog.h"
+#import "PCH_SplitCustomDlog.h"
 
 #define ARROW_HEIGHT        15
 #define ARROWHEAD_WIDTH     3
@@ -413,7 +414,18 @@
 
 - (void)splitSegmentCustom:(id)sender
 {
+    PCH_SplitCustomDlog *theDlog = [[PCH_SplitCustomDlog alloc] init];
     
+    NSInteger result = [NSApp runModalForWindow:theDlog.window];
+    
+    if (result == NSModalResponseStop)
+    {
+        
+    }
+    
+    [theDlog.window orderOut:self];
+    
+    [self.theAppController handleTxfoChanges];
 }
 
 - (void)createParallelLayer:(id)sender

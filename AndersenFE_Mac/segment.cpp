@@ -112,25 +112,27 @@ int Segment::GetSegmentPosition(Segment *wHead)
 		return (1 + GetSegmentPosition(wHead->m_Next));
 }
 
-Segment* Segment::SplitSegmentCustom(double wZ, double wGap, double wTurns)
-// splits this segment into two, with wZ being the Z-dimension from the bottom of this segment to the center of the
-// gap wGap (which may be zero) The new segment (the upper one), will have wTurns turns
+Segment* Segment::SplitSegmentCustom(double percentNewBottom)
+// splits this segment into two, the lower of the new sctions having a height (and number of turns) equal to percentNewBottom of the existing (old) segment
 {
-	if ((wTurns == m_NumTurnsTotal) || (wTurns == 0.0))
+	if ((percentNewBottom >= 100.0) || (percentNewBottom <= 0.0))
 		return m_Next;
+    
+    double wTurns = m_NumTurnsTotal * (100.0 - percentNewBottom) / 100.0;
 
 	m_NumTurnsTotal = m_NumTurnsTotal - wTurns;
 	if (m_NumTurnsActive > 0)
 		m_NumTurnsActive = m_NumTurnsTotal;
 
 	double oldMax = m_MaxZ;
-	m_MaxZ = m_MinZ + wZ - wGap/2.0;
+    double oldSegmentZ = m_MaxZ - m_MinZ;
+	m_MaxZ = m_MinZ + oldSegmentZ * percentNewBottom / 100.0;
 
 	Segment* nSegment = new Segment;
 	
 	nSegment->m_Next = this->m_Next;
 	this->m_Next = nSegment;
-	nSegment->m_MinZ = m_MaxZ + wGap;
+	nSegment->m_MinZ = m_MaxZ;
 	nSegment->m_MaxZ = oldMax;
 	nSegment->m_NumTurnsTotal = wTurns;
 	nSegment->m_Number = m_Number;
