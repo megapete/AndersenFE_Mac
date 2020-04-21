@@ -506,12 +506,14 @@ void Winding::CalculateRadialTurnDimn()
 	else if (i == LAYERTYPE)
 	{
 		m_RadialTurns = m_NumLayers;
-		m_RadialTurnDimn = copperDimn + ((m_RadialTurns - 1) / m_RadialTurns) * m_BetweenLayers;
+		m_RadialTurnDimn = copperDimn + ((double)(m_RadialTurns - 1) / (double)m_RadialTurns) * m_BetweenLayers;
 	}
 	else // must be sheet
 	{
 		m_RadialTurns = (int)ceil(m_TotalTurns / m_NumberParGroups);
-		m_RadialTurnDimn = copperDimn + ((m_RadialTurns - 1) / m_RadialTurns) * m_BetweenLayers;
+        
+        double insBetweenSheets = ((double)(m_RadialTurns - 1) / (double)m_RadialTurns) * m_BetweenLayers;
+		m_RadialTurnDimn = copperDimn + insBetweenSheets;
 	}
 }
 
