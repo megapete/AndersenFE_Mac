@@ -475,7 +475,7 @@
     
     if (result == NSModalResponseStop)
     {
-        [self.segmentSelected setRegulatingWindingWithNumLoops:[theDlog.numberOfLoops doubleValue] withAxialGap:[theDlog.distanceBewteenStacks doubleValue] isDoubleAxial:([theDlog.doubleAxialStack state] == NSOnState) isMultiStart:([theDlog.multistartTappingWdg state] == NSOnState)];
+        [self.segmentSelected setRegulatingWindingWithNumLoops:[theDlog.numberOfLoops doubleValue] withAxialGap:[theDlog.distanceBewteenStacks doubleValue] isDoubleAxial:([theDlog.doubleAxialStack state] == NSControlStateValueOn) isMultiStart:([theDlog.multistartTappingWdg state] == NSControlStateValueOn)];
     }
     
     [theDlog.window orderOut:self];

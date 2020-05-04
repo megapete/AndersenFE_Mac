@@ -568,7 +568,7 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     
     [savePanel orderOut:nil];
     
-    if (runResult == NSFileHandlingPanelCancelButton)
+    if (runResult == NSModalResponseCancel)
     {
         return;
     }
@@ -626,7 +626,7 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
         // We're already showing the flux lines, hide them instead
         [self deleteFluxData];
         self.theTxfoView.fluxLines = nil;
-        [self.showFluxLinesMenuItem setState:NSOffState];
+        [self.showFluxLinesMenuItem setState:NSControlStateValueOff];
         [self updateTxfoView];
         return;
     }
@@ -763,7 +763,7 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     // m_wndView.m_FluxListHead = m_FluxLines;
     // m_wndView.InvalidateRect(m_wndView.m_CCRect);
     
-    [self.showFluxLinesMenuItem setState:NSOnState];
+    [self.showFluxLinesMenuItem setState:NSControlStateValueOn];
     [self updateTxfoView];
     self.showFluxLines = true;
 }
@@ -812,8 +812,8 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     
     // take care of Andersen bug
     double zOffset = 0.0;
-    if (wTxfo->m_LowerZ > 4.5)
-        zOffset = wTxfo->m_LowerZ - 4.5;
+    // if (wTxfo->m_LowerZ > 4.5)
+        // zOffset = wTxfo->m_LowerZ - 4.5;
     
     // Line 2
     /*
@@ -1054,7 +1054,7 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     
     [openPanel orderOut:nil];
     
-    if (runResult == NSFileHandlingPanelCancelButton)
+    if (runResult == NSModalResponseCancel)
     {
         return;
     }
@@ -1098,7 +1098,7 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     _currentTxfo = xlTxfo;
     _currentTxfo->m_AndersenOutputIsValid = NO;
     _currentTxfo->m_IsValid = YES;
-    [self.showFluxLinesMenuItem setState:NSOffState];
+    [self.showFluxLinesMenuItem setState:NSControlStateValueOff];
     self.showFluxLines = NO;
     self.theTxfoView.fluxLines = nil;
     
@@ -1303,7 +1303,7 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
     
     [savePanel orderOut:nil];
     
-    if (runResult == NSFileHandlingPanelOKButton)
+    if (runResult == NSModalResponseOK)
     {
         NSError *saveError;
         BOOL isDirectory = NO;
