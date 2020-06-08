@@ -1012,7 +1012,8 @@ void Winding::DefineRegulatingWdg(int wNumLoops, double wAxialGap, bool wIsDoubl
 		double ctcConds = 1;
 		if (m_CondType == CTC_COND)
 			ctcConds = 2;
-		double offset = m_CondNumAxial * (m_StrandDimnAxial * ctcConds + m_CondCover * 0.8);
+        // PCH 2020-06-05: This is a kind of kludgy way of adding a spacer between cables for CTC only
+        double offset = m_CondNumAxial * (m_StrandDimnAxial * ctcConds + m_CondCover * 0.8) + (ctcConds - 1) * (m_CondNumAxial - 1) * m_BetweenCables * 0.98;
 		m_ElectricalHeight += offset;
 		m_TotalTurns = m_TotalTurns * wNumLoops;
 		
@@ -1020,15 +1021,19 @@ void Winding::DefineRegulatingWdg(int wNumLoops, double wAxialGap, bool wIsDoubl
 		{
 			nSegment = nLayer->m_SegmentHead;
 			nSegment->m_MinZ -= offset/2.0;
-
+            
+            int segmentCount = 0;
 			while (nSegment->m_Next != NULL)
 			{
+                nSegment->m_NumStrandsPerTurn /= m_CondNumAxial;
 				nSegment->m_NumTurnsTotal *= wNumLoops;
 				if (nSegment->m_NumTurnsActive != 0.0)
 					nSegment->m_NumTurnsActive = nSegment->m_NumTurnsTotal;
 				nSegment = nSegment->m_Next;
+                segmentCount++;
 			}
 			nSegment->m_MaxZ += offset/2.0;
+            nSegment->m_NumStrandsPerTurn /= m_CondNumAxial;
 			nSegment->m_NumTurnsTotal *= wNumLoops;
 			if (nSegment->m_NumTurnsActive != 0.0)
 					nSegment->m_NumTurnsActive = nSegment->m_NumTurnsTotal;

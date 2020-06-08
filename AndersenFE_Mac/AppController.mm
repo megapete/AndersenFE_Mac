@@ -836,7 +836,7 @@ void ExtractNextNumber(CStdioFile &wFile, CString &wString)
                 wTxfo->m_NumWoundLimbs,
                 1,
                 -wTxfo->m_LowerZ + zOffset,
-                wTxfo->m_Core.m_WindowHeight - wTxfo->m_LowerZ + zOffset,
+                wTxfo->m_Core.m_WindowHeight /* - wTxfo->m_LowerZ */ + zOffset,
                 wTxfo->m_Core.m_Diameter
                 ];
     
